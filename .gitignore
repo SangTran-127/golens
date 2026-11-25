@@ -1,0 +1,49 @@
+# macOS
+.DS_Store
+*.swp
+*.swo
+*~
+
+# Python caches (design tooling)
+__pycache__/
+
+# Build artifacts
+.build/
+/build/
+.build-arm/
+.build-x86_64/
+GoLensApp
+GoLensApp-arm64
+GoLensApp-x86_64
+*.dylib
+*.o
+*.a
+*.so
+
+# Go
+
+# Package
+Package.resolved
+.PackageBuild/
+
+# IDE
+*.xcuserdata
+*.xcworkspace
+xcuserdata/
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+*.moved-aside
+DerivedData/
+*.hmap
+*.ipa
+*.xcuserstate
+
+.idea/
+scratch/
+.golens/
+*.pprof
+
+# Linux runtime build downloads and caches
+/scripts/runtime/cache/

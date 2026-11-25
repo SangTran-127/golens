@@ -1,0 +1,14 @@
+{
+  "targets": [
+    {
+      "schema": "public",
+      "table": "users",
+      "where": "\"id\" = 42",
+      "columns": [
+        "id"
+      ],
+      "constraint": "orders_user_id_fkey"
+    }
+  ],
+  "error": null
+}

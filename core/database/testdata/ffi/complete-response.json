@@ -1,0 +1,18 @@
+{
+  "replaceStartByte": 9,
+  "items": [
+    {
+      "label": "customer_id",
+      "kind": "column",
+      "detail": "orders · int8",
+      "insert": "customer_id"
+    },
+    {
+      "label": "currency",
+      "kind": "column",
+      "detail": "orders · text",
+      "insert": "currency"
+    }
+  ],
+  "hint": ""
+}

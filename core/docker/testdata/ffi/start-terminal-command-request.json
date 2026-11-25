@@ -1,0 +1,9 @@
+[
+  "docker",
+  "exec",
+  "-it",
+  "a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1",
+  "sh",
+  "-c",
+  "if command -v bash >/dev/null; then exec bash; else exec sh; fi"
+]

@@ -1,0 +1,9 @@
+{
+  "rowsWritten": 1536,
+  "bytes": 0,
+  "cursorClosed": false,
+  "error": {
+    "kind": "tooLarge",
+    "message": "The result is larger than 10 MB, so GoLens did not copy it. Use Export Result to save it to a file instead."
+  }
+}

@@ -1,0 +1,11 @@
+name: benchmark b methods
+file: z_test.go
+want: ResetTimer
+-- src --
+package p
+
+import "testing"
+
+func BenchmarkZ(b *testing.B) {
+	b.Rese|
+}

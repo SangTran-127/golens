@@ -1,0 +1,19 @@
+{
+  "fixture": "library",
+  "kind": "library-no-main",
+  "purpose": "Go library that turns arbitrary text into URL-friendly slugs.",
+  "entry": null,
+  "representativeFlow": {
+    "name": "slug.Make usage",
+    "why": "No main package exists; exported API plus the Example tests are the real entry for a user of the library.",
+    "steps": [
+      {"file": "example_test.go", "symbol": "ExampleMake", "role": "shows intended usage"},
+      {"file": "slug.go", "symbol": "Make", "role": "exported entry with default options"},
+      {"file": "slug.go", "symbol": "MakeWithOptions", "role": "does the transformation"}
+    ],
+    "output": {"file": "slug.go", "symbol": "MakeWithOptions", "kind": "return-value"}
+  },
+  "knownUncertainty": [],
+  "mustNotClaim": ["a main entry point exists", "the library performs I/O"],
+  "tests": ["ExampleMake", "ExampleMakeWithOptions"]
+}

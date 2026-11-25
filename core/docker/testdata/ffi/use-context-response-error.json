@@ -1,0 +1,4 @@
+{
+  "ok": false,
+  "error": "There’s no Docker context named “staging”."
+}

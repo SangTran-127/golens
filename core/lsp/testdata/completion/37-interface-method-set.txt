@@ -1,0 +1,10 @@
+name: interface method set
+want: Read
+-- src --
+package p
+
+import "io"
+
+func f(r io.Reader) {
+	r.Re|
+}

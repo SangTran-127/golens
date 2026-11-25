@@ -1,0 +1,12 @@
+name: closure captured variable
+want: total
+-- src --
+package p
+
+func f() {
+	total := 0
+	func() {
+		tot|
+	}()
+	_ = total
+}

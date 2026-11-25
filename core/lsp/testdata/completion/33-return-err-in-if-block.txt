@@ -1,0 +1,14 @@
+name: return err in if block
+want: err
+-- src --
+package p
+
+import "os"
+
+func f() error {
+	_, err := os.Open("x")
+	if err != nil {
+		return er|
+	}
+	return nil
+}

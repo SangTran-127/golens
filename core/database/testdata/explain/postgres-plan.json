@@ -1,0 +1,68 @@
+[
+  {
+    "Plan": {
+      "Node Type": "Sort",
+      "Parallel Aware": false,
+      "Async Capable": false,
+      "Startup Cost": 2.19,
+      "Total Cost": 2.20,
+      "Plan Rows": 4,
+      "Plan Width": 7,
+      "Sort Key": ["u.name"],
+      "Plans": [
+        {
+          "Node Type": "Hash Join",
+          "Parent Relationship": "Outer",
+          "Parallel Aware": false,
+          "Async Capable": false,
+          "Join Type": "Inner",
+          "Startup Cost": 1.07,
+          "Total Cost": 2.15,
+          "Plan Rows": 4,
+          "Plan Width": 7,
+          "Inner Unique": true,
+          "Hash Cond": "(u.team_id = t.id)",
+          "Plans": [
+            {
+              "Node Type": "Seq Scan",
+              "Parent Relationship": "Outer",
+              "Parallel Aware": false,
+              "Async Capable": false,
+              "Relation Name": "golens_ex_users",
+              "Alias": "u",
+              "Startup Cost": 0.00,
+              "Total Cost": 1.06,
+              "Plan Rows": 4,
+              "Plan Width": 8,
+              "Filter": "(id > 1)"
+            },
+            {
+              "Node Type": "Hash",
+              "Parent Relationship": "Inner",
+              "Parallel Aware": false,
+              "Async Capable": false,
+              "Startup Cost": 1.03,
+              "Total Cost": 1.03,
+              "Plan Rows": 3,
+              "Plan Width": 7,
+              "Plans": [
+                {
+                  "Node Type": "Seq Scan",
+                  "Parent Relationship": "Outer",
+                  "Parallel Aware": false,
+                  "Async Capable": false,
+                  "Relation Name": "golens_ex_teams",
+                  "Alias": "t",
+                  "Startup Cost": 0.00,
+                  "Total Cost": 1.03,
+                  "Plan Rows": 3,
+                  "Plan Width": 7
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+]

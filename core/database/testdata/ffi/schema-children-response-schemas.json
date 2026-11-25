@@ -1,0 +1,17 @@
+{
+  "nodes": [
+    {
+      "kind": "schema",
+      "name": "public",
+      "detail": "42 tables",
+      "hasChildren": true
+    },
+    {
+      "kind": "schema",
+      "name": "audit",
+      "detail": "",
+      "hasChildren": true
+    }
+  ],
+  "error": null
+}

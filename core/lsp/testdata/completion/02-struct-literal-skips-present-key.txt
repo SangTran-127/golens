@@ -1,0 +1,14 @@
+name: struct literal skips present key
+want: idx
+forbid: id
+-- src --
+package p
+
+type Y struct {
+	id  int
+	idx int
+}
+
+func f() Y {
+	return Y{id: 1, i| }
+}

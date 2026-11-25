@@ -1,0 +1,35 @@
+{
+  "parameters": [
+    {
+      "name": ":id",
+      "positions": [
+        {
+          "startByte": 31,
+          "endByte": 34
+        }
+      ],
+      "typeHint": ""
+    },
+    {
+      "name": "$2",
+      "positions": [
+        {
+          "startByte": 52,
+          "endByte": 54
+        }
+      ],
+      "typeHint": "timestamptz"
+    },
+    {
+      "name": "@team",
+      "positions": [
+        {
+          "startByte": 79,
+          "endByte": 94
+        }
+      ],
+      "typeHint": "",
+      "nullable": true
+    }
+  ]
+}

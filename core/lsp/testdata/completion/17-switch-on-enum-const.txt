@@ -1,0 +1,19 @@
+name: switch on enum const
+want: ColorBlue, ColorRed
+-- src --
+package p
+
+type Color int
+
+const (
+	ColorRed Color = iota
+	ColorBlue
+)
+
+var CountAll = 3
+
+func f(c Color) {
+	switch c {
+	case Co|
+	}
+}

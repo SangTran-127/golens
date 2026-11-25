@@ -1,0 +1,12 @@
+name: local before package func
+want: count, counter
+-- src --
+package p
+
+func counter() int { return 0 }
+
+func f() {
+	count := 3
+	cou|
+	_ = count
+}

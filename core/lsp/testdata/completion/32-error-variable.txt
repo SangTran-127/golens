@@ -1,0 +1,11 @@
+name: error variable
+want: err
+-- src --
+package p
+
+import "os"
+
+func f() {
+	_, err := os.Open("x")
+	if err|
+}

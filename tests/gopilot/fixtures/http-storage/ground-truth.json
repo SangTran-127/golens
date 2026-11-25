@@ -1,0 +1,23 @@
+{
+  "fixture": "http-storage",
+  "kind": "http-service-with-storage",
+  "purpose": "HTTP API that creates orders after reserving stock and stores them with an SQL insert.",
+  "entry": {"file": "main.go", "symbol": "main"},
+  "representativeFlow": {
+    "name": "create order",
+    "why": "Only business route; crosses handler, service rule and persistence, ends in a stored row.",
+    "steps": [
+      {"file": "main.go", "symbol": "main", "role": "wires dependencies and registers routes"},
+      {"file": "handler.go", "symbol": "Handler.CreateOrder", "role": "decodes request and maps errors to status"},
+      {"file": "service.go", "symbol": "Service.Create", "role": "reserves stock then builds the order"},
+      {"file": "inventory.go", "symbol": "Inventory.Reserve", "role": "business check on stock"},
+      {"file": "repository.go", "symbol": "SQLRepository.Save", "role": "persists the order"}
+    ],
+    "output": {"file": "repository.go", "symbol": "insertOrderSQL", "kind": "sql-insert"}
+  },
+  "knownUncertainty": [
+    {"topic": "storage backend", "statement": "main.go binds an in-memory Execer; no real database driver is wired in this repo, so production storage cannot be asserted."}
+  ],
+  "mustNotClaim": ["a specific database engine is used", "a route other than POST /orders exists"],
+  "tests": ["TestCreateOrderPersists", "TestCreateOrderOutOfStock"]
+}

@@ -1,0 +1,29 @@
+{
+  "definition": {
+    "id": "5E0C2D7A-3B1F-4C8E-9A61-2F4D8B7C1E90",
+    "name": "local",
+    "engine": "postgres",
+    "host": "localhost",
+    "port": 5432,
+    "database": "app",
+    "user": "app",
+    "password": "keychain",
+    "ssl": {
+      "mode": "prefer",
+      "rootCert": "",
+      "cert": "",
+      "key": ""
+    },
+    "sqlitePath": "",
+    "sqliteCreate": false,
+    "defaultSchema": "public",
+    "readOnly": false,
+    "production": false,
+    "ssh": {
+      "destination": "",
+      "port": 0
+    }
+  },
+  "secret": "s3cret",
+  "workspaceRoot": "/Users/me/src/app"
+}

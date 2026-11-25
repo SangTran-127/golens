@@ -1,0 +1,14 @@
+name: struct method on pointer receiver
+want: Push
+-- src --
+package p
+
+type Stack struct{ items []int }
+
+func (s *Stack) Push(v int) {}
+func (s *Stack) Pop() int { return 0 }
+
+func f() {
+	s := &Stack{}
+	s.Pu|
+}

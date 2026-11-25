@@ -1,0 +1,5 @@
+{
+  "kind": "images",
+  "items": [],
+  "error": "Docker Engine isn’t running at /Users/me/.orbstack/run/docker.sock."
+}

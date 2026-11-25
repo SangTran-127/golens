@@ -1,0 +1,9 @@
+name: struct tag string
+forbid: func, return, package
+expect: none
+-- src --
+package p
+
+type Item struct {
+	FirstName string `json:"|"`
+}

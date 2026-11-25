@@ -1,0 +1,10 @@
+name: map literal struct value key
+want: Count
+-- src --
+package p
+
+type Item struct{ Label string; Count int }
+
+func f() map[string]Item {
+	return map[string]Item{"a": {Co|}}
+}

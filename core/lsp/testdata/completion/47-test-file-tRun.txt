@@ -1,0 +1,11 @@
+name: test file t.Run
+file: y_test.go
+want: Run
+-- src --
+package p
+
+import "testing"
+
+func TestY(t *testing.T) {
+	t.Ru|
+}

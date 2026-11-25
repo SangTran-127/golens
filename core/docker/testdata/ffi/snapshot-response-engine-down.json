@@ -1,0 +1,12 @@
+{
+  "engine": {
+    "state": "down",
+    "reason": "down",
+    "error": "Docker Engine isn’t running at /Users/me/.orbstack/run/docker.sock.",
+    "endpoint": "unix:///Users/me/.orbstack/run/docker.sock",
+    "context": "orbstack",
+    "provider": "OrbStack"
+  },
+  "containers": [],
+  "projects": []
+}

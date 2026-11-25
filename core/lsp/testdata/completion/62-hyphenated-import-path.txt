@@ -1,0 +1,7 @@
+name: hyphenated import path
+after: import "example.com/dep/go-kit"|
+notafter: go-go|
+-- src --
+package p
+
+import "example.com/dep/go-ki|"

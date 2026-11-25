@@ -1,0 +1,17 @@
+{
+  "plan": null,
+  "analyzed": false,
+  "rolledBack": false,
+  "blocked": [],
+  "session": {
+    "state": "connected",
+    "transaction": "idle",
+    "schema": "public",
+    "mode": "auto",
+    "isolation": ""
+  },
+  "error": {
+    "kind": "unsupported",
+    "message": "MySQL can analyze only SELECT statements, so GoLens did not run this DELETE. Use Explain Plan to see its estimated plan."
+  }
+}

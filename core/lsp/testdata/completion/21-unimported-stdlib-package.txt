@@ -1,0 +1,8 @@
+name: unimported stdlib package
+want: strconv
+-- src --
+package p
+
+func f() {
+	strco|
+}

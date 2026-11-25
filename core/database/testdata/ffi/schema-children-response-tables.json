@@ -1,0 +1,23 @@
+{
+  "nodes": [
+    {
+      "kind": "table",
+      "name": "orders",
+      "detail": "7 columns",
+      "hasChildren": true
+    },
+    {
+      "kind": "table",
+      "name": "users",
+      "detail": "5 columns",
+      "hasChildren": true
+    },
+    {
+      "kind": "view",
+      "name": "active_users",
+      "detail": "3 columns",
+      "hasChildren": true
+    }
+  ],
+  "error": null
+}

@@ -1,0 +1,36 @@
+{
+  "seq": 2,
+  "reset": false,
+  "upserts": [
+    {
+      "id": "b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2",
+      "name": "velo-redis-1",
+      "image": "redis:7",
+      "imageId": "sha256:e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2",
+      "command": "docker-entrypoint.sh redis-server",
+      "created": 1763222300,
+      "state": "running",
+      "status": "Up Less than a second",
+      "ports": [],
+      "project": "velo",
+      "service": "redis",
+      "projectDir": "/Users/me/src/velo",
+      "configFiles": [
+        "/Users/me/src/velo/compose.yaml"
+      ]
+    }
+  ],
+  "removals": [
+    "d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4"
+  ],
+  "invalidated": [
+    "images"
+  ],
+  "engine": {
+    "state": "running",
+    "endpoint": "unix:///Users/me/.orbstack/run/docker.sock",
+    "context": "orbstack",
+    "provider": "OrbStack",
+    "apiVersion": "1.51"
+  }
+}

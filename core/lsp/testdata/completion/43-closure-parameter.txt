@@ -1,0 +1,12 @@
+name: closure parameter
+want: item
+-- src --
+package p
+
+func each(xs []string, fn func(string)) {}
+
+func f() {
+	each(nil, func(item string) {
+		_ = it|
+	})
+}

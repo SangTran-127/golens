@@ -1,0 +1,41 @@
+{
+  "magic": "GLRP",
+  "formatVersion": 1,
+  "byteOrder": "little-endian",
+  "bitmapBitOrder": "row r is bit (r % 8) of byte (r / 8), least significant bit first",
+  "flags": 1,
+  "endOfResult": true,
+  "sortedView": false,
+  "firstRow": 0,
+  "rowCount": 3,
+  "resultVersion": 0,
+  "byteLength": 680,
+  "columns": [
+    {
+      "kind": "text",
+      "values": [
+        "Grüße aus Saigon",
+        "emoji-free ✓ check",
+        "中文"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "text",
+      "values": [
+        "Tiếng Việt có dấu",
+        "日本語テキスト日本語テキスト日本語テキスト日本語テキスト日本語テキスト日本語テキスト日本語テキスト日本語テキスト日本語テキスト日本語テキスト日本語テキスト日本語テキスト日本語テキスト日本語テキスト日本語テキスト日本語テキスト日本語テキスト日本語テキスト日本語テキスト日本語テキスト日本語テキスト日本語テキスト日本語テキスト日本語テキスト日本",
+        "𝄞 musical symbol"
+      ],
+      "truncated": [
+        false,
+        true,
+        false
+      ]
+    }
+  ]
+}

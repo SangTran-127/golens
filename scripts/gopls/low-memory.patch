@@ -1,0 +1,189 @@
+diff -ruN a/internal/cache/parse_cache.go b/internal/cache/parse_cache.go
+--- a/internal/cache/parse_cache.go
++++ b/internal/cache/parse_cache.go
+@@ -11,8 +11,11 @@
+ 	"fmt"
+ 	"go/parser"
+ 	"go/token"
++	"math"
+ 	"math/bits"
+ 	"runtime"
++	"runtime/debug"
++	"runtime/metrics"
+ 	"sync"
+ 	"time"
+ 
+@@ -253,7 +256,7 @@
+ }
+ 
+ func (c *parseCache) gc() {
+-	const period = 10 * time.Second // gc period
++	const period = 1 * time.Second // gc period
+ 	timer := time.NewTicker(period)
+ 	defer timer.Stop()
+ 
+@@ -270,18 +273,37 @@
+ 
+ func (c *parseCache) gcOnce() {
+ 	now := time.Now()
++	expireAfter := c.expireAfter
++	if heapOverMemoryLimit() {
++		expireAfter = min(expireAfter, parseCacheExpiryUnderPressure)
++	}
+ 	c.mu.Lock()
+ 	defer c.mu.Unlock()
+ 
+ 	for len(c.m) > parseCacheMinFiles {
+ 		e := heap.Pop(&c.lru).(*parseCacheEntry)
+-		if now.Sub(e.walltime) >= c.expireAfter {
++		if now.Sub(e.walltime) >= expireAfter {
+ 			delete(c.m, e.key)
+ 		} else {
+ 			heap.Push(&c.lru, e)
+ 			break
+ 		}
+ 	}
++}
++
++const parseCacheExpiryUnderPressure = 1 * time.Second
++
++func heapOverMemoryLimit() bool {
++	limit := debug.SetMemoryLimit(-1)
++	if limit <= 0 || limit == math.MaxInt64 {
++		return false
++	}
++	sample := []metrics.Sample{{Name: "/gc/heap/live:bytes"}}
++	metrics.Read(sample)
++	if sample[0].Value.Kind() != metrics.KindUint64 {
++		return false
++	}
++	return sample[0].Value.Uint64() >= uint64(limit)
+ }
+ 
+ // allocateSpace reserves the next n bytes of token.Pos space in the
+diff -ruN a/internal/cache/parse_cache_test.go b/internal/cache/parse_cache_test.go
+--- a/internal/cache/parse_cache_test.go
++++ b/internal/cache/parse_cache_test.go
+@@ -8,7 +8,11 @@
+ 	"context"
+ 	"fmt"
+ 	"go/token"
++	"math"
+ 	"math/bits"
++	"runtime"
++	"runtime/debug"
++	"runtime/metrics"
+ 	"testing"
+ 	"time"
+ 
+@@ -234,5 +238,45 @@
+ 	return file.Identity{
+ 		URI:  h.uri,
+ 		Hash: h.hash,
++	}
++}
++
++func TestParseCache_ShortExpiryOverMemoryLimit(t *testing.T) {
++	skipIfNoParseCache(t)
++
++	ctx := context.Background()
++	fh := makeFakeFileHandle(protocol.DocumentURI("file:///myfile"), []byte("package p\n\nconst _ = \"foo\""))
++	files := dummyFileHandles(parseCacheMinFiles)
++
++	evicted := func(limit int64) bool {
++		old := debug.SetMemoryLimit(limit)
++		defer debug.SetMemoryLimit(old)
++		cache := newParseCache(time.Hour)
++		cache.stop()
++		fset := token.NewFileSet()
++		before, err := cache.parseFiles(ctx, fset, parsego.Full, false, fh)
++		if err != nil {
++			t.Fatal(err)
++		}
++		time.Sleep(parseCacheExpiryUnderPressure)
++		if _, err := cache.parseFiles(ctx, fset, parsego.Full, false, files...); err != nil {
++			t.Fatal(err)
++		}
++		cache.gcOnce()
++		after, err := cache.parseFiles(ctx, fset, parsego.Full, false, fh)
++		if err != nil {
++			t.Fatal(err)
++		}
++		return before[0] != after[0]
++	}
++
++	if evicted(math.MaxInt64) {
++		t.Error("without a memory limit, a file parsed a second ago was evicted")
++	}
++	runtime.GC()
++	live := []metrics.Sample{{Name: "/gc/heap/live:bytes"}}
++	metrics.Read(live)
++	if !evicted(int64(live[0].Value.Uint64()) / 2) {
++		t.Error("over the memory limit, a file parsed a second ago was kept")
+ 	}
+ }
+diff -ruN a/internal/server/workspace.go b/internal/server/workspace.go
+--- a/internal/server/workspace.go
++++ b/internal/server/workspace.go
+@@ -81,6 +81,7 @@
+ 		return err
+ 	}
+ 	s.SetOptions(options)
++	updateGlobalOptions(options)
+ 
+ 	// Delete and create file watcher based on the updated setting and watch
+ 	// for the desired directory.
+@@ -108,7 +109,7 @@
+ 			return err
+ 		}
+ 
+-		if !reflect.DeepEqual(folder.Options, opts) {
++		if !sameFolderOptions(folder.Options, opts) {
+ 			changed = true
+ 		}
+ 		folderOpts[folder.Dir] = opts
+@@ -143,9 +144,17 @@
+ 	// An options change may have affected the detected Go version.
+ 	s.checkViewGoVersions()
+ 
+-	updateGlobalOptions(options)
+-
+ 	return nil
++}
++
++func sameFolderOptions(a, b *settings.Options) bool {
++	if a == nil || b == nil {
++		return a == b
++	}
++	c := *b
++	c.MemoryLimit = a.MemoryLimit
++	c.MaxFileCacheBytes = a.MaxFileCacheBytes
++	return reflect.DeepEqual(a, &c)
+ }
+ 
+ func (s *server) DidCreateFiles(ctx context.Context, params *protocol.CreateFilesParams) error {
+diff -ruN a/internal/server/workspace_options_test.go b/internal/server/workspace_options_test.go
+--- a/internal/server/workspace_options_test.go
++++ b/internal/server/workspace_options_test.go
+@@ -0,0 +1,21 @@
++package server
++
++import (
++	"testing"
++
++	"golang.org/x/tools/gopls/internal/settings"
++)
++
++func TestSameFolderOptionsIgnoresProcessWideSettings(t *testing.T) {
++	a := settings.DefaultOptions()
++	b := a.Clone()
++	b.MemoryLimit = 1 << 30
++	b.MaxFileCacheBytes = 1 << 28
++	if !sameFolderOptions(a, b) {
++		t.Error("a memoryLimit or maxFileCacheBytes change rebuilt the folder views")
++	}
++	b.Staticcheck = !a.Staticcheck
++	if sameFolderOptions(a, b) {
++		t.Error("a folder setting change was ignored")
++	}
++}

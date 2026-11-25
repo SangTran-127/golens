@@ -1,0 +1,9 @@
+name: generic type parameter
+want: Elem
+-- src --
+package p
+
+func f[Elem any](xs []Elem) {
+	var z El|
+	_ = z
+}

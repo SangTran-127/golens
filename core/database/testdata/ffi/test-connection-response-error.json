@@ -1,0 +1,9 @@
+{
+  "ok": false,
+  "serverVersion": "",
+  "latencyMs": 0,
+  "error": {
+    "kind": "auth",
+    "message": "The server did not accept the user name or password. Check them in Edit Data Source."
+  }
+}

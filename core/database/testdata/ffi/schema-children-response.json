@@ -1,0 +1,35 @@
+{
+  "nodes": [
+    {
+      "kind": "column",
+      "name": "id",
+      "detail": "bigint · not null · default nextval('users_id_seq'::regclass)",
+      "hasChildren": false
+    },
+    {
+      "kind": "column",
+      "name": "email",
+      "detail": "text",
+      "hasChildren": false
+    },
+    {
+      "kind": "primaryKey",
+      "name": "users_pkey",
+      "detail": "id",
+      "hasChildren": false
+    },
+    {
+      "kind": "foreignKey",
+      "name": "users_team_id_fkey",
+      "detail": "team_id → public.teams(id)",
+      "hasChildren": false
+    },
+    {
+      "kind": "index",
+      "name": "users_email_key",
+      "detail": "unique (email)",
+      "hasChildren": false
+    }
+  ],
+  "error": null
+}

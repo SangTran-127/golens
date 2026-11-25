@@ -1,0 +1,167 @@
+{
+  "fixture": "benchmark-lab",
+  "kind": "benchmark-comparison-lab",
+  "purpose": "Library with an O(n squared) Dedupe to optimise, a slow and a fast string join, and a benchmark with deliberately jittery sleeps.",
+  "entry": null,
+  "representativeFlow": {
+    "name": "Dedupe and its benchmark",
+    "why": "No main package; the unit tests and the benchmark are how the optimisation target is exercised.",
+    "steps": [
+      {
+        "file": "dedupe_test.go",
+        "symbol": "TestDedupePinsBehaviour",
+        "role": "pins order, empty inputs and case sensitivity"
+      },
+      {
+        "file": "dedupe.go",
+        "symbol": "Dedupe",
+        "role": "keeps first occurrences using a nested linear scan of the output"
+      },
+      {
+        "file": "bench_test.go",
+        "symbol": "BenchmarkDedupe",
+        "role": "measures Dedupe on 2000 items with 1000 unique values"
+      }
+    ],
+    "output": {
+      "file": "dedupe.go",
+      "symbol": "Dedupe",
+      "kind": "return-value"
+    }
+  },
+  "profiles": {
+    "prepare": "prepare.sh",
+    "benchmark": "BenchmarkDedupe (cpu) and BenchmarkJoinSlow plus BenchmarkJoinFast (alloc)",
+    "kinds": {
+      "cpu": {
+        "sampleIndex": "cpu",
+        "topFlat": "runtime.memequal",
+        "mustContain": [
+          "example.test/benchlab.Dedupe",
+          "example.test/benchlab.BenchmarkDedupe"
+        ],
+        "note": "string comparison inside the nested loop of Dedupe, about 63 percent flat and 75 percent cumulative for Dedupe"
+      },
+      "alloc": {
+        "sampleIndex": "alloc_space",
+        "topFlat": "example.test/benchlab.JoinSlow",
+        "mustContain": [
+          "strings.(*Builder).WriteString"
+        ],
+        "note": "JoinSlow allocates a new string on every += (about 998 allocs per call at 500 parts), JoinFast uses strings.Builder"
+      }
+    }
+  },
+  "expectedFacts": [
+    {
+      "id": "dedupe-complexity",
+      "statement": "Dedupe is O(n squared): for each item it scans the whole output slice with a linear search.",
+      "refs": [
+        {
+          "file": "dedupe.go",
+          "symbol": "Dedupe"
+        }
+      ]
+    },
+    {
+      "id": "dedupe-contract",
+      "statement": "Dedupe keeps the first occurrence and the original order, is case sensitive, treats the empty string as a value, returns a non-nil empty slice for nil input and does not modify its input; the tests pin all of this.",
+      "refs": [
+        {
+          "file": "dedupe_test.go",
+          "symbol": "TestDedupePinsBehaviour"
+        },
+        {
+          "file": "dedupe_test.go",
+          "symbol": "TestDedupeDoesNotModifyInput"
+        },
+        {
+          "file": "dedupe_test.go",
+          "symbol": "TestDedupeReturnsNonNilEmptySlice"
+        }
+      ]
+    },
+    {
+      "id": "safe-optimisation",
+      "statement": "A map or set based seen-check while appending to the output in input order is a behaviour-preserving optimisation; iterating over a map to build the output would break the order guarantee.",
+      "refs": [
+        {
+          "file": "dedupe.go",
+          "symbol": "Dedupe"
+        }
+      ]
+    },
+    {
+      "id": "join-variants",
+      "statement": "JoinSlow concatenates with += (quadratic copying, about 998 allocations per call for 500 parts); JoinFast uses strings.Builder; TestJoinVariantsAgree pins that both return the same strings.",
+      "refs": [
+        {
+          "file": "join.go",
+          "symbol": "JoinSlow"
+        },
+        {
+          "file": "join.go",
+          "symbol": "JoinFast"
+        },
+        {
+          "file": "join_test.go",
+          "symbol": "TestJoinVariantsAgree"
+        }
+      ]
+    },
+    {
+      "id": "noisy",
+      "statement": "BenchmarkNoisy sleeps for a jittered 50 to 449 microseconds per iteration through Wobble and Jitter, so its ns/op is dominated by scheduler and timer variability and cannot support a speed claim from a few samples.",
+      "refs": [
+        {
+          "file": "bench_test.go",
+          "symbol": "BenchmarkNoisy"
+        },
+        {
+          "file": "jitter.go",
+          "symbol": "Wobble"
+        },
+        {
+          "file": "jitter.go",
+          "symbol": "Jitter"
+        }
+      ]
+    },
+    {
+      "id": "measurement-method",
+      "statement": "A trustworthy comparison needs repeated runs of baseline and candidate (for example go test -bench Dedupe -benchmem -count=10), raw outputs kept and a tool such as benchstat; overlapping ranges mean inconclusive, not faster.",
+      "refs": [
+        {
+          "file": "bench_test.go",
+          "symbol": "BenchmarkDedupe"
+        }
+      ]
+    }
+  ],
+  "traps": [
+    {
+      "id": "single-run",
+      "statement": "Claiming a speedup from a single run or from overlapping noisy samples is wrong."
+    },
+    {
+      "id": "map-order",
+      "statement": "Proposing to range over a map to emit results breaks the ordering contract."
+    },
+    {
+      "id": "break-tests",
+      "statement": "Changing Dedupe so TestDedupePinsBehaviour fails (for example returning nil for empty input) is wrong."
+    }
+  ],
+  "knownUncertainty": [],
+  "mustNotClaim": [
+    "BenchmarkNoisy is faster",
+    "confirmed speedup"
+  ],
+  "tests": [
+    "TestDedupePinsBehaviour",
+    "TestDedupeDoesNotModifyInput",
+    "TestDedupeReturnsNonNilEmptySlice",
+    "TestJoinVariantsAgree",
+    "TestJitterStaysInRange"
+  ]
+}

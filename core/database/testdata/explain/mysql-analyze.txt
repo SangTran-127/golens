@@ -1,0 +1,6 @@
+-> Sort: u.`name`  (actual time=0.148..0.149 rows=4 loops=1)
+    -> Stream results  (cost=2.42 rows=5) (actual time=0.111..0.117 rows=4 loops=1)
+        -> Nested loop inner join  (cost=2.42 rows=5) (actual time=0.107..0.113 rows=4 loops=1)
+            -> Table scan on t  (cost=0.55 rows=3) (actual time=0.0494..0.0502 rows=3 loops=1)
+            -> Index lookup on u using golens_ex_users_team (team_id=t.id), with index condition: (u.id > 1)  (cost=0.461 rows=1.67) (actual time=0.0194..0.0198 rows=1.33 loops=3)
+

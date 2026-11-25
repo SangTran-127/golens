@@ -1,0 +1,83 @@
+{
+  "plan": {
+    "format": "tree",
+    "nodes": [
+      {
+        "id": 0,
+        "parent": null,
+        "label": "Sort",
+        "relation": "",
+        "estRows": null,
+        "actRows": 4,
+        "loops": 1,
+        "cost": null,
+        "timeMs": 0.149,
+        "detail": "Sort key: u.`name`"
+      },
+      {
+        "id": 1,
+        "parent": 0,
+        "label": "Stream results",
+        "relation": "",
+        "estRows": 5,
+        "actRows": 4,
+        "loops": 1,
+        "cost": 2.42,
+        "timeMs": 0.117,
+        "detail": ""
+      },
+      {
+        "id": 2,
+        "parent": 1,
+        "label": "Nested loop inner join",
+        "relation": "",
+        "estRows": 5,
+        "actRows": 4,
+        "loops": 1,
+        "cost": 2.42,
+        "timeMs": 0.113,
+        "detail": ""
+      },
+      {
+        "id": 3,
+        "parent": 2,
+        "label": "Table scan on t",
+        "relation": "t",
+        "estRows": 3,
+        "actRows": 3,
+        "loops": 1,
+        "cost": 0.55,
+        "timeMs": 0.0502,
+        "detail": ""
+      },
+      {
+        "id": 4,
+        "parent": 2,
+        "label": "Index lookup on u using golens_ex_users_team (team_id=t.id)",
+        "relation": "u",
+        "estRows": 1.67,
+        "actRows": 1.33,
+        "loops": 3,
+        "cost": 0.461,
+        "timeMs": 0.0594,
+        "detail": "with index condition\n(u.id > 1)"
+      }
+    ],
+    "mostExpensive": 4,
+    "planningMs": null,
+    "executionMs": null,
+    "actualRows": null,
+    "raw": "-> Sort: u.`name`  (actual time=0.148..0.149 rows=4 loops=1)\n    -> Stream results  (cost=2.42 rows=5) (actual time=0.111..0.117 rows=4 loops=1)\n        -> Nested loop inner join  (cost=2.42 rows=5) (actual time=0.107..0.113 rows=4 loops=1)\n            -> Table scan on t  (cost=0.55 rows=3) (actual time=0.0494..0.0502 rows=3 loops=1)\n            -> Index lookup on u using golens_ex_users_team (team_id=t.id), with index condition: (u.id > 1)  (cost=0.461 rows=1.67) (actual time=0.0194..0.0198 rows=1.33 loops=3)\n\n"
+  },
+  "analyzed": true,
+  "rolledBack": false,
+  "blocked": [],
+  "session": {
+    "state": "connected",
+    "transaction": "idle",
+    "schema": "public",
+    "mode": "auto",
+    "isolation": ""
+  },
+  "error": null
+}

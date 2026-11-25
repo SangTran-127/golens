@@ -1,0 +1,22 @@
+{
+  "execId": "1C2D3E4F-5A6B-4C7D-8E9F-0A1B2C3D4E5F",
+  "blocked": [
+    {
+      "index": 1,
+      "hash": "fe38fe1b1ab3d801a3f065f337a8e56ffdf3a712726b170e0b43d3e7bc2f7a8d",
+      "risk": "deleteWithoutWhere",
+      "table": "orders",
+      "line": 2,
+      "preview": "DELETE FROM orders"
+    }
+  ],
+  "statements": [],
+  "session": {
+    "state": "notConnected",
+    "transaction": "idle",
+    "schema": "",
+    "mode": "auto",
+    "isolation": ""
+  },
+  "error": null
+}

@@ -1,0 +1,72 @@
+{
+  "execId": "1C2D3E4F-5A6B-4C7D-8E9F-0A1B2C3D4E5F",
+  "blocked": [],
+  "statements": [
+    {
+      "index": 0,
+      "line": 1,
+      "startByte": 0,
+      "endByte": 74,
+      "kind": "select",
+      "resultId": "r-6f1c2a9e0b7d4e31",
+      "columns": [
+        {
+          "name": "id",
+          "dbType": "int8",
+          "kind": "int",
+          "nullable": false,
+          "origin": null
+        },
+        {
+          "name": "email",
+          "dbType": "text",
+          "kind": "text",
+          "nullable": true,
+          "origin": null
+        },
+        {
+          "name": "created_at",
+          "dbType": "timestamptz",
+          "kind": "datetime",
+          "nullable": null,
+          "origin": null
+        }
+      ],
+      "rowsFetched": 500,
+      "complete": false,
+      "truncated": false,
+      "rowsAffected": null,
+      "durationMs": 9.8,
+      "firstRowMs": 6.2,
+      "pageEncodedMs": 0.5,
+      "notices": [],
+      "error": null
+    }
+  ],
+  "session": {
+    "state": "connected",
+    "transaction": "idle",
+    "schema": "public",
+    "mode": "auto",
+    "isolation": ""
+  },
+  "error": null,
+  "sql": "SELECT * FROM \"public\".\"users\"\nWHERE plan = 'pro'\nORDER BY created_at DESC",
+  "editable": true,
+  "keyColumns": [
+    "id"
+  ],
+  "reason": "",
+  "readOnlyColumns": [],
+  "foreignKeyColumns": [],
+  "referencingTables": [
+    {
+      "schema": "public",
+      "table": "orders",
+      "columns": [
+        "user_id"
+      ],
+      "constraint": "orders_user_id_fkey"
+    }
+  ]
+}

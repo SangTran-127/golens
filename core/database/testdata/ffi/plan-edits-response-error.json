@@ -1,0 +1,9 @@
+{
+  "statements": [],
+  "issues": [],
+  "blocked": [],
+  "error": {
+    "kind": "unsupported",
+    "message": "This table has no primary key, so GoLens can't identify which rows to change."
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "magic": "GLRP",
+  "formatVersion": 1,
+  "byteOrder": "little-endian",
+  "bitmapBitOrder": "row r is bit (r % 8) of byte (r / 8), least significant bit first",
+  "flags": 3,
+  "endOfResult": true,
+  "sortedView": true,
+  "firstRow": 0,
+  "rowCount": 3,
+  "resultVersion": 3,
+  "byteLength": 92,
+  "columns": [
+    {
+      "kind": "float",
+      "values": [
+        "9.75",
+        "2.5",
+        null
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "text",
+      "values": [
+        "c",
+        "a",
+        "b"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    }
+  ]
+}

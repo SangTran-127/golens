@@ -1,0 +1,10 @@
+name: map index selector
+want: Label
+-- src --
+package p
+
+type Item struct{ Label string }
+
+func f(m map[string]Item) {
+	_ = m["k"].La|
+}

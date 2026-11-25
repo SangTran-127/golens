@@ -1,0 +1,11 @@
+name: test file t methods
+file: x_test.go
+want: Error, Errorf
+-- src --
+package p
+
+import "testing"
+
+func TestX(t *testing.T) {
+	t.Err|
+}

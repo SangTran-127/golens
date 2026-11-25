@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "description": "Unified Go AST & LSP symbol icon mapping and multi-layer empty-state hero badges for GoLens.",
+  "lspKinds": {
+    "2":  {"icon": "sym-package",    "palette": "web",   "comment": "Module"},
+    "4":  {"icon": "sym-package",    "palette": "web",   "comment": "Package"},
+    "5":  {"icon": "sym-type",       "palette": "data",  "comment": "Class / Defined Type"},
+    "6":  {"icon": "sym-method",     "palette": "go",    "comment": "Method"},
+    "7":  {"icon": "sym-field",      "palette": "infra", "comment": "Property"},
+    "8":  {"icon": "sym-field",      "palette": "infra", "comment": "Field"},
+    "9":  {"icon": "sym-method",     "palette": "go",    "comment": "Constructor"},
+    "11": {"icon": "sym-interface",  "palette": "data",  "comment": "Interface"},
+    "12": {"icon": "sym-func",       "palette": "go",    "comment": "Function"},
+    "13": {"icon": "sym-var",        "palette": "infra", "comment": "Variable"},
+    "14": {"icon": "sym-const",      "palette": "infra", "comment": "Constant"},
+    "15": {"icon": "sym-snippet",    "palette": "web",   "comment": "String / Snippet"},
+    "23": {"icon": "sym-struct",     "palette": "data",  "comment": "Struct"},
+    "26": {"icon": "sym-type-param", "palette": "data",  "comment": "TypeParameter"}
+  },
+  "completionKinds": {
+    "func":       {"icon": "sym-func",       "palette": "go"},
+    "function":   {"icon": "sym-func",       "palette": "go"},
+    "method":     {"icon": "sym-method",     "palette": "go"},
+    "struct":     {"icon": "sym-struct",     "palette": "data"},
+    "interface":  {"icon": "sym-interface",  "palette": "data"},
+    "type":       {"icon": "sym-type",       "palette": "data"},
+    "type-param": {"icon": "sym-type-param", "palette": "data"},
+    "typeparam":  {"icon": "sym-type-param", "palette": "data"},
+    "field":      {"icon": "sym-field",      "palette": "infra"},
+    "property":   {"icon": "sym-field",      "palette": "infra"},
+    "var":        {"icon": "sym-var",        "palette": "infra"},
+    "variable":   {"icon": "sym-var",        "palette": "infra"},
+    "param":      {"icon": "sym-var",        "palette": "infra"},
+    "parameter":  {"icon": "sym-var",        "palette": "infra"},
+    "const":      {"icon": "sym-const",      "palette": "infra"},
+    "constant":   {"icon": "sym-const",      "palette": "infra"},
+    "package":    {"icon": "sym-package",    "palette": "web"},
+    "module":     {"icon": "sym-package",    "palette": "web"},
+    "keyword":    {"icon": "sym-snippet",    "palette": "web"},
+    "snippet":    {"icon": "sym-snippet",    "palette": "web"}
+  },
+  "emptyStates": {
+    "profiler": {"icon": "empty-profiler", "label": "Profiler flame graph and gauge"},
+    "safety":   {"icon": "empty-safety",   "label": "Safety static analyzer shield"},
+    "debugger": {"icon": "empty-debugger", "label": "Debugger call stack and breakpoint"},
+    "tests":    {"icon": "empty-tests",    "label": "Test suite and verification"}
+  },
+  "fallback": {"icon": "sym-var", "palette": "infra"}
+}

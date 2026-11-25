@@ -1,0 +1,8 @@
+name: package outside module graph
+forbid: naq, nakedret, namesgenerator
+-- src --
+package p
+
+func f() {
+	naq|
+}

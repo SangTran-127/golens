@@ -1,0 +1,8 @@
+name: a one-letter local typed as a statement ranks above keywords that start with it
+want: f
+-- src --
+package p
+
+func run(f func()) {
+	f|
+}

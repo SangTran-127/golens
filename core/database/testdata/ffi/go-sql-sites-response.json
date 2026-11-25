@@ -1,0 +1,40 @@
+{
+  "sites": [
+    {
+      "line": 11,
+      "startByte": 181,
+      "endByte": 224,
+      "sql": "SELECT id, email FROM users WHERE id = $1",
+      "dialectHint": "",
+      "api": "database/sql",
+      "parts": [
+        {
+          "startByte": 182,
+          "endByte": 223
+        }
+      ],
+      "params": [
+        "$1"
+      ]
+    },
+    {
+      "line": 15,
+      "startByte": 270,
+      "endByte": 332,
+      "sql": "SELECT * FROM orders ORDER BY created_at DESC LIMIT 10",
+      "dialectHint": "",
+      "api": "marker",
+      "parts": [
+        {
+          "startByte": 271,
+          "endByte": 292
+        },
+        {
+          "startByte": 298,
+          "endByte": 331
+        }
+      ],
+      "params": []
+    }
+  ]
+}

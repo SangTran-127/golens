@@ -1,0 +1,224 @@
+{
+  "fixture": "concurrency",
+  "kind": "worker-pool-with-context-cancellation",
+  "purpose": "Runs a batch of jobs through a fixed number of worker goroutines, collects results in job order and supports cancellation and fail-fast.",
+  "entry": {
+    "file": "main.go",
+    "symbol": "main"
+  },
+  "representativeFlow": {
+    "name": "run a job batch",
+    "why": "Single business action; shows channel creation, producer, workers, collector and cancellation in one function.",
+    "steps": [
+      {
+        "file": "main.go",
+        "symbol": "main",
+        "role": "builds the pool with the Upper handler and prints results"
+      },
+      {
+        "file": "pool.go",
+        "symbol": "Pool.Run",
+        "role": "derives a cancelable context, creates channels, starts feed, workers and the closer goroutine, collects results"
+      },
+      {
+        "file": "pool.go",
+        "symbol": "feed",
+        "role": "producer goroutine, sends jobs and closes the input channel"
+      },
+      {
+        "file": "pool.go",
+        "symbol": "Pool.worker",
+        "role": "consumes jobs, sends results, exits on closed input or cancellation"
+      },
+      {
+        "file": "pool.go",
+        "symbol": "Pool.process",
+        "role": "calls the handler, wraps errors, recovers panics, records trace events"
+      },
+      {
+        "file": "handlers.go",
+        "symbol": "Upper",
+        "role": "example handler, rejects empty payloads with ErrEmptyPayload"
+      }
+    ],
+    "output": {
+      "file": "main.go",
+      "symbol": "main",
+      "kind": "stdout"
+    }
+  },
+  "expectedFacts": [
+    {
+      "id": "in-channel-owner",
+      "statement": "The input channel in is created in Pool.Run and closed by the feed goroutine (defer close(in)); the sender owns and closes it, workers only receive from it.",
+      "refs": [
+        {
+          "file": "pool.go",
+          "symbol": "feed"
+        },
+        {
+          "file": "pool.go",
+          "symbol": "Pool.Run"
+        }
+      ]
+    },
+    {
+      "id": "out-channel-owner",
+      "statement": "The output channel out is created in Pool.Run and closed by a small goroutine in Pool.Run that waits on the WaitGroup; no single worker closes it because several workers send on it. Pool.Run ranges over out until it is closed.",
+      "refs": [
+        {
+          "file": "pool.go",
+          "symbol": "Pool.Run"
+        }
+      ]
+    },
+    {
+      "id": "cancel-derivation",
+      "statement": "Pool.Run derives ctx with context.WithCancel(parent) and defers cancel(); cancelling the parent or calling cancel (fail-fast) closes ctx.Done().",
+      "refs": [
+        {
+          "file": "pool.go",
+          "symbol": "Pool.Run"
+        }
+      ]
+    },
+    {
+      "id": "cancel-propagation",
+      "statement": "Cancellation reaches feed (select on ctx.Done), workers (ctx.Err check after receiving a job and select on ctx.Done when sending a result) and the handler (receives ctx as an argument).",
+      "refs": [
+        {
+          "file": "pool.go",
+          "symbol": "feed"
+        },
+        {
+          "file": "pool.go",
+          "symbol": "Pool.worker"
+        },
+        {
+          "file": "pool.go",
+          "symbol": "Pool.process"
+        }
+      ]
+    },
+    {
+      "id": "failfast",
+      "statement": "With FailFast set, the collector in Pool.Run calls cancel() on the first result carrying an error, which stops the remaining jobs; Run still returns parent.Err(), which is nil in that case.",
+      "refs": [
+        {
+          "file": "pool.go",
+          "symbol": "Pool.Run"
+        }
+      ]
+    },
+    {
+      "id": "worker-lifetime",
+      "statement": "A worker goroutine exits when the input channel is closed and drained, when it sees ctx cancelled, or when a result send loses the select to ctx.Done; defer wg.Done() runs on every exit path.",
+      "refs": [
+        {
+          "file": "pool.go",
+          "symbol": "Pool.worker"
+        }
+      ]
+    },
+    {
+      "id": "feed-lifetime",
+      "statement": "The feed goroutine ends when all jobs are sent (then it closes in) or when it observes ctx.Done(); Pool.Run's deferred cancel() guarantees it does observe it, so feed cannot block forever on an abandoned in channel.",
+      "refs": [
+        {
+          "file": "pool.go",
+          "symbol": "feed"
+        },
+        {
+          "file": "pool.go",
+          "symbol": "Pool.Run"
+        }
+      ]
+    },
+    {
+      "id": "run-waits",
+      "statement": "Pool.Run does not return until out is closed, which happens only after every worker has finished, so workers do not outlive Run.",
+      "refs": [
+        {
+          "file": "pool.go",
+          "symbol": "Pool.Run"
+        }
+      ]
+    },
+    {
+      "id": "leak",
+      "statement": "Deliberate leak risk: in Pool.RunWithTimeout the done channel is unbuffered. When the timeout wins the select and the function returns, the goroutine started there blocks forever on done <- res; one goroutine leaks per timed-out call. A buffered channel of capacity 1 would let it finish.",
+      "refs": [
+        {
+          "file": "pool.go",
+          "symbol": "Pool.RunWithTimeout"
+        }
+      ]
+    },
+    {
+      "id": "error-wrapping",
+      "statement": "Pool.process wraps handler errors with fmt.Errorf(\"job %d: %w\", ...), so the message gains a \"job N: \" prefix while errors.Is(err, ErrEmptyPayload) still works because %w keeps the chain.",
+      "refs": [
+        {
+          "file": "pool.go",
+          "symbol": "Pool.process"
+        },
+        {
+          "file": "handlers.go",
+          "symbol": "ErrEmptyPayload"
+        }
+      ]
+    },
+    {
+      "id": "defer-order",
+      "statement": "Defers in Pool.process run last-in-first-out: the recover closure runs first, then the deferred trace \"end\"; the \"begin\" trace happens immediately. A handler panic is converted into a Result with a \"job N: panic\" error.",
+      "refs": [
+        {
+          "file": "pool.go",
+          "symbol": "Pool.process"
+        }
+      ]
+    },
+    {
+      "id": "deterministic-order",
+      "statement": "Workers finish in arbitrary order but Pool.Run sorts results by JobID before returning.",
+      "refs": [
+        {
+          "file": "pool.go",
+          "symbol": "Pool.Run"
+        }
+      ]
+    }
+  ],
+  "traps": [
+    {
+      "id": "worker-closes-out",
+      "statement": "Claiming a worker closes out, or that Run closes in, is wrong."
+    },
+    {
+      "id": "leak-in-run",
+      "statement": "The leak is in RunWithTimeout, not in Run; claiming Run itself leaks workers on cancellation is wrong."
+    },
+    {
+      "id": "no-leak-claim",
+      "statement": "Claiming the code has no goroutine leak risk is wrong."
+    },
+    {
+      "id": "failfast-error",
+      "statement": "Claiming Run returns an error when FailFast cancels is wrong; it returns parent.Err()."
+    }
+  ],
+  "knownUncertainty": [],
+  "mustNotClaim": [
+    "worker closes the out channel",
+    "Run leaks worker goroutines on cancellation",
+    "there is no goroutine leak"
+  ],
+  "tests": [
+    "TestRunProcessesAllJobsInOrder",
+    "TestErrorsKeepSentinelThroughWrapping",
+    "TestFailFastStopsRemainingJobs",
+    "TestRunReportsParentCancellation",
+    "TestRunWithTimeoutReturnsDeadlineExceeded",
+    "TestProcessDeferOrderAndPanicRecovery"
+  ]
+}

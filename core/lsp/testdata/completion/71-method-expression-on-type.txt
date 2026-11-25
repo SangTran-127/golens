@@ -1,0 +1,13 @@
+name: method expression on type
+want: Run
+-- src --
+package p
+
+type T struct{}
+
+func (T) Run() {}
+
+func f() {
+	fn := T.Ru|
+	_ = fn
+}

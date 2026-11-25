@@ -1,0 +1,81 @@
+{
+  "container": {
+    "id": "a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1",
+    "name": "velo-api-1",
+    "image": "velo-api",
+    "imageId": "sha256:e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1",
+    "created": "2026-11-15T15:59:58.5Z",
+    "state": "running",
+    "exitCode": 0,
+    "oomKilled": false,
+    "startedAt": "2026-11-15T16:00:00.123456789Z",
+    "finishedAt": "0001-01-01T00:00:00Z",
+    "health": "healthy",
+    "restartPolicy": "unless-stopped",
+    "command": "/app/server --addr :8080",
+    "workingDir": "/app",
+    "tty": false,
+    "project": "velo",
+    "service": "api",
+    "ports": [
+      {
+        "privatePort": 8080,
+        "publicPort": 8080,
+        "type": "tcp"
+      },
+      {
+        "privatePort": 9090,
+        "type": "tcp"
+      }
+    ],
+    "env": [
+      {
+        "key": "DATABASE_URL",
+        "value": "postgres://app:s3cret@db/app"
+      },
+      {
+        "key": "PORT",
+        "value": "8080"
+      }
+    ],
+    "mounts": [
+      {
+        "type": "volume",
+        "name": "pgdata",
+        "source": "/var/lib/docker/volumes/pgdata/_data",
+        "destination": "/data",
+        "mode": "z",
+        "readOnly": false
+      },
+      {
+        "type": "bind",
+        "source": "/Users/me/src/velo/config",
+        "destination": "/etc/velo",
+        "mode": "ro",
+        "readOnly": true
+      }
+    ],
+    "networks": [
+      {
+        "name": "velo_default",
+        "ipAddress": "172.18.0.2",
+        "gateway": "172.18.0.1",
+        "macAddress": "02:42:ac:12:00:02",
+        "aliases": [
+          "api",
+          "velo-api-1"
+        ]
+      }
+    ],
+    "labels": [
+      {
+        "key": "com.docker.compose.project",
+        "value": "velo"
+      },
+      {
+        "key": "com.docker.compose.service",
+        "value": "api"
+      }
+    ]
+  }
+}

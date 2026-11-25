@@ -1,0 +1,10 @@
+name: type assertion target
+want: Shape
+-- src --
+package p
+
+type Shape interface{ Area() float64 }
+
+func f(v any) {
+	_ = v.(Sha|)
+}

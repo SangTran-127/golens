@@ -1,0 +1,7 @@
+name: go.work file
+file: go.work
+expect: none
+-- src --
+go 1.22
+
+us|

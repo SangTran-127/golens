@@ -1,0 +1,140 @@
+{
+  "magic": "GLRP",
+  "formatVersion": 1,
+  "byteOrder": "little-endian",
+  "bitmapBitOrder": "row r is bit (r % 8) of byte (r / 8), least significant bit first",
+  "flags": 1,
+  "endOfResult": true,
+  "sortedView": false,
+  "firstRow": 0,
+  "rowCount": 9,
+  "resultVersion": 0,
+  "byteLength": 444,
+  "columns": [
+    {
+      "kind": "int",
+      "values": [
+        "1",
+        null,
+        "3",
+        "4",
+        null,
+        "6",
+        "7",
+        "8",
+        "9"
+      ],
+      "truncated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "text",
+      "values": [
+        null,
+        null,
+        "",
+        "x",
+        "y",
+        null,
+        "z",
+        null,
+        "last"
+      ],
+      "truncated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "decimal",
+      "values": [
+        "10.50",
+        null,
+        null,
+        "-0.001",
+        "1e3",
+        "0",
+        null,
+        "12345678901234567890.123456789",
+        null
+      ],
+      "truncated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "json",
+      "values": [
+        null,
+        null,
+        "{\"a\":1}",
+        "[]",
+        null,
+        "null",
+        null,
+        null,
+        "{\"b\":[1,2]}"
+      ],
+      "truncated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "uuid",
+      "values": [
+        "0b6a6d9c-1f2e-4c3b-9a8d-7e6f5a4b3c2d",
+        null,
+        null,
+        "c1d2e3f4-a5b6-4c7d-8e9f-0a1b2c3d4e5f",
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "truncated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ]
+    }
+  ]
+}

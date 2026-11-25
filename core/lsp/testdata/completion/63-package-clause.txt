@@ -1,0 +1,5 @@
+name: package clause
+file: pkg.go
+notafter: package package|
+-- src --
+|

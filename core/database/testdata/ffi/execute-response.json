@@ -1,0 +1,114 @@
+{
+  "execId": "1C2D3E4F-5A6B-4C7D-8E9F-0A1B2C3D4E5F",
+  "blocked": [],
+  "statements": [
+    {
+      "index": 0,
+      "line": 12,
+      "startByte": 640,
+      "endByte": 702,
+      "kind": "select",
+      "resultId": "r-0a9b8c7d6e5f4321",
+      "columns": [
+        {
+          "name": "id",
+          "dbType": "int8",
+          "kind": "int",
+          "nullable": false,
+          "origin": null
+        },
+        {
+          "name": "email",
+          "dbType": "text",
+          "kind": "text",
+          "nullable": true,
+          "origin": null
+        },
+        {
+          "name": "created_at",
+          "dbType": "timestamptz",
+          "kind": "datetime",
+          "nullable": null,
+          "origin": null
+        }
+      ],
+      "rowsFetched": 500,
+      "complete": false,
+      "truncated": true,
+      "rowsAffected": null,
+      "durationMs": 12.4,
+      "firstRowMs": 8.1,
+      "pageEncodedMs": 0.6,
+      "notices": [],
+      "error": null
+    },
+    {
+      "index": 1,
+      "line": 14,
+      "startByte": 704,
+      "endByte": 748,
+      "kind": "update",
+      "resultId": "",
+      "columns": [],
+      "rowsFetched": 0,
+      "complete": true,
+      "truncated": false,
+      "rowsAffected": 3,
+      "durationMs": 4,
+      "firstRowMs": 0,
+      "pageEncodedMs": 0,
+      "notices": [
+        "NOTICE: 3 rows touched"
+      ],
+      "error": null
+    },
+    {
+      "index": 0,
+      "line": 12,
+      "startByte": 640,
+      "endByte": 702,
+      "kind": "select",
+      "resultId": "r-6f1c2a9e0b7d4e31",
+      "columns": [
+        {
+          "name": "id",
+          "dbType": "int8",
+          "kind": "int",
+          "nullable": false,
+          "origin": null
+        },
+        {
+          "name": "email",
+          "dbType": "text",
+          "kind": "text",
+          "nullable": true,
+          "origin": null
+        },
+        {
+          "name": "created_at",
+          "dbType": "timestamptz",
+          "kind": "datetime",
+          "nullable": null,
+          "origin": null
+        }
+      ],
+      "rowsFetched": 500,
+      "complete": false,
+      "truncated": false,
+      "rowsAffected": null,
+      "durationMs": 12.4,
+      "firstRowMs": 8.1,
+      "pageEncodedMs": 0.6,
+      "notices": [],
+      "error": null
+    }
+  ],
+  "session": {
+    "state": "connected",
+    "transaction": "idle",
+    "schema": "public",
+    "mode": "auto",
+    "isolation": ""
+  },
+  "error": null
+}

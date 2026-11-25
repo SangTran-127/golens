@@ -1,0 +1,42 @@
+[
+  {
+    "index": 0,
+    "startByte": 0,
+    "endByte": 19,
+    "line": 1,
+    "kind": "select",
+    "writes": false,
+    "risks": []
+  },
+  {
+    "index": 1,
+    "startByte": 21,
+    "endByte": 39,
+    "line": 2,
+    "kind": "delete",
+    "writes": true,
+    "risks": [
+      "deleteWithoutWhere"
+    ]
+  },
+  {
+    "index": 2,
+    "startByte": 52,
+    "endByte": 83,
+    "line": 4,
+    "kind": "ddl",
+    "writes": true,
+    "risks": [
+      "dropTable"
+    ]
+  },
+  {
+    "index": 3,
+    "startByte": 85,
+    "endByte": 127,
+    "line": 5,
+    "kind": "update",
+    "writes": true,
+    "risks": []
+  }
+]

@@ -1,0 +1,14 @@
+name: pointer struct literal key
+want: Timeout, Title
+insert: Timeout: |
+-- src --
+package p
+
+type Conf struct {
+	Timeout int
+	Title   string
+}
+
+func f() *Conf {
+	return &Conf{Ti|}
+}

@@ -1,0 +1,83 @@
+{
+  "plan": {
+    "format": "json",
+    "nodes": [
+      {
+        "id": 0,
+        "parent": null,
+        "label": "Sort",
+        "relation": "",
+        "estRows": 4,
+        "actRows": 4,
+        "loops": 1,
+        "cost": 2.2,
+        "timeMs": 0.066,
+        "detail": "Actual Startup Time: 0.065\nAsync Capable: false\nLocal Dirtied Blocks: 0\nLocal Hit Blocks: 0\nLocal Read Blocks: 0\nLocal Written Blocks: 0\nParallel Aware: false\nPlan Width: 7\nShared Dirtied Blocks: 0\nShared Hit Blocks: 5\nShared Read Blocks: 0\nShared Written Blocks: 0\nSort Key: u.name\nSort Method: quicksort\nSort Space Type: Memory\nSort Space Used: 25\nStartup Cost: 2.19\nTemp Read Blocks: 0\nTemp Written Blocks: 0"
+      },
+      {
+        "id": 1,
+        "parent": 0,
+        "label": "Hash Join",
+        "relation": "",
+        "estRows": 4,
+        "actRows": 4,
+        "loops": 1,
+        "cost": 2.15,
+        "timeMs": 0.027,
+        "detail": "Actual Startup Time: 0.025\nAsync Capable: false\nHash Cond: (u.team_id = t.id)\nInner Unique: true\nLocal Dirtied Blocks: 0\nLocal Hit Blocks: 0\nLocal Read Blocks: 0\nLocal Written Blocks: 0\nParallel Aware: false\nParent Relationship: Outer\nPlan Width: 7\nShared Dirtied Blocks: 0\nShared Hit Blocks: 2\nShared Read Blocks: 0\nShared Written Blocks: 0\nStartup Cost: 1.07\nTemp Read Blocks: 0\nTemp Written Blocks: 0"
+      },
+      {
+        "id": 2,
+        "parent": 1,
+        "label": "Seq Scan",
+        "relation": "golens_ex_users u",
+        "estRows": 4,
+        "actRows": 4,
+        "loops": 1,
+        "cost": 1.06,
+        "timeMs": 0.007,
+        "detail": "Actual Startup Time: 0.007\nAsync Capable: false\nFilter: (id > 1)\nLocal Dirtied Blocks: 0\nLocal Hit Blocks: 0\nLocal Read Blocks: 0\nLocal Written Blocks: 0\nParallel Aware: false\nParent Relationship: Outer\nPlan Width: 8\nRows Removed by Filter: 1\nShared Dirtied Blocks: 0\nShared Hit Blocks: 1\nShared Read Blocks: 0\nShared Written Blocks: 0\nStartup Cost: 0.00\nTemp Read Blocks: 0\nTemp Written Blocks: 0"
+      },
+      {
+        "id": 3,
+        "parent": 1,
+        "label": "Hash",
+        "relation": "",
+        "estRows": 3,
+        "actRows": 3,
+        "loops": 1,
+        "cost": 1.03,
+        "timeMs": 0.014,
+        "detail": "Actual Startup Time: 0.013\nAsync Capable: false\nHash Batches: 1\nHash Buckets: 1024\nLocal Dirtied Blocks: 0\nLocal Hit Blocks: 0\nLocal Read Blocks: 0\nLocal Written Blocks: 0\nOriginal Hash Batches: 1\nOriginal Hash Buckets: 1024\nParallel Aware: false\nParent Relationship: Inner\nPeak Memory Usage: 9\nPlan Width: 7\nShared Dirtied Blocks: 0\nShared Hit Blocks: 1\nShared Read Blocks: 0\nShared Written Blocks: 0\nStartup Cost: 1.03\nTemp Read Blocks: 0\nTemp Written Blocks: 0"
+      },
+      {
+        "id": 4,
+        "parent": 3,
+        "label": "Seq Scan",
+        "relation": "golens_ex_teams t",
+        "estRows": 3,
+        "actRows": 3,
+        "loops": 1,
+        "cost": 1.03,
+        "timeMs": 0.004,
+        "detail": "Actual Startup Time: 0.003\nAsync Capable: false\nLocal Dirtied Blocks: 0\nLocal Hit Blocks: 0\nLocal Read Blocks: 0\nLocal Written Blocks: 0\nParallel Aware: false\nParent Relationship: Outer\nPlan Width: 7\nShared Dirtied Blocks: 0\nShared Hit Blocks: 1\nShared Read Blocks: 0\nShared Written Blocks: 0\nStartup Cost: 0.00\nTemp Read Blocks: 0\nTemp Written Blocks: 0"
+      }
+    ],
+    "mostExpensive": 0,
+    "planningMs": 0.284,
+    "executionMs": 0.098,
+    "actualRows": null,
+    "raw": "[\n  {\n    \"Plan\": {\n      \"Node Type\": \"Sort\",\n      \"Parallel Aware\": false,\n      \"Async Capable\": false,\n      \"Startup Cost\": 2.19,\n      \"Total Cost\": 2.20,\n      \"Plan Rows\": 4,\n      \"Plan Width\": 7,\n      \"Actual Startup Time\": 0.065,\n      \"Actual Total Time\": 0.066,\n      \"Actual Rows\": 4,\n      \"Actual Loops\": 1,\n      \"Sort Key\": [\"u.name\"],\n      \"Sort Method\": \"quicksort\",\n      \"Sort Space Used\": 25,\n      \"Sort Space Type\": \"Memory\",\n      \"Shared Hit Blocks\": 5,\n      \"Shared Read Blocks\": 0,\n      \"Shared Dirtied Blocks\": 0,\n      \"Shared Written Blocks\": 0,\n      \"Local Hit Blocks\": 0,\n      \"Local Read Blocks\": 0,\n      \"Local Dirtied Blocks\": 0,\n      \"Local Written Blocks\": 0,\n      \"Temp Read Blocks\": 0,\n      \"Temp Written Blocks\": 0,\n      \"Plans\": [\n        {\n          \"Node Type\": \"Hash Join\",\n          \"Parent Relationship\": \"Outer\",\n          \"Parallel Aware\": false,\n          \"Async Capable\": false,\n          \"Join Type\": \"Inner\",\n          \"Startup Cost\": 1.07,\n          \"Total Cost\": 2.15,\n          \"Plan Rows\": 4,\n          \"Plan Width\": 7,\n          \"Actual Startup Time\": 0.025,\n          \"Actual Total Time\": 0.027,\n          \"Actual Rows\": 4,\n          \"Actual Loops\": 1,\n          \"Inner Unique\": true,\n          \"Hash Cond\": \"(u.team_id = t.id)\",\n          \"Shared Hit Blocks\": 2,\n          \"Shared Read Blocks\": 0,\n          \"Shared Dirtied Blocks\": 0,\n          \"Shared Written Blocks\": 0,\n          \"Local Hit Blocks\": 0,\n          \"Local Read Blocks\": 0,\n          \"Local Dirtied Blocks\": 0,\n          \"Local Written Blocks\": 0,\n          \"Temp Read Blocks\": 0,\n          \"Temp Written Blocks\": 0,\n          \"Plans\": [\n            {\n              \"Node Type\": \"Seq Scan\",\n              \"Parent Relationship\": \"Outer\",\n              \"Parallel Aware\": false,\n              \"Async Capable\": false,\n              \"Relation Name\": \"golens_ex_users\",\n              \"Alias\": \"u\",\n              \"Startup Cost\": 0.00,\n              \"Total Cost\": 1.06,\n              \"Plan Rows\": 4,\n              \"Plan Width\": 8,\n              \"Actual Startup Time\": 0.007,\n              \"Actual Total Time\": 0.007,\n              \"Actual Rows\": 4,\n              \"Actual Loops\": 1,\n              \"Filter\": \"(id > 1)\",\n              \"Rows Removed by Filter\": 1,\n              \"Shared Hit Blocks\": 1,\n              \"Shared Read Blocks\": 0,\n              \"Shared Dirtied Blocks\": 0,\n              \"Shared Written Blocks\": 0,\n              \"Local Hit Blocks\": 0,\n              \"Local Read Blocks\": 0,\n              \"Local Dirtied Blocks\": 0,\n              \"Local Written Blocks\": 0,\n              \"Temp Read Blocks\": 0,\n              \"Temp Written Blocks\": 0\n            },\n            {\n              \"Node Type\": \"Hash\",\n              \"Parent Relationship\": \"Inner\",\n              \"Parallel Aware\": false,\n              \"Async Capable\": false,\n              \"Startup Cost\": 1.03,\n              \"Total Cost\": 1.03,\n              \"Plan Rows\": 3,\n              \"Plan Width\": 7,\n              \"Actual Startup Time\": 0.013,\n              \"Actual Total Time\": 0.014,\n              \"Actual Rows\": 3,\n              \"Actual Loops\": 1,\n              \"Hash Buckets\": 1024,\n              \"Original Hash Buckets\": 1024,\n              \"Hash Batches\": 1,\n              \"Original Hash Batches\": 1,\n              \"Peak Memory Usage\": 9,\n              \"Shared Hit Blocks\": 1,\n              \"Shared Read Blocks\": 0,\n              \"Shared Dirtied Blocks\": 0,\n              \"Shared Written Blocks\": 0,\n              \"Local Hit Blocks\": 0,\n              \"Local Read Blocks\": 0,\n              \"Local Dirtied Blocks\": 0,\n              \"Local Written Blocks\": 0,\n              \"Temp Read Blocks\": 0,\n              \"Temp Written Blocks\": 0,\n              \"Plans\": [\n                {\n                  \"Node Type\": \"Seq Scan\",\n                  \"Parent Relationship\": \"Outer\",\n                  \"Parallel Aware\": false,\n                  \"Async Capable\": false,\n                  \"Relation Name\": \"golens_ex_teams\",\n                  \"Alias\": \"t\",\n                  \"Startup Cost\": 0.00,\n                  \"Total Cost\": 1.03,\n                  \"Plan Rows\": 3,\n                  \"Plan Width\": 7,\n                  \"Actual Startup Time\": 0.003,\n                  \"Actual Total Time\": 0.004,\n                  \"Actual Rows\": 3,\n                  \"Actual Loops\": 1,\n                  \"Shared Hit Blocks\": 1,\n                  \"Shared Read Blocks\": 0,\n                  \"Shared Dirtied Blocks\": 0,\n                  \"Shared Written Blocks\": 0,\n                  \"Local Hit Blocks\": 0,\n                  \"Local Read Blocks\": 0,\n                  \"Local Dirtied Blocks\": 0,\n                  \"Local Written Blocks\": 0,\n                  \"Temp Read Blocks\": 0,\n                  \"Temp Written Blocks\": 0\n                }\n              ]\n            }\n          ]\n        }\n      ]\n    },\n    \"Planning\": {\n      \"Shared Hit Blocks\": 206,\n      \"Shared Read Blocks\": 0,\n      \"Shared Dirtied Blocks\": 0,\n      \"Shared Written Blocks\": 0,\n      \"Local Hit Blocks\": 0,\n      \"Local Read Blocks\": 0,\n      \"Local Dirtied Blocks\": 0,\n      \"Local Written Blocks\": 0,\n      \"Temp Read Blocks\": 0,\n      \"Temp Written Blocks\": 0\n    },\n    \"Planning Time\": 0.284,\n    \"Triggers\": [\n    ],\n    \"Execution Time\": 0.098\n  }\n]\n"
+  },
+  "analyzed": true,
+  "rolledBack": true,
+  "blocked": [],
+  "session": {
+    "state": "connected",
+    "transaction": "idle",
+    "schema": "public",
+    "mode": "auto",
+    "isolation": ""
+  },
+  "error": null
+}

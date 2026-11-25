@@ -1,0 +1,15 @@
+{
+  "session": {
+    "state": "connected",
+    "transaction": "active",
+    "schema": "public",
+    "mode": "manual",
+    "isolation": "repeatable read"
+  },
+  "isolationLevels": [
+    "read committed",
+    "repeatable read",
+    "serializable"
+  ],
+  "error": null
+}

@@ -1,0 +1,17 @@
+name: embedded promoted method
+want: Hello
+-- src --
+package p
+
+type Base struct{}
+
+func (Base) Hello() string { return "" }
+
+type Derived struct {
+	Base
+	Height int
+}
+
+func f(d Derived) {
+	d.Hel|
+}

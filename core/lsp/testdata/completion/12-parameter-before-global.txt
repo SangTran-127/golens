@@ -1,0 +1,10 @@
+name: parameter before global
+want: limit, limitGlobal
+-- src --
+package p
+
+var limitGlobal = 3
+
+func f(limit int) int {
+	return lim|
+}

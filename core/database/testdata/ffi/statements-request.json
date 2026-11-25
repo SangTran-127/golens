@@ -1,0 +1,4 @@
+{
+  "dialect": "postgres",
+  "text": "SELECT * FROM users;\nDELETE FROM orders;\n-- cleanup\nDROP TABLE IF EXISTS tmp_import;\nUPDATE users SET plan = 'pro' WHERE id = 7;\n"
+}

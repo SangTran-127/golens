@@ -1,0 +1,8 @@
+name: keyword for
+want: for
+-- src --
+package p
+
+func f() {
+	fo|
+}

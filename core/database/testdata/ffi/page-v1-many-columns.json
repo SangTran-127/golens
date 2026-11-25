@@ -1,0 +1,1575 @@
+{
+  "magic": "GLRP",
+  "formatVersion": 1,
+  "byteOrder": "little-endian",
+  "bitmapBitOrder": "row r is bit (r % 8) of byte (r / 8), least significant bit first",
+  "flags": 0,
+  "endOfResult": false,
+  "sortedView": false,
+  "firstRow": 500,
+  "rowCount": 3,
+  "resultVersion": 1,
+  "byteLength": 4972,
+  "columns": [
+    {
+      "kind": "int",
+      "values": [
+        "0",
+        "1000",
+        "2000"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "text",
+      "values": [
+        "r0c1",
+        "r1c1",
+        "r2c1"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "float",
+      "values": [
+        "2.5",
+        null,
+        "2.5"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "bool",
+      "values": [
+        "false",
+        "true",
+        "false"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "int",
+      "values": [
+        "4",
+        "1004",
+        "2004"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "text",
+      "values": [
+        "r0c5",
+        "r1c5",
+        "r2c5"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "float",
+      "values": [
+        null,
+        "6.5",
+        "6.5"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "bool",
+      "values": [
+        "false",
+        "true",
+        "false"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "int",
+      "values": [
+        "8",
+        "1008",
+        "2008"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "text",
+      "values": [
+        "r0c9",
+        "r1c9",
+        "r2c9"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "float",
+      "values": [
+        "10.5",
+        "10.5",
+        null
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "bool",
+      "values": [
+        "false",
+        "true",
+        "false"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "int",
+      "values": [
+        "12",
+        "1012",
+        "2012"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "text",
+      "values": [
+        "r0c13",
+        "r1c13",
+        "r2c13"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "float",
+      "values": [
+        "14.5",
+        null,
+        "14.5"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "bool",
+      "values": [
+        "false",
+        "true",
+        "false"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "int",
+      "values": [
+        "16",
+        "1016",
+        "2016"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "text",
+      "values": [
+        "r0c17",
+        "r1c17",
+        "r2c17"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "float",
+      "values": [
+        null,
+        "18.5",
+        "18.5"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "bool",
+      "values": [
+        "false",
+        "true",
+        "false"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "int",
+      "values": [
+        "20",
+        "1020",
+        "2020"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "text",
+      "values": [
+        "r0c21",
+        "r1c21",
+        "r2c21"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "float",
+      "values": [
+        "22.5",
+        "22.5",
+        null
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "bool",
+      "values": [
+        "false",
+        "true",
+        "false"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "int",
+      "values": [
+        "24",
+        "1024",
+        "2024"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "text",
+      "values": [
+        "r0c25",
+        "r1c25",
+        "r2c25"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "float",
+      "values": [
+        "26.5",
+        null,
+        "26.5"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "bool",
+      "values": [
+        "false",
+        "true",
+        "false"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "int",
+      "values": [
+        "28",
+        "1028",
+        "2028"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "text",
+      "values": [
+        "r0c29",
+        "r1c29",
+        "r2c29"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "float",
+      "values": [
+        null,
+        "30.5",
+        "30.5"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "bool",
+      "values": [
+        "false",
+        "true",
+        "false"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "int",
+      "values": [
+        "32",
+        "1032",
+        "2032"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "text",
+      "values": [
+        "r0c33",
+        "r1c33",
+        "r2c33"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "float",
+      "values": [
+        "34.5",
+        "34.5",
+        null
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "bool",
+      "values": [
+        "false",
+        "true",
+        "false"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "int",
+      "values": [
+        "36",
+        "1036",
+        "2036"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "text",
+      "values": [
+        "r0c37",
+        "r1c37",
+        "r2c37"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "float",
+      "values": [
+        "38.5",
+        null,
+        "38.5"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "bool",
+      "values": [
+        "false",
+        "true",
+        "false"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "int",
+      "values": [
+        "40",
+        "1040",
+        "2040"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "text",
+      "values": [
+        "r0c41",
+        "r1c41",
+        "r2c41"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "float",
+      "values": [
+        null,
+        "42.5",
+        "42.5"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "bool",
+      "values": [
+        "false",
+        "true",
+        "false"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "int",
+      "values": [
+        "44",
+        "1044",
+        "2044"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "text",
+      "values": [
+        "r0c45",
+        "r1c45",
+        "r2c45"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "float",
+      "values": [
+        "46.5",
+        "46.5",
+        null
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "bool",
+      "values": [
+        "false",
+        "true",
+        "false"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "int",
+      "values": [
+        "48",
+        "1048",
+        "2048"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "text",
+      "values": [
+        "r0c49",
+        "r1c49",
+        "r2c49"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "float",
+      "values": [
+        "50.5",
+        null,
+        "50.5"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "bool",
+      "values": [
+        "false",
+        "true",
+        "false"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "int",
+      "values": [
+        "52",
+        "1052",
+        "2052"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "text",
+      "values": [
+        "r0c53",
+        "r1c53",
+        "r2c53"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "float",
+      "values": [
+        null,
+        "54.5",
+        "54.5"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "bool",
+      "values": [
+        "false",
+        "true",
+        "false"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "int",
+      "values": [
+        "56",
+        "1056",
+        "2056"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "text",
+      "values": [
+        "r0c57",
+        "r1c57",
+        "r2c57"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "float",
+      "values": [
+        "58.5",
+        "58.5",
+        null
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "bool",
+      "values": [
+        "false",
+        "true",
+        "false"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "int",
+      "values": [
+        "60",
+        "1060",
+        "2060"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "text",
+      "values": [
+        "r0c61",
+        "r1c61",
+        "r2c61"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "float",
+      "values": [
+        "62.5",
+        null,
+        "62.5"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "bool",
+      "values": [
+        "false",
+        "true",
+        "false"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "int",
+      "values": [
+        "64",
+        "1064",
+        "2064"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "text",
+      "values": [
+        "r0c65",
+        "r1c65",
+        "r2c65"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "float",
+      "values": [
+        null,
+        "66.5",
+        "66.5"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "bool",
+      "values": [
+        "false",
+        "true",
+        "false"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "int",
+      "values": [
+        "68",
+        "1068",
+        "2068"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "text",
+      "values": [
+        "r0c69",
+        "r1c69",
+        "r2c69"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "float",
+      "values": [
+        "70.5",
+        "70.5",
+        null
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "bool",
+      "values": [
+        "false",
+        "true",
+        "false"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "int",
+      "values": [
+        "72",
+        "1072",
+        "2072"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "text",
+      "values": [
+        "r0c73",
+        "r1c73",
+        "r2c73"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "float",
+      "values": [
+        "74.5",
+        null,
+        "74.5"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "bool",
+      "values": [
+        "false",
+        "true",
+        "false"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "int",
+      "values": [
+        "76",
+        "1076",
+        "2076"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "text",
+      "values": [
+        "r0c77",
+        "r1c77",
+        "r2c77"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "float",
+      "values": [
+        null,
+        "78.5",
+        "78.5"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "bool",
+      "values": [
+        "false",
+        "true",
+        "false"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "int",
+      "values": [
+        "80",
+        "1080",
+        "2080"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "text",
+      "values": [
+        "r0c81",
+        "r1c81",
+        "r2c81"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "float",
+      "values": [
+        "82.5",
+        "82.5",
+        null
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "bool",
+      "values": [
+        "false",
+        "true",
+        "false"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "int",
+      "values": [
+        "84",
+        "1084",
+        "2084"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "text",
+      "values": [
+        "r0c85",
+        "r1c85",
+        "r2c85"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "float",
+      "values": [
+        "86.5",
+        null,
+        "86.5"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "bool",
+      "values": [
+        "false",
+        "true",
+        "false"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "int",
+      "values": [
+        "88",
+        "1088",
+        "2088"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "text",
+      "values": [
+        "r0c89",
+        "r1c89",
+        "r2c89"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "float",
+      "values": [
+        null,
+        "90.5",
+        "90.5"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "bool",
+      "values": [
+        "false",
+        "true",
+        "false"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "int",
+      "values": [
+        "92",
+        "1092",
+        "2092"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "text",
+      "values": [
+        "r0c93",
+        "r1c93",
+        "r2c93"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "float",
+      "values": [
+        "94.5",
+        "94.5",
+        null
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "bool",
+      "values": [
+        "false",
+        "true",
+        "false"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "int",
+      "values": [
+        "96",
+        "1096",
+        "2096"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "text",
+      "values": [
+        "r0c97",
+        "r1c97",
+        "r2c97"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "float",
+      "values": [
+        "98.5",
+        null,
+        "98.5"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "bool",
+      "values": [
+        "false",
+        "true",
+        "false"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "int",
+      "values": [
+        "100",
+        "1100",
+        "2100"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "text",
+      "values": [
+        "r0c101",
+        "r1c101",
+        "r2c101"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "float",
+      "values": [
+        null,
+        "102.5",
+        "102.5"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "bool",
+      "values": [
+        "false",
+        "true",
+        "false"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "int",
+      "values": [
+        "104",
+        "1104",
+        "2104"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "text",
+      "values": [
+        "r0c105",
+        "r1c105",
+        "r2c105"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "float",
+      "values": [
+        "106.5",
+        "106.5",
+        null
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "bool",
+      "values": [
+        "false",
+        "true",
+        "false"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "int",
+      "values": [
+        "108",
+        "1108",
+        "2108"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "text",
+      "values": [
+        "r0c109",
+        "r1c109",
+        "r2c109"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "float",
+      "values": [
+        "110.5",
+        null,
+        "110.5"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "bool",
+      "values": [
+        "false",
+        "true",
+        "false"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "int",
+      "values": [
+        "112",
+        "1112",
+        "2112"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "text",
+      "values": [
+        "r0c113",
+        "r1c113",
+        "r2c113"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "float",
+      "values": [
+        null,
+        "114.5",
+        "114.5"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "bool",
+      "values": [
+        "false",
+        "true",
+        "false"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "int",
+      "values": [
+        "116",
+        "1116",
+        "2116"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "text",
+      "values": [
+        "r0c117",
+        "r1c117",
+        "r2c117"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "float",
+      "values": [
+        "118.5",
+        "118.5",
+        null
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "bool",
+      "values": [
+        "false",
+        "true",
+        "false"
+      ],
+      "truncated": [
+        false,
+        false,
+        false
+      ]
+    }
+  ]
+}

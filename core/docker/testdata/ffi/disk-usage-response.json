@@ -1,0 +1,29 @@
+{
+  "categories": [
+    {
+      "kind": "containers",
+      "count": 3,
+      "bytes": 2300
+    },
+    {
+      "kind": "images",
+      "count": 2,
+      "bytes": 8000000
+    },
+    {
+      "kind": "volumes",
+      "count": 2,
+      "bytes": 70010
+    },
+    {
+      "kind": "networks",
+      "count": 2,
+      "bytes": 0
+    },
+    {
+      "kind": "buildCache",
+      "count": 3,
+      "bytes": 1000
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+name: function value argument
+want: myHandler
+after: http.HandleFunc("/", myHandler)\n|
+notafter: myHandler()|
+-- src --
+package p
+
+import "net/http"
+
+func myHandler(w http.ResponseWriter, r *http.Request) {}
+
+func f() {
+	http.HandleFunc("/", myH|)
+}

@@ -1,0 +1,3 @@
+# example.com/vdep v1.2.0
+## explicit; go 1.22
+example.com/vdep

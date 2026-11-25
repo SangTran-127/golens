@@ -1,0 +1,24 @@
+{
+  "applied": false,
+  "committed": false,
+  "rowsAffected": 0,
+  "failedStatement": null,
+  "blocked": [
+    {
+      "index": 0,
+      "hash": "9b74c9897bac770ffc029102a200c5de2f5e2f1b1e8f2d1e0f6d1b2c3a4e5f60",
+      "risk": "productionWrite",
+      "table": "users",
+      "line": 0,
+      "preview": "4 changes to users"
+    }
+  ],
+  "error": null,
+  "session": {
+    "state": "connected",
+    "transaction": "idle",
+    "schema": "public",
+    "mode": "auto",
+    "isolation": ""
+  }
+}

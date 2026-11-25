@@ -1,0 +1,700 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <script>
+    try {
+      document.querySelector('meta[name="color-scheme"]').content = localStorage.getItem("color-scheme") ?? "light dark";
+    } catch (_) {}
+  </script>
+  <title>GoLens — Native macOS IDE for Go · Feature Showcase</title>
+  <meta name="description" content="Explore the real shipped features of GoLens: Native macOS Go IDE built with SwiftUI, AppKit, and a Go CGO AST/Refactoring/Safety engine.">
+  <link rel="icon" type="image/png" href="./assets/golens-icon.png">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content" data-vi="Chuyển tới nội dung chính" data-en="Skip to main content">Chuyển tới nội dung chính</a>
+
+  <!-- Sticky Liquid Glass Header -->
+  <header class="chrome">
+    <div class="container nav-inner">
+      <a class="brand" href="#top" aria-label="GoLens Go IDE Home">
+        <img class="brand-icon" src="./assets/golens-icon.png" alt="GoLens Gopher Icon" width="36" height="36">
+        <span>GoLens</span>
+        <span class="brand-badge">macOS Native · Go IDE</span>
+      </a>
+
+      <nav aria-label="Feature Categories">
+        <ul class="nav-links">
+          <li><a href="#ast-refactor" data-vi="Tái Cấu Trúc" data-en="Refactor">Tái Cấu Trúc</a></li>
+          <li><a href="#interactive-lab" data-vi="Phòng Thử Nghiệm" data-en="Live Lab">Phòng Thử Nghiệm</a></li>
+          <li><a href="#safety-audit" data-vi="An Toàn AST" data-en="Safety">An Toàn AST</a></li>
+          <li><a href="#profiler-bench" data-vi="Hiệu Năng" data-en="Profiler">Hiệu Năng</a></li>
+          <li><a href="#debugger-targets" data-vi="Gỡ Lỗi & Build" data-en="Debugger">Gỡ Lỗi & Build</a></li>
+          <li><a href="#all-tools" data-vi="72+ Công Cụ" data-en="72+ Tools">72+ Công Cụ</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-controls">
+        <div class="segmented-control" role="group" aria-label="Language Switcher">
+          <button type="button" class="seg-btn is-active" data-lang-btn="vi" aria-pressed="true">VI</button>
+          <button type="button" class="seg-btn" data-lang-btn="en" aria-pressed="false">EN</button>
+        </div>
+        <button type="button" id="theme-toggle-btn" class="icon-btn" aria-label="Toggle Light or Dark Color Scheme">
+          <span id="theme-btn-label" data-vi="Giao diện Tối" data-en="Dark Theme">Giao diện Tối</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <!-- HERO SECTION -->
+    <section id="top" class="hero">
+      <div class="container">
+        <div class="hero-header">
+          <div class="eyebrow">
+            <span data-vi="SwiftUI + AppKit Frontend · Go CGO AST Engine · Chuẩn Apple HIG" data-en="SwiftUI + AppKit Frontend · Go CGO AST Engine · Apple HIG Compliant">SwiftUI + AppKit Frontend · Go CGO AST Engine · Chuẩn Apple HIG</span>
+          </div>
+          <h1 class="hero-title" data-vi="IDE Go Thuần Bản Địa Cho macOS. Hiểu Sâu AST, Tự Động Sửa Lỗi An Toàn." data-en="The Native macOS IDE for Go. Deep AST Intelligence, Zero-Config Safety.">
+            IDE Go Thuần Bản Địa Cho macOS. Hiểu Sâu AST, Tự Động Sửa Lỗi An Toàn.
+          </h1>
+          <p class="hero-subtitle" data-vi="Không Electron. Không máy ảo JVM nặng nề. GoLens kết hợp giao diện Liquid Glass mượt mà trên macOS với lõi phân tích cây cú pháp Go (AST) biên dịch trực tiếp qua CGO — mang lại hơn 72 công cụ tái cấu trúc đa file, sinh code chuẩn production và kiểm toán an toàn một chạm." data-en="No Electron. No heavy JVM runtime. GoLens pairs a native macOS Liquid Glass interface with an in-process Go CGO AST engine — delivering 72+ multi-file refactorings, production code generators, and 1-click safety inspectors.">
+            Không Electron. Không máy ảo JVM nặng nề. GoLens kết hợp giao diện Liquid Glass mượt mà trên macOS với lõi phân tích cây cú pháp Go (AST) biên dịch trực tiếp qua CGO — mang lại hơn 72 công cụ tái cấu trúc đa file, sinh code chuẩn production và kiểm toán an toàn một chạm.
+          </p>
+          <div class="hero-actions">
+            <a class="btn-primary" href="#interactive-lab" data-vi="Trải Nghiệm Trực Tiếp Trên Web ↓" data-en="Try Interactive AST Lab ↓">Trải Nghiệm Trực Tiếp Trên Web ↓</a>
+            <a class="btn-secondary" href="#ast-refactor" data-vi="Khám Phá Tính Năng Thực Tế" data-en="Explore Shipped Features">Khám Phá Tính Năng Thực Tế</a>
+            <a class="btn-secondary" href="#all-tools" data-vi="Tra Cứu 72+ Công Cụ" data-en="Browse All 72+ Tools">Tra Cứu 72+ Công Cụ</a>
+          </div>
+        </div>
+
+        <!-- Key Engineering Metrics -->
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <div class="metric-value">45+</div>
+            <div class="metric-label" data-vi="Bộ Kiểm Toán An Toàn AST" data-en="Built-in AST Safety Inspectors">Bộ Kiểm Toán An Toàn AST</div>
+            <p class="metric-desc" data-vi="Phát hiện và tự động sửa lỗi Concurrency, SQL, Crypto, Channel, CGO, Atomic & Capabilities." data-en="Detect and auto-fix Concurrency, SQL, Crypto, Channel, CGO, Atomic & Capability hazards.">Phát hiện và tự động sửa lỗi Concurrency, SQL, Crypto, Channel, CGO, Atomic & Capabilities.</p>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">27+</div>
+            <div class="metric-label" data-vi="Bộ Tái Cấu Trúc & Sinh Code Go" data-en="Refactorings & Code Generators">Bộ Tái Cấu Trúc & Sinh Code Go</div>
+            <p class="metric-desc" data-vi="Implement Interface, Change Signature, JSON→Struct, Worker Pool, Circuit Breaker, LRU Cache." data-en="Implement Interface, Change Signature, JSON→Struct, Worker Pool, Circuit Breaker, LRU Cache.">Implement Interface, Change Signature, JSON→Struct, Worker Pool, Circuit Breaker, LRU Cache.</p>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">Native</div>
+            <div class="metric-label" data-vi="SwiftUI + NSTextView + Go .dylib" data-en="SwiftUI + NSTextView + Go .dylib">SwiftUI + NSTextView + Go .dylib</div>
+            <p class="metric-desc" data-vi="Khởi động tức thì, cuộn 120Hz ProMotion, tích hợp trực tiếp gopls, delve và pprof." data-en="Instant startup, 120Hz ProMotion scrolling, and first-class gopls, delve, and pprof integration.">Khởi động tức thì, cuộn 120Hz ProMotion, tích hợp trực tiếp gopls, delve và pprof.</p>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">122 / 122</div>
+            <div class="metric-label" data-vi="Hạng Mục Đạt Chuẩn 4-Gate QA" data-en="4-Gate QA Verified Features">Hạng Mục Đạt Chuẩn 4-Gate QA</div>
+            <p class="metric-desc" data-vi="Kiểm chứng tự động qua Apple HIG Linter, go test -race và hành trình UI thực tế." data-en="Continuously verified via Apple HIG Linter, go test -race, and live macOS window journeys.">Kiểm chứng tự động qua Apple HIG Linter, go test -race và hành trình UI thực tế.</p>
+          </div>
+        </div>
+
+        <!-- Real GoLens.app Hero Screenshot Showcase -->
+        <div class="hero-showcase">
+          <div class="showcase-toolbar">
+            <div class="showcase-caption">
+              <span class="status-dot" aria-hidden="true"></span>
+              <span data-vi="Ảnh chụp thực tế từ GoLens.app trên macOS (Click vào ảnh bất kỳ để phóng to độ phân giải gốc)" data-en="Actual screenshot captured from GoLens.app on macOS (Click any screenshot to inspect full resolution)">Ảnh chụp thực tế từ GoLens.app trên macOS (Click vào ảnh bất kỳ để phóng to độ phân giải gốc)</span>
+            </div>
+            <div class="segmented-control" role="group" aria-label="Hero Screenshot Appearance">
+              <button type="button" class="seg-btn is-active" data-hero-window="light" aria-pressed="true" data-vi="Cửa sổ Sáng (Light)" data-en="Light Window">Cửa sổ Sáng (Light)</button>
+              <button type="button" class="seg-btn" data-hero-window="dark" aria-pressed="false" data-vi="Cửa sổ Tối (Dark)" data-en="Dark Window">Cửa sổ Tối (Dark)</button>
+            </div>
+          </div>
+
+          <div class="screenshot-stage">
+            <img
+              id="hero-img-light"
+              class="zoomable-screenshot"
+              src="./assets/screenshots/hero-light.png"
+              alt="Giao diện chính GoLens Go IDE ở chế độ Light Mode với Inline Code Lens và Gopher File Icons"
+              fetchpriority="high"
+              width="1200"
+              height="800"
+            >
+            <img
+              id="hero-img-dark"
+              class="zoomable-screenshot is-hidden"
+              src="./assets/screenshots/hero-dark.png"
+              alt="Giao diện chính GoLens Go IDE ở chế độ Dark Mode với điều hướng AST và Terminal tích hợp"
+              fetchpriority="low"
+              loading="lazy"
+              width="1200"
+              height="800"
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 1: MULTI-FILE AST REFACTORING & CODE GENERATION (Interactive Tabs) -->
+    <section id="ast-refactor" class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag" data-vi="Tái Cấu Trúc & Sinh Code Thông Minh" data-en="Smart AST Refactoring & Generation">Tái Cấu Trúc & Sinh Code Thông Minh</span>
+          <h2 class="section-title" data-vi="Thao Tác Trực Tiếp Trên Cây Cú Pháp Go — Không Bao Giờ Làm Hỏng Định Dạng Hay Comment" data-en="True Go AST Transformations — Never Corrupts Formatting or Comments">
+            Thao Tác Trực Tiếp Trên Cây Cú Pháp Go — Không Bao Giờ Làm Hỏng Định Dạng Hay Comment
+          </h2>
+          <p class="section-desc" data-vi="Mỗi thao tác tái cấu trúc trong GoLens đều phân tích trực tiếp gói go/ast và go/types trên toàn workspace, bảo toàn 100% comment và định dạng chuẩn gofmt." data-en="Every refactoring in GoLens operates directly on go/ast and go/types across your workspace, preserving comments and gofmt invariants automatically.">
+            Mỗi thao tác tái cấu trúc trong GoLens đều phân tích trực tiếp gói go/ast và go/types trên toàn workspace, bảo toàn 100% comment và định dạng chuẩn gofmt.
+          </p>
+        </div>
+
+        <div class="feature-explorer">
+          <div class="feature-tablist" role="tablist" aria-label="AST Refactoring Features">
+            <button type="button" class="feature-tab" role="tab" id="tab-btn-impl" aria-selected="true" aria-controls="panel-impl">
+              <div class="feature-tab-top">
+                <span class="feature-tab-title" data-vi="Thực Thi Interface Tự Động" data-en="Implement Interface">Thực Thi Interface Tự Động</span>
+                <span class="kbd-pill">⌃I</span>
+              </div>
+              <span class="feature-tab-desc" data-vi="Quét toàn bộ interface trong dự án và thư viện chuẩn Go (io.Reader, http.Handler...) để sinh method stub còn thiếu." data-en="Scan workspace and Go standard library interfaces (io.Reader, http.Handler...) and generate missing method stubs.">Quét toàn bộ interface trong dự án và thư viện chuẩn Go (io.Reader, http.Handler...) để sinh method stub còn thiếu.</span>
+            </button>
+
+            <button type="button" class="feature-tab" role="tab" id="tab-btn-json" aria-selected="false" aria-controls="panel-json">
+              <div class="feature-tab-top">
+                <span class="feature-tab-title" data-vi="Chuyển JSON Thành Go Struct" data-en="Paste JSON as Go Struct">Chuyển JSON Thành Go Struct</span>
+                <span class="kbd-pill">⌃⌥V</span>
+              </div>
+              <span class="feature-tab-desc" data-vi="Dán mẫu JSON bất kỳ để suy luận kiểu Go, chuẩn hoá tên viết tắt (ID, URL, HTTP) và chèn an toàn ở cấp top-level." data-en="Paste any JSON payload to infer Go types, normalize acronyms (ID, URL, HTTP), and insert safely at top level.">Dán mẫu JSON bất kỳ để suy luận kiểu Go, chuẩn hoá tên viết tắt (ID, URL, HTTP) và chèn an toàn ở cấp top-level.</span>
+            </button>
+
+            <button type="button" class="feature-tab" role="tab" id="tab-btn-layout" aria-selected="false" aria-controls="panel-layout">
+              <div class="feature-tab-top">
+                <span class="feature-tab-title" data-vi="Tối Ưu Bộ Nhớ Struct (Padding)" data-en="Struct Memory Layout Optimizer">Tối Ưu Bộ Nhớ Struct (Padding)</span>
+                <span class="kbd-pill">⌃⌥L</span>
+              </div>
+              <span class="feature-tab-desc" data-vi="Trực quan hoá kích thước byte, độ căn chỉnh (alignment) và các vùng đệm lãng phí trên arm64/amd64, tối ưu chỉ với 1 cú nhấp." data-en="Visualize byte offsets, alignment, and wasted padding on arm64/amd64, then reorder fields in one click.">Trực quan hoá kích thước byte, độ căn chỉnh (alignment) và các vùng đệm lãng phí trên arm64/amd64, tối ưu chỉ với 1 cú nhấp.</span>
+            </button>
+
+            <button type="button" class="feature-tab" role="tab" id="tab-btn-sig" aria-selected="false" aria-controls="panel-sig">
+              <div class="feature-tab-top">
+                <span class="feature-tab-title" data-vi="Đổi Chữ Ký Hàm Toàn Dự Án" data-en="Call-Site Change Signature">Đổi Chữ Ký Hàm Toàn Dự Án</span>
+                <span class="kbd-pill">⌘F6</span>
+              </div>
+              <span class="feature-tab-desc" data-vi="Thêm, xoá, đổi thứ tự tham số kèm giá trị mặc định ngay tại dòng khai báo hoặc tại bất kỳ vị trí gọi hàm nào." data-en="Add, remove, or reorder parameters with default call-site values from either the declaration or any call expression.">Thêm, xoá, đổi thứ tự tham số kèm giá trị mặc định ngay tại dòng khai báo hoặc tại bất kỳ vị trí gọi hàm nào.</span>
+            </button>
+
+            <button type="button" class="feature-tab" role="tab" id="tab-btn-mock" aria-selected="false" aria-controls="panel-mock">
+              <div class="feature-tab-top">
+                <span class="feature-tab-title" data-vi="Sinh Mock & Đẩy Lên Interface" data-en="Generate Mock & Propagate Interface">Sinh Mock & Đẩy Lên Interface</span>
+                <span class="kbd-pill">⌃⌥M / ⌃⌥P</span>
+              </div>
+              <span class="feature-tab-desc" data-vi="Sinh struct Mock thuần Go có ghi nhận lịch sử lời gọi (Call Spy) và đẩy method mới từ struct lên interface." data-en="Generate zero-dependency typed test mocks with call spy recording and propagate struct methods up to interfaces.">Sinh struct Mock thuần Go có ghi nhận lịch sử lời gọi (Call Spy) và đẩy method mới từ struct lên interface.</span>
+            </button>
+          </div>
+
+          <!-- Tab Panels -->
+          <div class="feature-panels">
+            <div class="feature-panel" role="tabpanel" id="panel-impl" aria-labelledby="tab-btn-impl">
+              <div class="panel-meta">
+                <span class="panel-path">Editor ▸ Implement Interface… (⌃I)</span>
+                <span class="brand-badge" data-vi="Tự động nhận diện Receiver & Method đã có" data-en="Auto-detects receiver & existing methods">Tự động nhận diện Receiver & Method đã có</span>
+              </div>
+              <div class="screenshot-stage">
+                <img class="zoomable-screenshot" src="./assets/screenshots/implement-interface.png" alt="Cửa sổ Implement Interface trong GoLens.app" loading="lazy" width="2400" height="1600">
+              </div>
+              <div class="panel-highlights">
+                <div class="highlight-item">
+                  <strong data-vi="Quét Workspace + Stdlib" data-en="Workspace + Stdlib Scan">Quét Workspace + Stdlib</strong>
+                  <span data-vi="Tìm tức thì StoreReader, io.Reader, io.Writer, io.Closer, fmt.Stringer, http.Handler..." data-en="Instantly lists StoreReader, io.Reader, io.Writer, io.Closer, fmt.Stringer, http.Handler...">Tìm tức thì StoreReader, io.Reader, io.Writer, io.Closer, fmt.Stringer, http.Handler...</span>
+                </div>
+                <div class="highlight-item">
+                  <strong data-vi="Không Sinh Trùng Lặp" data-en="Zero Duplicate Stubs">Không Sinh Trùng Lặp</strong>
+                  <span data-vi="Chỉ sinh những method mà struct chưa thực thi, giữ nguyên tên biến receiver hiện hữu." data-en="Generates only the missing methods while reusing your struct's existing receiver identifier.">Chỉ sinh những method mà struct chưa thực thi, giữ nguyên tên biến receiver hiện hữu.</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="feature-panel" role="tabpanel" id="panel-json" aria-labelledby="tab-btn-json" hidden>
+              <div class="panel-meta">
+                <span class="panel-path">Editor ▸ Convert JSON to Go Struct… (⌃⌥V)</span>
+                <span class="brand-badge" data-vi="Xem trước trực tiếp & Chèn Top-Level an toàn" data-en="Live Preview & Safe Top-Level Insertion">Xem trước trực tiếp & Chèn Top-Level an toàn</span>
+              </div>
+              <div class="screenshot-stage">
+                <img class="zoomable-screenshot" src="./assets/screenshots/json-to-struct.png" alt="Cửa sổ Paste JSON as Go Struct trong GoLens.app" loading="lazy" width="2400" height="1600">
+              </div>
+              <div class="panel-highlights">
+                <div class="highlight-item">
+                  <strong data-vi="Chuẩn Hoá Quy Ước Go" data-en="Go Initialism Aware">Chuẩn Hoá Quy Ước Go</strong>
+                  <span data-vi="Tự động chuyển id → ID, user_url → UserURL và gắn tag json chính xác." data-en="Automatically maps id → ID, user_url → UserURL with matching json struct tags.">Tự động chuyển id → ID, user_url → UserURL và gắn tag json chính xác.</span>
+                </div>
+                <div class="highlight-item">
+                  <strong data-vi="Không Làm Hỏng Cú Pháp" data-en="Syntax-Safe Insertion">Không Làm Hỏng Cú Pháp</strong>
+                  <span data-vi="Dù con trỏ đang nằm giữa hàm, struct mới luôn được đặt ở cấp top-level ngay sau khối hiện tại." data-en="Even if your cursor is inside a function body, GoLens inserts the new struct at top-level scope.">Dù con trỏ đang nằm giữa hàm, struct mới luôn được đặt ở cấp top-level ngay sau khối hiện tại.</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="feature-panel" role="tabpanel" id="panel-layout" aria-labelledby="tab-btn-layout" hidden>
+              <div class="panel-meta">
+                <span class="panel-path">Editor ▸ Optimize Struct Memory Layout… (⌃⌥L)</span>
+                <span class="brand-badge" data-vi="Tính toán chính xác theo kiến trúc 64-bit" data-en="Exact 64-bit Architecture Offset Math">Tính toán chính xác theo kiến trúc 64-bit</span>
+              </div>
+              <div class="screenshot-stage">
+                <img class="zoomable-screenshot" src="./assets/screenshots/struct-layout.png" alt="Cửa sổ Struct Memory Layout trong GoLens.app" loading="lazy" width="2400" height="1600">
+              </div>
+              <div class="panel-highlights">
+                <div class="highlight-item">
+                  <strong data-vi="Bản Đồ Offset Từng Trường" data-en="Field-by-Field Offset Map">Bản Đồ Offset Từng Trường</strong>
+                  <span data-vi="Hiển thị rõ vị trí +0, +8, +16 và cảnh báo màu cam ngay tại khe hở byte padding bị lãng phí." data-en="Highlights exact byte offsets (+0, +8, +16) and flags wasted padding gaps inline.">Hiển thị rõ vị trí +0, +8, +16 và cảnh báo màu cam ngay tại khe hở byte padding bị lãng phí.</span>
+                </div>
+                <div class="highlight-item">
+                  <strong data-vi="Bảo Toàn Tag & Comment" data-en="Preserves Tags & Comments">Bảo Toàn Tag & Comment</strong>
+                  <span data-vi="Sắp xếp lại thứ tự trường để đạt kích thước tối ưu mà vẫn giữ nguyên struct tag và chú thích." data-en="Reorders fields for minimum footprint while preserving all struct tags and inline comments.">Sắp xếp lại thứ tự trường để đạt kích thước tối ưu mà vẫn giữ nguyên struct tag và chú thích.</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="feature-panel" role="tabpanel" id="panel-sig" aria-labelledby="tab-btn-sig" hidden>
+              <div class="panel-meta">
+                <span class="panel-path">Editor ▸ Change Signature… (⌘F6)</span>
+                <span class="brand-badge" data-vi="Gọi được từ cả nơi khai báo lẫn nơi gọi hàm" data-en="Works from declaration or any call site">Gọi được từ cả nơi khai báo lẫn nơi gọi hàm</span>
+              </div>
+              <div class="screenshot-stage">
+                <img class="zoomable-screenshot" src="./assets/screenshots/change-signature.png" alt="Tính năng Change Signature từ vị trí gọi hàm trong GoLens.app" loading="lazy" width="2400" height="1600">
+              </div>
+              <div class="panel-highlights">
+                <div class="highlight-item">
+                  <strong data-vi="Đồng Bộ Toàn Workspace" data-en="Workspace-Wide Sync">Đồng Bộ Toàn Workspace</strong>
+                  <span data-vi="Tự động điền giá trị mặc định cho tham số mới tại mọi nơi gọi hàm trong toàn bộ các file." data-en="Automatically injects default argument expressions across every caller in the module.">Tự động điền giá trị mặc định cho tham số mới tại mọi nơi gọi hàm trong toàn bộ các file.</span>
+                </div>
+                <div class="highlight-item">
+                  <strong data-vi="Phân Giải Xuyên File" data-en="Cross-File Call Resolution">Phân Giải Xuyên File</strong>
+                  <span data-vi="Đặt con trỏ ngay tại lời gọi hàm store.Get(...) để sửa chữ ký hàm gốc nằm ở file khác." data-en="Invoke ⌘F6 directly on a store.Get(...) call expression to refactor its declaration in another file.">Đặt con trỏ ngay tại lời gọi hàm store.Get(...) để sửa chữ ký hàm gốc nằm ở file khác.</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="feature-panel" role="tabpanel" id="panel-mock" aria-labelledby="tab-btn-mock" hidden>
+              <div class="panel-meta">
+                <span class="panel-path">Editor ▸ Generate ▸ Interface Mock… (⌃⌥M)</span>
+                <span class="brand-badge" data-vi="Thuần Go · Không phụ thuộc thư viện ngoài" data-en="Pure Go · Zero external dependencies">Thuần Go · Không phụ thuộc thư viện ngoài</span>
+              </div>
+              <div class="screenshot-stage">
+                <img class="zoomable-screenshot" src="./assets/screenshots/generate-mock.png" alt="Cửa sổ Generate Interface Mock trong GoLens.app" loading="lazy" width="2400" height="1600">
+              </div>
+              <div class="panel-highlights">
+                <div class="highlight-item">
+                  <strong data-vi="Ghi Nhận Lịch Sử Gọi Hàm" data-en="Built-in Call Spy Slice">Ghi Nhận Lịch Sử Gọi Hàm</strong>
+                  <span data-vi="Tự động sinh trường Func tuỳ chỉnh và slice Calls lưu toàn bộ đối số truyền vào khi chạy test." data-en="Generates configurable Func hooks and typed Calls slices that record every invocation argument.">Tự động sinh trường Func tuỳ chỉnh và slice Calls lưu toàn bộ đối số truyền vào khi chạy test.</span>
+                </div>
+                <div class="highlight-item">
+                  <strong data-vi="Propagate Method (⌃⌥P)" data-en="Propagate Method (⌃⌥P)">Propagate Method (⌃⌥P)</strong>
+                  <span data-vi="Đẩy phương thức mới từ struct lên interface và tự động sinh stub cho các struct cùng thực thi." data-en="Push a new struct method up to an interface and stub sibling implementing types in one step.">Đẩy phương thức mới từ struct lên interface và tự động sinh stub cho các struct cùng thực thi.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: INTERACTIVE AST SAFETY & CODE GENERATOR PLAYGROUND -->
+    <section id="interactive-lab" class="section section-alt">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag" data-vi="Phòng Thử Nghiệm Tương Tác Trực Tiếp" data-en="Live Interactive Playground">Phòng Thử Nghiệm Tương Tác Trực Tiếp</span>
+          <h2 class="section-title" data-vi="Bấm Thử Tự Động Sửa Lỗi AST & Bộ Sinh Go Struct Ngay Trên Trình Duyệt" data-en="Test Drive GoLens's AST Auto-Fixer & Go Struct Generator Right in Your Browser">
+            Bấm Thử Tự Động Sửa Lỗi AST & Bộ Sinh Go Struct Ngay Trên Trình Duyệt
+          </h2>
+          <p class="section-desc" data-vi="Chọn một tình huống lỗi thực tế bên dưới và nhấn Apply GoLens AST Fix để xem cách GoLens viết lại cây cú pháp Go, hoặc chuyển sang tab JSON → Go Struct để gõ thử dữ liệu của bạn." data-en="Pick a real-world Go hazard below and click Apply GoLens AST Fix to inspect the exact AST transformation, or switch to the JSON → Go Struct lab to test live code generation.">
+            Chọn một tình huống lỗi thực tế bên dưới và nhấn Apply GoLens AST Fix để xem cách GoLens viết lại cây cú pháp Go, hoặc chuyển sang tab JSON → Go Struct để gõ thử dữ liệu của bạn.
+          </p>
+        </div>
+
+        <div class="playground-shell">
+          <div class="playground-header">
+            <div class="segmented-control" role="group" aria-label="Interactive Lab Mode">
+              <button type="button" class="seg-btn is-active" data-lab-tab="ast" aria-pressed="true" data-vi="Tự Động Sửa Lỗi AST (5 Tình Huống)" data-en="Interactive AST Auto-Fixer (5 Scenarios)">Tự Động Sửa Lỗi AST (5 Tình Huống)</button>
+              <button type="button" class="seg-btn" data-lab-tab="json" aria-pressed="false" data-vi="Thử Bộ Sinh JSON → Go Struct Trực Tiếp" data-en="Live JSON → Go Struct Generator">Thử Bộ Sinh JSON → Go Struct Trực Tiếp</button>
+            </div>
+            <span class="panel-path" id="ast-rule-label">Editor ▸ Inspect ▸ Concurrency & Context (⌃⌥C)</span>
+          </div>
+
+          <!-- Pane 1: Interactive AST Safety Auto-Fixer -->
+          <div id="lab-pane-ast">
+            <div class="scenario-pills" id="ast-scenario-pills" role="group" aria-label="Select AST Safety Scenario"></div>
+
+            <div class="playground-grid">
+              <div class="code-card">
+                <div class="code-card-bar">
+                  <span id="ast-diagnostic-badge" class="diagnostic-badge is-warning">2 Cảnh báo AST</span>
+                  <div class="segmented-control" role="group" aria-label="Code View Mode">
+                    <button type="button" class="seg-btn is-active" data-code-mode="before" aria-pressed="true" data-vi="Trước khi sửa (Before)" data-en="Before Fix">Trước khi sửa (Before)</button>
+                    <button type="button" class="seg-btn" data-code-mode="after" aria-pressed="false" data-vi="Sau khi sửa AST (After)" data-en="After AST Fix">Sau khi sửa AST (After)</button>
+                    <button type="button" class="seg-btn" data-code-mode="diff" aria-pressed="false" data-vi="So sánh Diff" data-en="AST Diff">So sánh Diff</button>
+                  </div>
+                </div>
+
+                <pre class="code-pre"><code id="ast-code-display"></code></pre>
+
+                <div class="code-card-footer">
+                  <span id="ast-explain-text" class="inspector-explain"></span>
+                  <button type="button" id="ast-apply-fix-btn" class="btn-primary">Apply GoLens AST Fix</button>
+                </div>
+              </div>
+
+              <div class="code-card">
+                <div class="code-card-bar">
+                  <span class="panel-path" data-vi="Giao diện thực tế trong GoLens.app (Click để phóng to)" data-en="Actual Inspector Sheet in GoLens.app (Click to zoom)">Giao diện thực tế trong GoLens.app (Click để phóng to)</span>
+                </div>
+                <div class="screenshot-stage" style="border-radius: 0; box-shadow: none;">
+                  <img
+                    id="ast-inspector-screenshot"
+                    class="zoomable-screenshot"
+                    src="./assets/screenshots/concurrency-inspector.png"
+                    alt="Cửa sổ Inspect Concurrency & Context Propagation trong GoLens.app"
+                    loading="lazy"
+                    width="2400"
+                    height="1600"
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pane 2: Live JSON -> Go Struct Generator -->
+          <div id="lab-pane-json" hidden>
+            <div class="lab-controls">
+              <label class="lab-field">
+                <span data-vi="Tên Struct:" data-en="Struct Name:">Tên Struct:</span>
+                <input type="text" id="json-struct-name" class="lab-input" value="ServiceConfig">
+              </label>
+
+              <label class="lab-field">
+                <span data-vi="Loại Tag:" data-en="Tag Kind:">Loại Tag:</span>
+                <select id="json-tag-kind" class="lab-select">
+                  <option value="json">json</option>
+                  <option value="yaml">yaml</option>
+                  <option value="db">db</option>
+                </select>
+              </label>
+
+              <label class="lab-field">
+                <span data-vi="Kiểu chữ Tag:" data-en="Tag Casing:">Kiểu chữ Tag:</span>
+                <select id="json-tag-case" class="lab-select">
+                  <option value="snake">snake_case</option>
+                  <option value="camel">camelCase</option>
+                  <option value="kebab">kebab-case</option>
+                </select>
+              </label>
+
+              <label class="lab-field">
+                <input type="checkbox" id="json-omit-empty">
+                <span>,omitempty</span>
+              </label>
+
+              <div class="segmented-control" role="group" aria-label="JSON Presets">
+                <button type="button" class="seg-btn" data-json-preset="service" data-vi="Mẫu Microservice" data-en="Service Preset">Mẫu Microservice</button>
+                <button type="button" class="seg-btn" data-json-preset="user" data-vi="Mẫu User" data-en="User Preset">Mẫu User</button>
+                <button type="button" class="seg-btn" data-json-preset="webhook" data-vi="Mẫu Webhook" data-en="Webhook Preset">Mẫu Webhook</button>
+              </div>
+            </div>
+
+            <div class="json-lab-grid">
+              <div class="code-card">
+                <div class="code-card-bar">
+                  <span class="panel-path" data-vi="Đầu vào JSON (Hãy sửa trực tiếp bên dưới)" data-en="JSON Input (Edit live below)">Đầu vào JSON (Hãy sửa trực tiếp bên dưới)</span>
+                </div>
+                <textarea id="json-input-area" class="json-textarea" spellcheck="false" aria-label="JSON Input">{
+  "service_id": 1042,
+  "cluster_url": "https://ap-southeast.golens.dev",
+  "http_timeout_ms": 2500,
+  "tls_enabled": true,
+  "tags": ["production", "arm64"],
+  "rate_limit": {
+    "requests_per_sec": 500,
+    "burst_capacity": 1200
+  }
+}</textarea>
+              </div>
+
+              <div class="code-card">
+                <div class="code-card-bar">
+                  <span class="panel-path" data-vi="Kết quả Go Struct (Chuẩn hoá ID, URL, HTTP tự động)" data-en="Generated Go Struct (Acronym-normalized)">Kết quả Go Struct (Chuẩn hoá ID, URL, HTTP tự động)</span>
+                  <button type="button" id="copy-struct-btn" class="seg-btn is-active" data-vi="Chép Go Struct" data-en="Copy Go Struct">Chép Go Struct</button>
+                </div>
+                <pre class="code-pre"><code id="json-struct-output"></code></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: GOLENS SAFETY AUDIT & PACKAGE CAPABILITIES -->
+    <section id="safety-audit" class="section deferred-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag" data-vi="Kiểm Toán Bảo Mật & Độ Tin Cậy Đa Tầng" data-en="Multi-Layer Safety & Capability Auditing">Kiểm Toán Bảo Mật & Độ Tin Cậy Đa Tầng</span>
+          <h2 class="section-title" data-vi="Phát Hiện Rủi Ro Đặc Thù Của Go Trước Khi Code Được Commit" data-en="Catch Go-Specific Production Hazards Before They Ever Leave Your Mac">
+            Phát Hiện Rủi Ro Đặc Thù Của Go Trước Khi Code Được Commit
+          </h2>
+          <p class="section-desc" data-vi="Khác với các linter chỉ báo lỗi cú pháp đơn giản, GoLens kết hợp phân tích AST chuyên sâu, kiểm toán đặc quyền package kiểu capslock và so sánh tương thích API SemVer." data-en="Beyond surface linters, GoLens combines deep AST hazard detectors, capslock-style package capability auditing, and Git HEAD SemVer API compatibility checks.">
+            Khác với các linter chỉ báo lỗi cú pháp đơn giản, GoLens kết hợp phân tích AST chuyên sâu, kiểm toán đặc quyền package kiểu capslock và so sánh tương thích API SemVer.
+          </p>
+        </div>
+
+        <div class="bento-grid-2">
+          <article class="bento-card">
+            <div>
+              <div class="bento-meta">
+                <span class="brand-badge" data-vi="Kiểm Toán Đặc Quyền Package" data-en="Package Capability Audit">Kiểm Toán Đặc Quyền Package</span>
+                <span class="kbd-pill">⌃⇧⌘S</span>
+              </div>
+              <h3 data-vi="Giám Sát Đặc Quyền NETWORK, EXEC, FILESYSTEM & UNSAFE" data-en="Audit NETWORK, EXEC, FILESYSTEM & UNSAFE Capabilities">
+                Giám Sát Đặc Quyền NETWORK, EXEC, FILESYSTEM & UNSAFE
+              </h3>
+              <p data-vi="Lấy cảm hứng từ Google Capslock, tab Safety của GoLens chỉ rõ hàm nào trong dự án hoặc dependency đang mở kết nối mạng (http.Get), chạy tiến trình hệ điều hành (exec.Command) hay dùng con trỏ không an toàn." data-en="Inspired by Google Capslock, GoLens's Safety pane maps every sensitive capability (http.Get network calls, exec.Command subprocess spawns, filesystem writes, unsafe pointers) directly to source lines.">
+                Lấy cảm hứng từ Google Capslock, GoLens's Safety pane chỉ rõ hàm nào trong dự án hoặc dependency đang mở kết nối mạng (http.Get), chạy tiến trình hệ điều hành (exec.Command) hay dùng con trỏ không an toàn.
+              </p>
+            </div>
+            <div class="screenshot-stage">
+              <img class="zoomable-screenshot" src="./assets/screenshots/safety-capabilities.png" alt="Bảng kiểm toán đặc quyền Capabilities NETWORK và EXEC trong GoLens.app" loading="lazy" width="1200" height="800">
+            </div>
+          </article>
+
+          <article class="bento-card">
+            <div>
+              <div class="bento-meta">
+                <span class="brand-badge" data-vi="Kiểm Soát Phiên Bản SemVer" data-en="SemVer API Compatibility">Kiểm Soát Phiên Bản SemVer</span>
+                <span class="kbd-pill">⌃⌥A</span>
+              </div>
+              <h3 data-vi="So Sánh API Export Với Git HEAD & Đề Xuất SemVer" data-en="Compare Package API Against Git HEAD with SemVer Verdict">
+                So Sánh API Export Với Git HEAD & Đề Xuất SemVer
+              </h3>
+              <p data-vi="Tự động đối chiếu toàn bộ hàm, struct, interface được export hiện tại với bản Git HEAD để phát hiện thay đổi làm gãy tương thích ngược (Breaking Changes) và khuyến nghị nâng bản MAJOR, MINOR hay PATCH." data-en="Diffs all exported Go symbols against Git HEAD to flag breaking signature changes vs. compatible additions, recommending MAJOR, MINOR, or PATCH bumps automatically.">
+                Tự động đối chiếu toàn bộ hàm, struct, interface được export hiện tại với bản Git HEAD để phát hiện thay đổi làm gãy tương thích ngược (Breaking Changes) và khuyến nghị nâng bản MAJOR, MINOR hay PATCH.
+              </p>
+            </div>
+            <div class="screenshot-stage">
+              <img class="zoomable-screenshot" src="./assets/screenshots/api-compatibility.png" alt="Cửa sổ Compare Package API với Git HEAD trong GoLens.app" loading="lazy" width="2400" height="1600">
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: PROFILER, FLAME GRAPH, ESCAPE ANALYSIS & BENCHMARK COMPARISON -->
+    <section id="profiler-bench" class="section section-alt deferred-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag" data-vi="Hiệu Năng, Bộ Nhớ & Benchmark" data-en="Performance, Memory & Benchmarks">Hiệu Năng, Bộ Nhớ & Benchmark</span>
+          <h2 class="section-title" data-vi="Flame Graph Tích Hợp, Nhãn Thoát Bộ Nhớ Heap & So Sánh Baseline Benchmark" data-en="Built-in Flame Graphs, Inline Heap Escape Lenses & Benchmark Baselines">
+            Flame Graph Tích Hợp, Nhãn Thoát Bộ Nhớ Heap & So Sánh Baseline Benchmark
+          </h2>
+          <p class="section-desc" data-vi="Đo đạc hiệu năng ngay trong lúc viết code mà không cần chuyển sang trình duyệt hay công cụ dòng lệnh bên ngoài." data-en="Profile CPU & allocations, see which variables escape to the heap inline, and catch benchmark regressions without leaving the editor.">
+            Đo đạc hiệu năng ngay trong lúc viết code mà không cần chuyển sang trình duyệt hay công cụ dòng lệnh bên ngoài.
+          </p>
+        </div>
+
+        <div class="bento-grid-2">
+          <article class="bento-card">
+            <div>
+              <div class="bento-meta">
+                <span class="brand-badge" data-vi="CPU/Memory .pprof + Escape Analysis" data-en="CPU/Memory .pprof + Escape Analysis">CPU/Memory .pprof + Escape Analysis</span>
+                <span class="kbd-pill">⌃⌥⌘P</span>
+              </div>
+              <h3 data-vi="Biểu Đồ Nhiệt Flame Graph & Nhãn ↗ heap Ngay Trên Dòng Code" data-en="Interactive Flame Graph & Inline ↗ heap Escape Lenses">
+                Biểu Đồ Nhiệt Flame Graph & Nhãn ↗ heap Ngay Trên Dòng Code
+              </h3>
+              <p data-vi="Chạy trực tiếp CPU/Memory profile hoặc mở file .pprof có sẵn. GoLens hiển thị thanh nhiệt ở lề trái (Editor Line Heat) cùng nhãn ↗ heap giải thích chính xác biến nào bị cấp phát lên heap." data-en="Capture CPU/Memory profiles or open any .pprof file. GoLens overlays gutter line heat and inline ↗ heap escape explanations right next to your code.">
+                Chạy trực tiếp CPU/Memory profile hoặc mở file .pprof có sẵn. GoLens hiển thị thanh nhiệt ở lề trái (Editor Line Heat) cùng nhãn ↗ heap giải thích chính xác biến nào bị cấp phát lên heap.
+              </p>
+            </div>
+            <div class="screenshot-stage">
+              <img class="zoomable-screenshot" src="./assets/screenshots/flame-graph.png" alt="Flame Graph và nhãn Inline Heap Escape Analysis trong GoLens.app" loading="lazy" width="1200" height="800">
+            </div>
+          </article>
+
+          <article class="bento-card">
+            <div>
+              <div class="bento-meta">
+                <span class="brand-badge" data-vi="Kiểm Soát Suy Giảm Hiệu Năng" data-en="Benchmark Regression Guard">Kiểm Soát Suy Giảm Hiệu Năng</span>
+                <span class="kbd-pill">⌃⌥B</span>
+              </div>
+              <h3 data-vi="So Sánh Benchmark Với Baseline Đã Lưu (Faster / Regressed)" data-en="Compare Benchmarks Against Saved Baseline">
+                So Sánh Benchmark Với Baseline Đã Lưu (Faster / Regressed)
+              </h3>
+              <p data-vi="Lưu kết quả chạy Benchmark hiện tại làm chuẩn (Baseline), sau đó sửa thuật toán và chạy lại để xem tỷ lệ thay đổi chính xác về thời gian (% ns/op) và cấp phát bộ nhớ (B/op)." data-en="Pin a benchmark run as your baseline, optimize your implementation, and immediately see delta percentages for ns/op and B/op with Faster / Regressed verdicts.">
+                Lưu kết quả chạy Benchmark hiện tại làm chuẩn (Baseline), sau đó sửa thuật toán và chạy lại để xem tỷ lệ thay đổi chính xác về thời gian (% ns/op) và cấp phát bộ nhớ (B/op).
+              </p>
+            </div>
+            <div class="screenshot-stage">
+              <img class="zoomable-screenshot" src="./assets/screenshots/benchmark-comparison.png" alt="Cửa sổ Compare Benchmarks with Baseline trong GoLens.app" loading="lazy" width="2400" height="1600">
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: DELVE DEBUGGER, CROSS-COMPILATION TARGETS & GIT LENSES -->
+    <section id="debugger-targets" class="section deferred-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag" data-vi="Gỡ Lỗi Thực Chiến & Đa Nền Tảng" data-en="Production Debugging & Cross-Platform Workflow">Gỡ Lỗi Thực Chiến & Đa Nền Tảng</span>
+          <h2 class="section-title" data-vi="Gắn Debugger Vào Tiến Trình Đang Chạy, Chuyển Nhanh GOOS/GOARCH & Git Blame Nội Tuyến" data-en="Attach to Live Processes, Switch GOOS/GOARCH in 1 Click & Inspect Inline Git Lenses">
+            Gắn Debugger Vào Tiến Trình Đang Chạy, Chuyển Nhanh GOOS/GOARCH & Git Blame Nội Tuyến
+          </h2>
+          <p class="section-desc" data-vi="Mọi công cụ phục vụ quy trình phát triển Go hàng ngày được thiết kế liền mạch theo chuẩn giao diện macOS." data-en="Every daily Go workflow — live Delve debugging, cross-platform build constraint verification, and inline Git blame — is crafted natively for macOS.">
+            Mọi công cụ phục vụ quy trình phát triển Go hàng ngày được thiết kế liền mạch theo chuẩn giao diện macOS.
+          </p>
+        </div>
+
+        <div class="bento-grid-3">
+          <article class="bento-card">
+            <div>
+              <div class="bento-meta">
+                <span class="brand-badge">Delve Debugger</span>
+                <span class="kbd-pill">⌃⌥⌘A</span>
+              </div>
+              <h3 data-vi="Attach Tiến Trình Local & Remote Delve An Toàn" data-en="Safe Local PID & Remote Delve Attach">
+                Attach Tiến Trình Local & Remote Delve An Toàn
+              </h3>
+              <p data-vi="Gắn trình gỡ lỗi vào tiến trình Go đang chạy theo PID hoặc kết nối dlv headless từ xa, xem giá trị biến ngay trên dòng code (iter: 889) và tự tách an toàn khi bấm Stop." data-en="Attach to running local Go processes by PID or remote headless Delve, inspect inline variable values (iter: 889), and detach cleanly without killing your process.">
+                Gắn trình gỡ lỗi vào tiến trình Go đang chạy theo PID hoặc kết nối dlv headless từ xa, xem giá trị biến ngay trên dòng code (iter: 889) và tự tách an toàn khi bấm Stop.
+              </p>
+            </div>
+            <div class="screenshot-stage">
+              <img class="zoomable-screenshot" src="./assets/screenshots/debugger-attached.png" alt="Trình gỡ lỗi Delve hiển thị giá trị biến nội tuyến và ngăn xếp goroutine trong GoLens.app" loading="lazy" width="1200" height="800">
+            </div>
+          </article>
+
+          <article class="bento-card">
+            <div>
+              <div class="bento-meta">
+                <span class="brand-badge">GOOS / GOARCH</span>
+                <span class="kbd-pill">Status Bar</span>
+              </div>
+              <h3 data-vi="Chuyển Đổi Mục Tiêu Build & Khôi Phục Một Chạm" data-en="1-Click Build Target Switcher & Recovery">
+                Chuyển Đổi Mục Tiêu Build & Khôi Phục Một Chạm
+              </h3>
+              <p data-vi="Đổi nhanh giữa darwin, linux, windows và arm64, amd64. Khi file đang mở bị loại trừ bởi //go:build, GoLens giải thích rõ lý do kèm nút Reset Build Target ngay trên banner." data-en="Switch between darwin, linux, windows and arm64/amd64 from the status bar. Excluded files display a self-explanatory banner with a 1-click Reset Build Target button.">
+                Đổi nhanh giữa darwin, linux, windows và arm64, amd64. Khi file đang mở bị loại trừ bởi //go:build, GoLens giải thích rõ lý do kèm nút Reset Build Target ngay trên banner.
+              </p>
+            </div>
+            <div class="screenshot-stage">
+              <img class="zoomable-screenshot" src="./assets/screenshots/build-target-linux.png" alt="Banner cảnh báo file bị loại trừ bởi build constraint linux/arm64 kèm nút Reset Build Target" loading="lazy" width="2400" height="1600">
+            </div>
+          </article>
+
+          <article class="bento-card">
+            <div>
+              <div class="bento-meta">
+                <span class="brand-badge">Code Lenses & Git</span>
+                <span class="kbd-pill">Inline</span>
+              </div>
+              <h3 data-vi="Inline Usages, Interface Lenses, Deadcode & Git Blame" data-en="Inline Usages, Interface Lenses, Deadcode & Git Blame">
+                Inline Usages, Interface Lenses, Deadcode & Git Blame
+              </h3>
+              <p data-vi="Hiển thị trực tiếp số nơi gọi hàm (8 usages), số interface thực thi (Implements 1 interface), cảnh báo hàm không dùng ([DEADCODE]) và tác giả Git commit ngay cạnh khai báo." data-en="See live usage counts, implemented interfaces, unreachable [DEADCODE] badges, and Git commit authors inline without cluttering your source text.">
+                Hiển thị trực tiếp số nơi gọi hàm (8 usages), số interface thực thi (Implements 1 interface), cảnh báo hàm không dùng ([DEADCODE]) và tác giả Git commit ngay cạnh khai báo.
+              </p>
+            </div>
+            <div class="screenshot-stage">
+              <img class="zoomable-screenshot" src="./assets/screenshots/git-blame-lenses.png" alt="Inline Code Lenses, Git Blame và cảnh báo Deadcode trong GoLens.app" loading="lazy" width="1200" height="800">
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 6: SEARCHABLE CATALOG OF 72+ SHIPPED TOOLS -->
+    <section id="all-tools" class="section section-alt deferred-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag" data-vi="Danh Mục Tính Năng Toàn Diện" data-en="Comprehensive Feature Matrix">Danh Mục Tính Năng Toàn Diện</span>
+          <h2 class="section-title" data-vi="Tra Cứu Kho Công Cụ AST Safety, Code Generators & Refactoring Của GoLens" data-en="Explore GoLens's Built-in AST Safety Inspectors, Generators & Refactoring Tools">
+            Tra Cứu Kho Công Cụ AST Safety, Code Generators & Refactoring Của GoLens
+          </h2>
+          <p class="section-desc" id="catalog-count-label"></p>
+        </div>
+
+        <div class="catalog-toolbar">
+          <div class="segmented-control" role="group" aria-label="Filter Tools by Category">
+            <button type="button" class="seg-btn is-active" data-cat-filter="all" aria-pressed="true" data-vi="Tất cả" data-en="All">Tất cả</button>
+            <button type="button" class="seg-btn" data-cat-filter="safety" aria-pressed="false" data-vi="Kiểm Toán An Toàn AST" data-en="AST Safety Inspectors">Kiểm Toán An Toàn AST</button>
+            <button type="button" class="seg-btn" data-cat-filter="generator" aria-pressed="false" data-vi="Bộ Sinh Code Go" data-en="Code Generators">Bộ Sinh Code Go</button>
+            <button type="button" class="seg-btn" data-cat-filter="refactor" aria-pressed="false" data-vi="Tái Cấu Trúc & Điều Hướng" data-en="Refactoring & Navigation">Tái Cấu Trúc & Điều Hướng</button>
+            <button type="button" class="seg-btn" data-cat-filter="runtime" aria-pressed="false" data-vi="Profiler, Test & Debug" data-en="Profiler, Test & Debug">Profiler, Test & Debug</button>
+          </div>
+
+          <div class="search-input-wrap">
+            <input
+              type="search"
+              id="catalog-search-input"
+              class="catalog-search"
+              aria-label="Search GoLens Features"
+              placeholder="Tìm tính năng (VD: SQL, Context, Pool, Mock, pprof)..."
+              data-placeholder-vi="Tìm tính năng (VD: SQL, Context, Pool, Mock, pprof)..."
+              data-placeholder-en="Search tools (e.g. SQL, Context, Pool, Mock, pprof)..."
+            >
+          </div>
+        </div>
+
+        <div id="catalog-grid" class="catalog-grid"></div>
+      </div>
+    </section>
+
+    <!-- SECTION 7: APPLE HIG CRAFT & SEASONAL GOPHER ICONS -->
+    <section class="section deferred-section">
+      <div class="container">
+        <div class="bento-grid-2" style="align-items: center;">
+          <div>
+            <span class="section-tag" data-vi="Thiết Kế Tinh Xảo Cho macOS" data-en="Crafted for macOS">Thiết Kế Tinh Xảo Cho macOS</span>
+            <h2 class="section-title" data-vi="Tuân Thủ Tuyệt Đối Apple Human Interface Guidelines & Liquid Glass" data-en="Built on Apple's Human Interface Guidelines & Liquid Glass">
+              Tuân Thủ Tuyệt Đối Apple Human Interface Guidelines & Liquid Glass
+            </h2>
+            <p class="section-desc" style="margin-bottom: 20px;" data-vi="GoLens chỉ sử dụng chất liệu kính Liquid Glass ở tầng điều khiển (thanh công cụ, sidebar, popover), giữ vùng soạn thảo code có độ tương phản tuyệt đối, hỗ trợ đầy đủ Light Mode, Dark Mode, Increase Contrast, Reduce Transparency và bộ biểu tượng Gopher theo mùa." data-en="GoLens applies Liquid Glass strictly on the control layer (toolbar, sidebar, popovers, sheets) while keeping the code canvas distraction-free, with full support for Light Mode, Dark Mode, Increase Contrast, Reduce Transparency, and seasonal Gopher app icons.">
+              GoLens chỉ sử dụng chất liệu kính Liquid Glass ở tầng điều khiển (thanh công cụ, sidebar, popover), giữ vùng soạn thảo code có độ tương phản tuyệt đối, hỗ trợ đầy đủ Light Mode, Dark Mode, Increase Contrast, Reduce Transparency và bộ biểu tượng Gopher theo mùa.
+            </p>
+            <div class="cli-box">
+              <span>$ make build &amp;&amp; make run</span>
+            </div>
+          </div>
+
+          <div class="screenshot-stage">
+            <img class="zoomable-screenshot" src="./assets/screenshots/seasonal-icons.png" alt="Bộ sưu tập biểu tượng ứng dụng GoLens Gopher macOS" loading="lazy" width="2680" height="1200">
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>
+        <div class="brand" style="margin-bottom: 8px;">
+          <img class="brand-icon" src="./assets/golens-icon.png" alt="GoLens Icon" width="28" height="28">
+          <span>GoLens Go IDE</span>
+        </div>
+        <p class="metric-desc" data-vi="IDE Go thuần bản địa cho macOS · SwiftUI + AppKit + Go CGO Engine." data-en="Native macOS IDE for Go · SwiftUI + AppKit + Go CGO Engine.">
+          IDE Go thuần bản địa cho macOS · SwiftUI + AppKit + Go CGO Engine.
+        </p>
+      </div>
+      <div class="metric-desc">
+        <span data-vi="Tất cả hình ảnh trên trang đều được chụp trực tiếp từ bản build thực tế của GoLens.app." data-en="All screenshots on this page are captured directly from production builds of GoLens.app.">
+          Tất cả hình ảnh trên trang đều được chụp trực tiếp từ bản build thực tế của GoLens.app.
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Accessible Native <dialog> Lightbox for High-Res Screenshots -->
+  <dialog id="screenshot-lightbox" class="lightbox-dialog" aria-label="Full-resolution screenshot preview">
+    <div class="lightbox-top">
+      <span id="lightbox-caption" class="panel-path"></span>
+      <button type="button" id="lightbox-close-btn" class="icon-btn" data-vi="Đóng (Esc)" data-en="Close (Esc)">Đóng (Esc)</button>
+    </div>
+    <img id="lightbox-img" class="lightbox-img" src="./assets/screenshots/hero-light.png" alt="">
+  </dialog>
+
+  <script src="./app.js" defer></script>
+</body>
+</html>

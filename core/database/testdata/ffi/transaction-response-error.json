@@ -1,0 +1,18 @@
+{
+  "session": {
+    "state": "connected",
+    "transaction": "active",
+    "schema": "public",
+    "mode": "manual",
+    "isolation": "repeatable read"
+  },
+  "isolationLevels": [
+    "read committed",
+    "repeatable read",
+    "serializable"
+  ],
+  "error": {
+    "kind": "transactionOpen",
+    "message": "Commit or roll back the open transaction before switching to Auto-Commit."
+  }
+}

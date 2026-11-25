@@ -1,0 +1,32 @@
+{
+  "name": "GetUser",
+  "cmd": ":one",
+  "line": 1,
+  "sql": "SELECT * FROM users\nWHERE id = sqlc.arg(id) AND org = @org;",
+  "startByte": 22,
+  "endByte": 81,
+  "parameters": [
+    {
+      "name": "@id",
+      "positions": [
+        {
+          "startByte": 53,
+          "endByte": 65
+        }
+      ],
+      "typeHint": ""
+    },
+    {
+      "name": "@org",
+      "positions": [
+        {
+          "startByte": 76,
+          "endByte": 80
+        }
+      ],
+      "typeHint": ""
+    }
+  ],
+  "engine": "postgres",
+  "configDir": "/Users/me/src/app"
+}

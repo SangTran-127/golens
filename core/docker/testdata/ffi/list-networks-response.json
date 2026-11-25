@@ -1,0 +1,26 @@
+{
+  "kind": "network",
+  "items": [
+    {
+      "id": "n4n4n4n4n4n4n4n4n4n4n4n4n4n4n4n4n4n4n4n4n4n4n4n4n4n4n4n4n4n4n4n4",
+      "name": "velo_default",
+      "driver": "bridge",
+      "scope": "local",
+      "builtIn": false,
+      "containers": [
+        "velo-api-1",
+        "velo-redis-1"
+      ],
+      "created": "2026-11-15T10:00:00Z"
+    },
+    {
+      "id": "n1n1n1n1n1n1n1n1n1n1n1n1n1n1n1n1n1n1n1n1n1n1n1n1n1n1n1n1n1n1n1n1",
+      "name": "bridge",
+      "driver": "bridge",
+      "scope": "local",
+      "builtIn": true,
+      "containers": [],
+      "created": "2026-11-01T10:00:00Z"
+    }
+  ]
+}

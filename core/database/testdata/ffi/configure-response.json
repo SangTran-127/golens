@@ -1,0 +1,9 @@
+{
+  "issues": [
+    {
+      "id": "8A1B6C3D-2E4F-4A5B-8C7D-9E0F1A2B3C4D",
+      "field": "sqlitePath",
+      "message": "Choose the SQLite database file."
+    }
+  ]
+}

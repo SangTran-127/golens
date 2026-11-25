@@ -1,0 +1,15 @@
+name: argument expected type
+want: delay
+-- src --
+package p
+
+import "time"
+
+func takesDur(time.Duration) {}
+
+func f() {
+	delay := time.Second
+	dname := "x"
+	takesDur(d|)
+	_ = dname
+}

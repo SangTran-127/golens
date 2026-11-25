@@ -1,0 +1,11 @@
+name: defer statement method
+want: Unlock
+-- src --
+package p
+
+import "sync"
+
+func f(mu *sync.Mutex) {
+	mu.Lock()
+	defer mu.Un|
+}

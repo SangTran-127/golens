@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>GoLens Gopher AI-Slop Audit Workbench</title>
+<style>
+  :root { --bg: #0B101B; --surf: #131B2B; --border: rgba(255,255,255,0.1); --text: #F1F5F9; --muted: #94A3B8; --cyan: #4CC9EB; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: -apple-system, "SF Pro Text", sans-serif; padding: 32px 40px; line-height: 1.5; }
+  header { max-width: 1400px; margin: 0 auto 28px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  h1 { font-size: 26px; font-weight: 800; margin-bottom: 8px; }
+  p { color: var(--muted); font-size: 14px; margin-bottom: 14px; }
+  .gates { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px 20px; list-style: none; background: var(--surf); border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; font-size: 13px; }
+  .gates b { color: var(--cyan); margin-right: 8px; font-family: "SF Mono", monospace; }
+  .gates span { color: var(--muted); }
+  .audit-section { max-width: 1400px; margin: 0 auto 40px; }
+  .audit-section h2 { font-size: 18px; margin-bottom: 14px; }
+  .crop-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .crop-card { background: var(--surf); border: 1px solid var(--border); border-radius: 12px; padding: 12px; display: flex; flex-direction: column; gap: 8px; }
+  .crop-frame { background: #080D16; border-radius: 8px; overflow: hidden; display: flex; align-items: center; justify-content: center; min-height: 220px; }
+  .crop-frame img { width: 100%; height: auto; display: block; }
+  .crop-meta h4 { font-size: 14px; font-weight: 700; }
+  .crop-meta code { font-size: 11px; color: var(--muted); font-family: "SF Mono", monospace; }
+</style>
+</head>
+<body>
+  <header>
+    <h1>GoLens Gopher AI-Slop Audit Workbench (8-Gate Zoom Inspection)</h1>
+    <p>Moi bang concept duoc cat thanh tung panel phong to 1:1 de soi ky 8 loi AI slop: chan dai/co dau goi, dau quay nguoc 180 do, thua tay, mat xa nhau, mom sai ty le, laptop nguoc chieu, chu loi.</p>
+    <ul class="gates"><li><b>G1_NO_LONG_LEGS</b><span>Zero thighs, knees, shins, or trouser legs; two tiny stubby oval feet attach directly to the bottom pear belly even when seated on stools/logs.</span></li><li><b>G2_HEAD_BODY_SYNC</b><span>Zero 180-degree backwards head twists; eyes, muzzle, arms, belly, and tail share a physically consistent facing direction.</span></li><li><b>G3_TWO_ARMS_MAX</b><span>Strictly 2 stubby arms/paws total per Gopher; zero floating detached paws, 3rd arms, or multi-finger human hands.</span></li><li><b>G4_EYES_TOUCHING</b><span>Two oversized round white eyes touching (or nearly touching) at the center bridge (OO), never small spaced-apart bear eyes.</span></li><li><b>G5_PEANUT_MUZZLE</b><span>Bilobed tan peanut muzzle with oval brown nose and 2 rounded white buck teeth cleanly centered under the eye bridge.</span></li><li><b>G6_PROP_PHYSICS</b><span>Laptops face the Gopher using them; tools/spoons/mugs attach physically to paws without floating gaps.</span></li><li><b>G7_PEAR_SILHOUETTE</b><span>Consistent chubby 1:1.15 pear-cylinder silhouette matching Renee French's Go Gopher proportions.</span></li><li><b>G8_CLEAN_TEXT_ICONS</b><span>Zero garbled AI lettering and zero third-party commercial logos (e.g. replace Apple logos with Go/GoLens marks).</span></li></ul>
+  </header>
+  
+        <section class="audit-section" data-board="duckoo-series-blindbox">
+          <h2>Blind-Box Series 01 (3x3 Personas)</h2>
+          <div class="crop-grid">
+            <div class="crop-card">
+              <div class="crop-frame"><img src="preview/audit/duckoo-series-blindbox/01_pho_debugger.png" alt="3 AM Pho Debugger"></div>
+              <div class="crop-meta">
+                <h4>3 AM Pho Debugger</h4>
+                <code>01_pho_debugger.png</code>
+              </div>
+            </div>
+            <div class="crop-card">
+              <div class="crop-frame"><img src="preview/audit/duckoo-series-blindbox/02_garbage_collector.png" alt="Garbage Collector"></div>
+              <div class="crop-meta">
+                <h4>Garbage Collector</h4>
+                <code>02_garbage_collector.png</code>
+              </div>
+            </div>
+            <div class="crop-card">
+              <div class="crop-frame"><img src="preview/audit/duckoo-series-blindbox/03_banh_mi_cosplay.png" alt="Banh Mi Cosplay"></div>
+              <div class="crop-meta">
+                <h4>Banh Mi Cosplay</h4>
+                <code>03_banh_mi_cosplay.png</code>
+              </div>
+            </div>
+            <div class="crop-card">
+              <div class="crop-frame"><img src="preview/audit/duckoo-series-blindbox/04_dino_kigurumi.png" alt="Dino Kigurumi"></div>
+              <div class="crop-meta">
+                <h4>Dino Kigurumi</h4>
+                <code>04_dino_kigurumi.png</code>
+              </div>
+            </div>
+            <div class="crop-card">
+              <div class="crop-frame"><img src="preview/audit/duckoo-series-blindbox/05_panic_firefighter.png" alt="Panic Firefighter"></div>
+              <div class="crop-meta">
+                <h4>Panic Firefighter</h4>
+                <code>05_panic_firefighter.png</code>
+              </div>
+            </div>
+            <div class="crop-card">
+              <div class="crop-frame"><img src="preview/audit/duckoo-series-blindbox/06_goroutine_beekeeper.png" alt="Goroutine Beekeeper"></div>
+              <div class="crop-meta">
+                <h4>Goroutine Beekeeper</h4>
+                <code>06_goroutine_beekeeper.png</code>
+              </div>
+            </div>
+            <div class="crop-card">
+              <div class="crop-frame"><img src="preview/audit/duckoo-series-blindbox/07_pprof_barista.png" alt="pprof Barista"></div>
+              <div class="crop-meta">
+                <h4>pprof Barista</h4>
+                <code>07_pprof_barista.png</code>
+              </div>
+            </div>
+            <div class="crop-card">
+              <div class="crop-frame"><img src="preview/audit/duckoo-series-blindbox/08_grand_hotel_bellhop.png" alt="Grand Hotel Bellhop"></div>
+              <div class="crop-meta">
+                <h4>Grand Hotel Bellhop</h4>
+                <code>08_grand_hotel_bellhop.png</code>
+              </div>
+            </div>
+            <div class="crop-card">
+              <div class="crop-frame"><img src="preview/audit/duckoo-series-blindbox/09_zen_onsen.png" alt="Secret: Zen Onsen"></div>
+              <div class="crop-meta">
+                <h4>Secret: Zen Onsen</h4>
+                <code>09_zen_onsen.png</code>
+              </div>
+            </div></div>
+        </section>
+        <section class="audit-section" data-board="duckoo-diorama-badges">
+          <h2>Duckoo Narrative Mini-Diorama Badges (2x2)</h2>
+          <div class="crop-grid">
+            <div class="crop-card">
+              <div class="crop-frame"><img src="preview/audit/duckoo-diorama-badges/01_saigon_sidewalk.png" alt="Saigon Sidewalk Code & Coffee"></div>
+              <div class="crop-meta">
+                <h4>Saigon Sidewalk Code & Coffee</h4>
+                <code>01_saigon_sidewalk.png</code>
+              </div>
+            </div>
+            <div class="crop-card">
+              <div class="crop-frame"><img src="preview/audit/duckoo-diorama-badges/02_conveyor_sushi.png" alt="Goroutine Conveyor Sushi"></div>
+              <div class="crop-meta">
+                <h4>Goroutine Conveyor Sushi</h4>
+                <code>02_conveyor_sushi.png</code>
+              </div>
+            </div>
+            <div class="crop-card">
+              <div class="crop-frame"><img src="preview/audit/duckoo-diorama-badges/03_grand_hotel_elevator.png" alt="Grand Hotel Elevator"></div>
+              <div class="crop-meta">
+                <h4>Grand Hotel Elevator</h4>
+                <code>03_grand_hotel_elevator.png</code>
+              </div>
+            </div>
+            <div class="crop-card">
+              <div class="crop-frame"><img src="preview/audit/duckoo-diorama-badges/04_campfire_bug_roast.png" alt="Forest Campfire Bug-Roast"></div>
+              <div class="crop-meta">
+                <h4>Forest Campfire Bug-Roast</h4>
+                <code>04_campfire_bug_roast.png</code>
+              </div>
+            </div></div>
+        </section>
+        <section class="audit-section" data-board="duckoo-series02-blindbox">
+          <h2>Blind-Box Series 02 (3x3 Personas)</h2>
+          <div class="crop-grid">
+            <div class="crop-card">
+              <div class="crop-frame"><img src="preview/audit/duckoo-series02-blindbox/01_ram_barbell_lifter.png" alt="RAM Barbell Lifter"></div>
+              <div class="crop-meta">
+                <h4>RAM Barbell Lifter</h4>
+                <code>01_ram_barbell_lifter.png</code>
+              </div>
+            </div>
+            <div class="crop-card">
+              <div class="crop-frame"><img src="preview/audit/duckoo-series02-blindbox/02_boba_tea_bath.png" alt="Boba Tea Bath"></div>
+              <div class="crop-meta">
+                <h4>Boba Tea Bath</h4>
+                <code>02_boba_tea_bath.png</code>
+              </div>
+            </div>
+            <div class="crop-card">
+              <div class="crop-frame"><img src="preview/audit/duckoo-series02-blindbox/03_shiba_inu_kigurumi.png" alt="Shiba Inu Kigurumi"></div>
+              <div class="crop-meta">
+                <h4>Shiba Inu Kigurumi</h4>
+                <code>03_shiba_inu_kigurumi.png</code>
+              </div>
+            </div>
+            <div class="crop-card">
+              <div class="crop-frame"><img src="preview/audit/duckoo-series02-blindbox/04_keycap_turntable_dj.png" alt="Keycap Turntable DJ"></div>
+              <div class="crop-meta">
+                <h4>Keycap Turntable DJ</h4>
+                <code>04_keycap_turntable_dj.png</code>
+              </div>
+            </div>
+            <div class="crop-card">
+              <div class="crop-frame"><img src="preview/audit/duckoo-series02-blindbox/05_mutex_traffic_warden.png" alt="Mutex Traffic Warden"></div>
+              <div class="crop-meta">
+                <h4>Mutex Traffic Warden</h4>
+                <code>05_mutex_traffic_warden.png</code>
+              </div>
+            </div>
+            <div class="crop-card">
+              <div class="crop-frame"><img src="preview/audit/duckoo-series02-blindbox/06_dim_sum_bao_bun.png" alt="Dim Sum Bao Bun"></div>
+              <div class="crop-meta">
+                <h4>Dim Sum Bao Bun</h4>
+                <code>06_dim_sum_bao_bun.png</code>
+              </div>
+            </div>
+            <div class="crop-card">
+              <div class="crop-frame"><img src="preview/audit/duckoo-series02-blindbox/07_zen_bug_yoga.png" alt="Zen Bug Yoga"></div>
+              <div class="crop-meta">
+                <h4>Zen Bug Yoga</h4>
+                <code>07_zen_bug_yoga.png</code>
+              </div>
+            </div>
+            <div class="crop-card">
+              <div class="crop-frame"><img src="preview/audit/duckoo-series02-blindbox/08_deep_heap_diver.png" alt="Deep Heap Diver"></div>
+              <div class="crop-meta">
+                <h4>Deep Heap Diver</h4>
+                <code>08_deep_heap_diver.png</code>
+              </div>
+            </div>
+            <div class="crop-card">
+              <div class="crop-frame"><img src="preview/audit/duckoo-series02-blindbox/09_mecha_gopher.png" alt="Secret: Mecha Gopher"></div>
+              <div class="crop-meta">
+                <h4>Secret: Mecha Gopher</h4>
+                <code>09_mecha_gopher.png</code>
+              </div>
+            </div></div>
+        </section>
+        <section class="audit-section" data-board="duckoo-festival-icons">
+          <h2>Series 02 App Icons (1x5)</h2>
+          <div class="crop-grid">
+            <div class="crop-card">
+              <div class="crop-frame"><img src="preview/audit/duckoo-festival-icons/01_boba_milk_tea.png" alt="Boba Milk Tea Squircle"></div>
+              <div class="crop-meta">
+                <h4>Boba Milk Tea Squircle</h4>
+                <code>01_boba_milk_tea.png</code>
+              </div>
+            </div>
+            <div class="crop-card">
+              <div class="crop-frame"><img src="preview/audit/duckoo-festival-icons/02_crt_arcade_gamer.png" alt="CRT Arcade Gamer"></div>
+              <div class="crop-meta">
+                <h4>CRT Arcade Gamer</h4>
+                <code>02_crt_arcade_gamer.png</code>
+              </div>
+            </div>
+            <div class="crop-card">
+              <div class="crop-frame"><img src="preview/audit/duckoo-festival-icons/03_mid_autumn_lantern.png" alt="Mid-Autumn Star Lantern"></div>
+              <div class="crop-meta">
+                <h4>Mid-Autumn Star Lantern</h4>
+                <code>03_mid_autumn_lantern.png</code>
+              </div>
+            </div>
+            <div class="crop-card">
+              <div class="crop-frame"><img src="preview/audit/duckoo-festival-icons/04_steampunk_alchemist.png" alt="Steampunk Alchemist"></div>
+              <div class="crop-meta">
+                <h4>Steampunk Alchemist</h4>
+                <code>04_steampunk_alchemist.png</code>
+              </div>
+            </div>
+            <div class="crop-card">
+              <div class="crop-frame"><img src="preview/audit/duckoo-festival-icons/05_capybara_yuzu_hood.png" alt="Capybara Yuzu Hood"></div>
+              <div class="crop-meta">
+                <h4>Capybara Yuzu Hood</h4>
+                <code>05_capybara_yuzu_hood.png</code>
+              </div>
+            </div></div>
+        </section>
+        <section class="audit-section" data-board="duckoo-adventure-badges">
+          <h2>Series 02 Narrative Diorama Badges (2x2)</h2>
+          <div class="crop-grid">
+            <div class="crop-card">
+              <div class="crop-frame"><img src="preview/audit/duckoo-adventure-badges/01_claw_machine_prize.png" alt="Claw Machine Prize"></div>
+              <div class="crop-meta">
+                <h4>Claw Machine Prize</h4>
+                <code>01_claw_machine_prize.png</code>
+              </div>
+            </div>
+            <div class="crop-card">
+              <div class="crop-frame"><img src="preview/audit/duckoo-adventure-badges/02_clean_laundromat.png" alt="The Go Clean Laundromat"></div>
+              <div class="crop-meta">
+                <h4>The Go Clean Laundromat</h4>
+                <code>02_clean_laundromat.png</code>
+              </div>
+            </div>
+            <div class="crop-card">
+              <div class="crop-frame"><img src="preview/audit/duckoo-adventure-badges/03_binary_bonsai.png" alt="Binary Bonsai Greenhouse"></div>
+              <div class="crop-meta">
+                <h4>Binary Bonsai Greenhouse</h4>
+                <code>03_binary_bonsai.png</code>
+              </div>
+            </div>
+            <div class="crop-card">
+              <div class="crop-frame"><img src="preview/audit/duckoo-adventure-badges/04_deep_sea_submarine.png" alt="Deep-Sea pprof Submarine"></div>
+              <div class="crop-meta">
+                <h4>Deep-Sea pprof Submarine</h4>
+                <code>04_deep_sea_submarine.png</code>
+              </div>
+            </div></div>
+        </section>
+        <section class="audit-section" data-board="duckoo-ide-worlds-v2">
+          <h2>Panoramic IDE Worlds Vol. 2 (Focus Crops)</h2>
+          <div class="crop-grid">
+            <div class="crop-card">
+              <div class="crop-frame"><img src="preview/audit/duckoo-ide-worlds-v2/01_grand_hotel_lobby_cast.png" alt="Grand Hotel GoLens Lobby"></div>
+              <div class="crop-meta">
+                <h4>Grand Hotel GoLens Lobby</h4>
+                <code>01_grand_hotel_lobby_cast.png</code>
+              </div>
+            </div>
+            <div class="crop-card">
+              <div class="crop-frame"><img src="preview/audit/duckoo-ide-worlds-v2/02_skyship_dockyard_cast.png" alt="Cloud-Native Sky-Ship Dockyard"></div>
+              <div class="crop-meta">
+                <h4>Cloud-Native Sky-Ship Dockyard</h4>
+                <code>02_skyship_dockyard_cast.png</code>
+              </div>
+            </div></div>
+        </section>
+        <section class="audit-section" data-board="duckoo-cosplay-icons">
+          <h2>Pop Mart Cosplay & Lifestyle App Icons (1x5)</h2>
+          <div class="crop-grid">
+            <div class="crop-card">
+              <div class="crop-frame"><img src="preview/audit/duckoo-cosplay-icons/01_watchmaker_loupe.png" alt="Watchmaker Loupe"></div>
+              <div class="crop-meta">
+                <h4>Watchmaker Loupe</h4>
+                <code>01_watchmaker_loupe.png</code>
+              </div>
+            </div>
+            <div class="crop-card">
+              <div class="crop-frame"><img src="preview/audit/duckoo-cosplay-icons/02_saigon_caphe_fin.png" alt="Saigon Ca Phe Fin"></div>
+              <div class="crop-meta">
+                <h4>Saigon Ca Phe Fin</h4>
+                <code>02_saigon_caphe_fin.png</code>
+              </div>
+            </div>
+            <div class="crop-card">
+              <div class="crop-frame"><img src="preview/audit/duckoo-cosplay-icons/03_tet_lion_dance.png" alt="Tet Lion Dance Hood"></div>
+              <div class="crop-meta">
+                <h4>Tet Lion Dance Hood</h4>
+                <code>03_tet_lion_dance.png</code>
+              </div>
+            </div>
+            <div class="crop-card">
+              <div class="crop-frame"><img src="preview/audit/duckoo-cosplay-icons/04_kaiju_hoodie.png" alt="Kaiju Hoodie"></div>
+              <div class="crop-meta">
+                <h4>Kaiju Hoodie</h4>
+                <code>04_kaiju_hoodie.png</code>
+              </div>
+            </div>
+            <div class="crop-card">
+              <div class="crop-frame"><img src="preview/audit/duckoo-cosplay-icons/05_hinoki_onsen.png" alt="Hinoki Onsen Yuzu"></div>
+              <div class="crop-meta">
+                <h4>Hinoki Onsen Yuzu</h4>
+                <code>05_hinoki_onsen.png</code>
+              </div>
+            </div></div>
+        </section>
+        <section class="audit-section" data-board="duckoo-ide-worlds">
+          <h2>Original Panoramic IDE Worlds (2x1 Focus Crops)</h2>
+          <div class="crop-grid">
+            <div class="crop-card">
+              <div class="crop-frame"><img src="preview/audit/duckoo-ide-worlds/01_saigon_cyber_alley_cast.png" alt="Night Market Cast Zone"></div>
+              <div class="crop-meta">
+                <h4>Night Market Cast Zone</h4>
+                <code>01_saigon_cyber_alley_cast.png</code>
+              </div>
+            </div>
+            <div class="crop-card">
+              <div class="crop-frame"><img src="preview/audit/duckoo-ide-worlds/02_toymaker_workshop_cast.png" alt="Toymaker Workshop Cast Zone"></div>
+              <div class="crop-meta">
+                <h4>Toymaker Workshop Cast Zone</h4>
+                <code>02_toymaker_workshop_cast.png</code>
+              </div>
+            </div></div>
+        </section>
+        <section class="audit-section" data-board="artist-ide-backgrounds">
+          <h2>Panoramic Splash & Mission Control (Focus Crops)</h2>
+          <div class="crop-grid">
+            <div class="crop-card">
+              <div class="crop-frame"><img src="preview/audit/artist-ide-backgrounds/01_mission_control_left.png" alt="Mission Control Fore/Left Crew"></div>
+              <div class="crop-meta">
+                <h4>Mission Control Fore/Left Crew</h4>
+                <code>01_mission_control_left.png</code>
+              </div>
+            </div>
+            <div class="crop-card">
+              <div class="crop-frame"><img src="preview/audit/artist-ide-backgrounds/02_mission_control_right.png" alt="Mission Control Right Crew"></div>
+              <div class="crop-meta">
+                <h4>Mission Control Right Crew</h4>
+                <code>02_mission_control_right.png</code>
+              </div>
+            </div>
+            <div class="crop-card">
+              <div class="crop-frame"><img src="preview/audit/artist-ide-backgrounds/03_obsidian_prism_splash.png" alt="Obsidian Prism Hero Trio"></div>
+              <div class="crop-meta">
+                <h4>Obsidian Prism Hero Trio</h4>
+                <code>03_obsidian_prism_splash.png</code>
+              </div>
+            </div></div>
+        </section>
+        <section class="audit-section" data-board="artist-wardrobe-cast">
+          <h2>Classic Cast Wardrobe (3x2)</h2>
+          <div class="crop-grid">
+            <div class="crop-card">
+              <div class="crop-frame"><img src="preview/audit/artist-wardrobe-cast/01_inspector_lens.png" alt="Inspector Lens"></div>
+              <div class="crop-meta">
+                <h4>Inspector Lens</h4>
+                <code>01_inspector_lens.png</code>
+              </div>
+            </div>
+            <div class="crop-card">
+              <div class="crop-frame"><img src="preview/audit/artist-wardrobe-cast/02_mountain_angler.png" alt="Mountain Angler"></div>
+              <div class="crop-meta">
+                <h4>Mountain Angler</h4>
+                <code>02_mountain_angler.png</code>
+              </div>
+            </div>
+            <div class="crop-card">
+              <div class="crop-frame"><img src="preview/audit/artist-wardrobe-cast/03_orbit_astronaut.png" alt="Orbit Astronaut"></div>
+              <div class="crop-meta">
+                <h4>Orbit Astronaut</h4>
+                <code>03_orbit_astronaut.png</code>
+              </div>
+            </div>
+            <div class="crop-card">
+              <div class="crop-frame"><img src="preview/audit/artist-wardrobe-cast/04_heritage_aodai.png" alt="Heritage Ao Dai"></div>
+              <div class="crop-meta">
+                <h4>Heritage Ao Dai</h4>
+                <code>04_heritage_aodai.png</code>
+              </div>
+            </div>
+            <div class="crop-card">
+              <div class="crop-frame"><img src="preview/audit/artist-wardrobe-cast/05_site_foreman.png" alt="Site Foreman"></div>
+              <div class="crop-meta">
+                <h4>Site Foreman</h4>
+                <code>05_site_foreman.png</code>
+              </div>
+            </div>
+            <div class="crop-card">
+              <div class="crop-frame"><img src="preview/audit/artist-wardrobe-cast/06_cyber_coder.png" alt="Cyber Coder"></div>
+              <div class="crop-meta">
+                <h4>Cyber Coder</h4>
+                <code>06_cyber_coder.png</code>
+              </div>
+            </div></div>
+        </section>
+        <section class="audit-section" data-board="artist-gophercon-badges">
+          <h2>Classic GopherCon Community Badges (2x2)</h2>
+          <div class="crop-grid">
+            <div class="crop-card">
+              <div class="crop-frame"><img src="preview/audit/artist-gophercon-badges/01_alpine_angler.png" alt="Alpine Lake Angler"></div>
+              <div class="crop-meta">
+                <h4>Alpine Lake Angler</h4>
+                <code>01_alpine_angler.png</code>
+              </div>
+            </div>
+            <div class="crop-card">
+              <div class="crop-frame"><img src="preview/audit/artist-gophercon-badges/02_orbit_porthole.png" alt="Orbit Porthole Crew"></div>
+              <div class="crop-meta">
+                <h4>Orbit Porthole Crew</h4>
+                <code>02_orbit_porthole.png</code>
+              </div>
+            </div>
+            <div class="crop-card">
+              <div class="crop-frame"><img src="preview/audit/artist-gophercon-badges/03_gophers_working.png" alt="Gophers Building GO"></div>
+              <div class="crop-meta">
+                <h4>Gophers Building GO</h4>
+                <code>03_gophers_working.png</code>
+              </div>
+            </div>
+            <div class="crop-card">
+              <div class="crop-frame"><img src="preview/audit/artist-gophercon-badges/04_heritage_boat.png" alt="Heritage Dragon Boat"></div>
+              <div class="crop-meta">
+                <h4>Heritage Dragon Boat</h4>
+                <code>04_heritage_boat.png</code>
+              </div>
+            </div></div>
+        </section>
+</body>
+</html>

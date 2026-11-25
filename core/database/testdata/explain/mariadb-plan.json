@@ -1,0 +1,43 @@
+{
+  "query_block": {
+    "select_id": 1,
+    "cost": 0.010136528,
+    "nested_loop": [
+      {
+        "read_sorted_file": {
+          "filesort": {
+            "sort_key": "u.`name`",
+            "table": {
+              "table_name": "u",
+              "access_type": "range",
+              "possible_keys": ["PRIMARY", "golens_ex_users_team"],
+              "key": "PRIMARY",
+              "key_length": "4",
+              "used_key_parts": ["id"],
+              "loops": 1,
+              "rows": 4,
+              "cost": 0.00320452,
+              "filtered": 100,
+              "attached_condition": "u.`id` > 1 and u.team_id is not null"
+            }
+          }
+        }
+      },
+      {
+        "table": {
+          "table_name": "t",
+          "access_type": "eq_ref",
+          "possible_keys": ["PRIMARY"],
+          "key": "PRIMARY",
+          "key_length": "4",
+          "used_key_parts": ["id"],
+          "ref": ["golens.u.team_id"],
+          "loops": 4,
+          "rows": 1,
+          "cost": 0.00439696,
+          "filtered": 100
+        }
+      }
+    ]
+  }
+}

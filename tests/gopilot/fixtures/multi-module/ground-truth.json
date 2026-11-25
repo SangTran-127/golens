@@ -1,0 +1,65 @@
+{
+  "fixture": "multi-module",
+  "kind": "go-work-multi-module",
+  "purpose": "Workspace with an app and a local library; both depend on a shared module at different declared versions.",
+  "entry": {
+    "file": "app/main.go",
+    "symbol": "main"
+  },
+  "representativeFlow": {
+    "name": "print price",
+    "why": "Only executable path; shows how a library call reaches the shared module.",
+    "steps": [
+      {
+        "file": "app/main.go",
+        "symbol": "main",
+        "role": "prints price and shared version"
+      },
+      {
+        "file": "lib/price_standard.go",
+        "symbol": "Price",
+        "role": "default build: rounds base price",
+        "buildTags": "!premium"
+      },
+      {
+        "file": "shared-v110/shared.go",
+        "symbol": "Round",
+        "role": "effective implementation used by the workspace"
+      }
+    ],
+    "output": {
+      "file": "app/main.go",
+      "symbol": "main",
+      "kind": "stdout"
+    }
+  },
+  "effectiveVersions": {
+    "example.test/shared": "v1.1.0"
+  },
+  "declaredVersions": {
+    "lib/go.mod": "v1.0.0",
+    "app/go.mod": "v1.1.0"
+  },
+  "buildTagVariants": {
+    "default": "lib/price_standard.go",
+    "premium": "lib/price_premium.go"
+  },
+  "knownUncertainty": [
+    {
+      "topic": "shared version",
+      "statement": "lib/go.mod declares v1.0.0 but the workspace selects v1.1.0; answers must cite the effective version and not the declared one."
+    }
+  ],
+  "mustNotClaim": [
+    "shared v1.0.0 Round is executed by the app",
+    "price_premium.go is active without the premium tag"
+  ],
+  "tests": [
+    "TestPriceIsRounded"
+  ],
+  "observedOutput": {
+    "default": "105 1.1.0",
+    "premium": "205 1.1.0",
+    "note": "With shared v1.0.0 the default output would be 100; 105 proves v1.1.0 is the effective version."
+  }
+}

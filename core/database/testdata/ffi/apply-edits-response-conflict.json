@@ -1,0 +1,18 @@
+{
+  "applied": false,
+  "committed": false,
+  "rowsAffected": 0,
+  "failedStatement": 1,
+  "blocked": [],
+  "error": {
+    "kind": "conflict",
+    "message": "Row 4 no longer matches its key in the database (someone may have changed or deleted it), so nothing was saved. Reload the table and make the change again."
+  },
+  "session": {
+    "state": "connected",
+    "transaction": "idle",
+    "schema": "public",
+    "mode": "auto",
+    "isolation": ""
+  }
+}

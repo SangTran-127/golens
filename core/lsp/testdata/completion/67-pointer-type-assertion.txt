@@ -1,0 +1,10 @@
+name: pointer type assertion
+want: Server
+-- src --
+package p
+
+type Server struct{}
+
+func f(x any) {
+	_ = x.(*Se|)
+}

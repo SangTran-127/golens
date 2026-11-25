@@ -1,0 +1,13 @@
+name: own interface methods
+want: Area
+-- src --
+package p
+
+type Shape interface {
+	Area() float64
+	Perimeter() float64
+}
+
+func f(s Shape) {
+	s.Ar|
+}

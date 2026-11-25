@@ -1,0 +1,9 @@
+name: unimported stdlib member
+want: Builder
+-- src --
+package p
+
+func f() {
+	var b strings.Buil|
+	_ = b
+}

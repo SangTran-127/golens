@@ -1,0 +1,69 @@
+{
+  "version": 1,
+  "evaluation": [
+    "Lower-case the file or folder name before matching; 'path' is the path relative to the workspace root with '/' separators.",
+    "Folders: evaluate 'folders' top to bottom, first match wins, else fallback.folder. Empty on purpose (owner decision 2026-11-05): every folder is the plain accent folder, like Xcode; the badged folder glyphs stay in the set for the shared kit.",
+    "Files: evaluate 'files' top to bottom, first match wins, else fallback.file.",
+    "Inside one rule every listed condition must hold. names = exact name; globs = fnmatch on the name; pathGlobs = fnmatch on the relative path ('**' = any depth); extensions = last extension without the dot.",
+    "content: test only files <= 256 KB, read at most maxBytes from the start, regexes are multiline; 'all' = every regex must match. Cache per (path, mtime); until the read finishes show the rule's 'until' icon so rows never wait on I/O.",
+    "siblingFile: the file's own directory contains that name. containsFile (folders): the folder itself contains that name. ancestorFile: some ancestor directory up to the workspace root contains it."
+  ],
+  "folders": [],
+  "files": [
+    {"pathGlobs": [".github/workflows/*.yml", ".github/workflows/*.yaml"], "icon": "ci-workflow", "palette": "neutral"},
+    {"names": [".gitlab-ci.yml", ".travis.yml", "bitbucket-pipelines.yml", "jenkinsfile", "azure-pipelines.yml"], "icon": "ci-workflow", "palette": "neutral"},
+    {"names": ["go.mod"], "icon": "go-mod", "palette": "go"},
+    {"names": ["go.work"], "icon": "go-work", "palette": "go"},
+    {"names": ["go.sum", "go.work.sum"], "icon": "go-sum", "palette": "go"},
+    {"globs": ["*_test.go"], "icon": "go-test", "palette": "go"},
+    {"globs": ["*.pb.go", "*_gen.go", "*.gen.go", "zz_generated*.go", "*_string.go", "wire_gen.go"], "icon": "go-generated", "palette": "go"},
+    {"extensions": ["go"], "content": {"maxBytes": 4096, "all": ["^// Code generated .* DO NOT EDIT\\.$"]}, "icon": "go-generated", "until": "go", "palette": "go"},
+    {"extensions": ["go"], "icon": "go", "palette": "go"},
+    {"globs": ["*.go.tmpl", "*.gotmpl", "*.gohtml", "*.tmpl", "*.tpl"], "icon": "go-template", "palette": "go", "comment": "*.tpl under a Helm chart is caught by the Helm rule below first"},
+    {"extensions": ["pprof", "prof", "bench", "trace"], "icon": "pprof", "palette": "go"},
+    {"globs": ["cpu.out", "mem.out", "heap.out", "profile.out", "trace.out", "*.pprof"], "icon": "pprof", "palette": "go"},
+
+    {"names": ["chart.yaml", "chart.lock", "values.schema.json", ".helmignore"], "icon": "helm", "palette": "infra"},
+    {"globs": ["values*.yaml", "values*.yml"], "siblingFile": "Chart.yaml", "icon": "helm", "palette": "infra"},
+    {"pathGlobs": ["**/templates/*.yaml", "**/templates/*.yml", "**/templates/*.tpl", "**/templates/notes.txt"], "ancestorFile": "Chart.yaml", "icon": "helm", "palette": "infra"},
+    {"names": ["dockerfile", "containerfile"], "icon": "docker", "palette": "infra"},
+    {"globs": ["dockerfile.*", "*.dockerfile", "containerfile.*"], "icon": "docker", "palette": "infra"},
+    {"names": [".dockerignore", ".containerignore"], "icon": "docker-ignore", "palette": "infra"},
+    {"globs": ["docker-compose*.yml", "docker-compose*.yaml", "compose.yml", "compose.yaml", "compose.*.yml", "compose.*.yaml"], "icon": "docker-compose", "palette": "infra"},
+    {"names": ["kustomization.yaml", "kustomization.yml"], "icon": "kubernetes", "palette": "infra"},
+    {"extensions": ["yaml", "yml"], "content": {"maxBytes": 8192, "all": ["^apiVersion:\\s*\\S+", "^kind:\\s*[A-Z]\\w*"]}, "icon": "kubernetes", "until": "yaml", "palette": "infra", "comment": "Kubernetes manifest: top-level apiVersion and kind keys (multi-document files match on any document)"},
+    {"extensions": ["tf", "tfvars", "hcl"], "icon": "terraform", "palette": "infra"},
+    {"names": [".terraform.lock.hcl"], "icon": "terraform", "palette": "infra"},
+
+    {"names": ["makefile", "gnumakefile", "justfile", "taskfile.yml", "taskfile.yaml"], "icon": "makefile", "palette": "neutral"},
+    {"extensions": ["mk"], "icon": "makefile", "palette": "neutral"},
+    {"extensions": ["sh", "bash", "zsh", "fish", "command"], "icon": "shell", "palette": "neutral"},
+    {"names": [".env", ".envrc"], "icon": "env", "palette": "neutral"},
+    {"globs": [".env.*", "*.env"], "icon": "env", "palette": "neutral"},
+    {"names": [".gitignore"], "icon": "git-ignore", "palette": "neutral"},
+    {"names": [".gitattributes", ".gitmodules", ".gitkeep", ".mailmap", ".git-blame-ignore-revs"], "icon": "git", "palette": "neutral"},
+    {"globs": ["license", "license.*", "licence", "licence.*", "copying", "copying.*", "notice", "notice.*", "unlicense"], "icon": "license", "palette": "neutral"},
+
+    {"names": [".editorconfig", ".npmrc"], "icon": "config", "palette": "data"},
+    {"extensions": ["yaml", "yml"], "icon": "yaml", "palette": "data"},
+    {"extensions": ["json", "jsonc", "json5", "geojson"], "icon": "json", "palette": "data"},
+    {"extensions": ["toml"], "icon": "toml", "palette": "data"},
+    {"extensions": ["ini", "cfg", "conf", "properties", "xml", "plist", "editorconfig"], "icon": "config", "palette": "data"},
+    {"extensions": ["proto"], "icon": "proto", "palette": "data"},
+    {"extensions": ["graphql", "graphqls", "gql"], "icon": "graphql", "palette": "data"},
+    {"extensions": ["sql", "db", "sqlite", "sqlite3"], "icon": "sql", "palette": "data"},
+
+    {"extensions": ["md", "markdown", "mdx"], "icon": "markdown", "palette": "neutral"},
+    {"extensions": ["txt", "log", "csv", "tsv", "text", "rst"], "icon": "text", "palette": "neutral"},
+    {"extensions": ["png", "jpg", "jpeg", "gif", "webp", "svg", "ico", "icns", "heic", "tif", "tiff", "bmp", "avif"], "icon": "image", "palette": "web"},
+    {"extensions": ["html", "htm", "xhtml"], "icon": "html", "palette": "web"},
+    {"extensions": ["css", "scss", "sass", "less"], "icon": "css", "palette": "web"},
+    {"extensions": ["js", "mjs", "cjs", "jsx"], "icon": "javascript", "palette": "web"},
+    {"extensions": ["ts", "mts", "cts", "tsx"], "icon": "typescript", "palette": "web"}
+  ],
+  "fallback": {
+    "file": {"icon": "file", "palette": "neutral"},
+    "folder": {"icon": "folder", "palette": "accent"},
+    "folderExpanded": {"icon": "folder", "palette": "accent", "comment": "same glyph as a collapsed folder, like Xcode and Finder; the disclosure triangle shows state"}
+  }
+}

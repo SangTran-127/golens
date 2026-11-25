@@ -1,0 +1,11 @@
+name: declaring a method name offers no symbols
+expect: none
+forbid: Marshaller, strings
+-- src --
+package c
+
+type T struct{}
+
+func Marshaller() {}
+
+func (t T) Marshal|

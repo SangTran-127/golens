@@ -1,0 +1,11 @@
+{
+  "execId": "1C2D3E4F-5A6B-4C7D-8E9F-0A1B2C3D4E5F",
+  "resultId": "r-6f1c2a9e0b7d4e31",
+  "format": "csv",
+  "scope": "all",
+  "path": "/Users/me/Desktop/users.csv",
+  "options": {
+    "includeHeader": true,
+    "nullText": ""
+  }
+}

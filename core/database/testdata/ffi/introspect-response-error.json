@@ -1,0 +1,8 @@
+{
+  "schemas": [],
+  "defaultSchema": "",
+  "error": {
+    "kind": "connect",
+    "message": "GoLens could not reach the database server. Check that it is running and that the host and port are right."
+  }
+}

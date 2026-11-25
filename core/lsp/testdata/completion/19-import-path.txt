@@ -1,0 +1,6 @@
+name: import path
+want: strings
+-- src --
+package p
+
+import "string|"

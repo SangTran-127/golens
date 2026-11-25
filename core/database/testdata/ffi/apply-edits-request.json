@@ -1,0 +1,38 @@
+{
+  "execId": "1C2D3E4F-5A6B-4C7D-8E9F-0A1B2C3D4E5F",
+  "resultId": "r-6f1c2a9e0b7d4e31",
+  "edits": [
+    {
+      "row": 3,
+      "column": 1,
+      "value": "ada@example.org",
+      "isNull": false
+    },
+    {
+      "row": 7,
+      "column": 1,
+      "value": "",
+      "isNull": true
+    }
+  ],
+  "inserts": [
+    {
+      "cells": [
+        {
+          "column": 1,
+          "value": "new@example.com",
+          "isNull": false
+        }
+      ]
+    }
+  ],
+  "deletes": [
+    12
+  ],
+  "confirmed": [
+    {
+      "hash": "9b74c9897bac770ffc029102a200c5de2f5e2f1b1e8f2d1e0f6d1b2c3a4e5f60",
+      "risk": "productionWrite"
+    }
+  ]
+}

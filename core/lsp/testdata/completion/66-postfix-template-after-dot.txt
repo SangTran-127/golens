@@ -1,0 +1,8 @@
+name: postfix template after dot
+notafter: xs.forfor|
+-- src --
+package p
+
+func f(xs []string) {
+	xs.for|
+}

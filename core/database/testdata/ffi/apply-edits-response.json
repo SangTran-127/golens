@@ -1,0 +1,15 @@
+{
+  "applied": true,
+  "committed": true,
+  "rowsAffected": 4,
+  "failedStatement": null,
+  "blocked": [],
+  "error": null,
+  "session": {
+    "state": "connected",
+    "transaction": "idle",
+    "schema": "public",
+    "mode": "auto",
+    "isolation": ""
+  }
+}

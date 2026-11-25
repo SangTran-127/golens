@@ -1,0 +1,18 @@
+{
+  "schemas": [
+    {
+      "name": "public",
+      "tables": 42,
+      "views": 3,
+      "introspectedAt": "2026-11-15T17:40:00+07:00"
+    },
+    {
+      "name": "audit",
+      "tables": 0,
+      "views": 0,
+      "introspectedAt": ""
+    }
+  ],
+  "defaultSchema": "public",
+  "error": null
+}

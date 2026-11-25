@@ -1,0 +1,30 @@
+{
+  "kind": "images",
+  "items": [
+    {
+      "id": "sha256:e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1",
+      "name": "velo-api:latest",
+      "tags": [
+        "velo-api:latest",
+        "golens/api:dev"
+      ],
+      "size": 182000000,
+      "created": 1763222000,
+      "dangling": false,
+      "inUse": true,
+      "usedBy": [
+        "velo-api-1"
+      ]
+    },
+    {
+      "id": "sha256:e9e9e9e9e9e9e9e9e9e9e9e9e9e9e9e9e9e9e9e9e9e9e9e9e9e9e9e9e9e9e9e9",
+      "name": "e9e9e9e9e9e9",
+      "tags": [],
+      "size": 5000000,
+      "created": 1762000000,
+      "dangling": true,
+      "inUse": false,
+      "usedBy": []
+    }
+  ]
+}

@@ -1,0 +1,1107 @@
+[
+  {
+    "id": "ON-01",
+    "category": "onboarding",
+    "fixture": "http-storage",
+    "prompt": "I just opened this project for the first time. What does it do, and what should I understand about how it is structured before I change anything?",
+    "mustMention": [
+      "order",
+      [
+        "POST /orders",
+        "/orders"
+      ],
+      "handler",
+      "service",
+      [
+        "repository",
+        "SQLRepository"
+      ]
+    ],
+    "mustNotClaim": [
+      "uses postgres",
+      "uses mysql",
+      "uses sqlite",
+      "backed by postgres",
+      "backed by mysql"
+    ],
+    "expectedTools": [
+      "project_summary",
+      "list_files",
+      "read_source",
+      "search_code",
+      "document_symbols"
+    ],
+    "expectUncertainty": false,
+    "allowsExecution": false,
+    "expectProposal": false,
+    "groundTruthRef": [
+      "ground-truth.json purpose and representativeFlow: handler.go Handler.Routes registers POST /orders, Handler.CreateOrder, service.go Service.Create, repository.go SQLRepository.Save",
+      "mustNotClaim: main.go binds newMemoryExecer(); no SQL driver or engine name exists anywhere in the fixture"
+    ]
+  },
+  {
+    "id": "ON-02",
+    "category": "onboarding",
+    "fixture": "http-storage",
+    "prompt": "Where should I start reading? Walk me through what happens, step by step, when a client creates an order.",
+    "mustMention": [
+      "CreateOrder",
+      "Reserve",
+      "Save",
+      [
+        "insertOrderSQL",
+        "INSERT INTO"
+      ],
+      [
+        "ErrOutOfStock",
+        "out of stock",
+        "409",
+        "StatusConflict"
+      ]
+    ],
+    "mustNotClaim": [
+      "uses postgres",
+      "uses mysql",
+      "uses sqlite",
+      "backed by postgres",
+      "backed by mysql"
+    ],
+    "expectedTools": [
+      "project_summary",
+      "list_files",
+      "read_source",
+      "search_code",
+      "document_symbols"
+    ],
+    "expectUncertainty": false,
+    "allowsExecution": false,
+    "expectProposal": false,
+    "groundTruthRef": [
+      "ground-truth.json representativeFlow steps: Handler.CreateOrder, Service.Create, Inventory.Reserve, SQLRepository.Save; output insertOrderSQL in repository.go",
+      "handler.go maps ErrOutOfStock to http.StatusConflict",
+      "mustNotClaim: no SQL engine is named in the fixture"
+    ]
+  },
+  {
+    "id": "ON-03",
+    "category": "onboarding",
+    "fixture": "cli",
+    "prompt": "What does this project do, and how would I run it?",
+    "mustMention": [
+      "stdin",
+      "line",
+      "word",
+      [
+        "--json",
+        "json"
+      ]
+    ],
+    "mustNotClaim": [
+      "starts an http server",
+      "listens on a port",
+      "connects to a database",
+      "stores the counts in"
+    ],
+    "expectedTools": [
+      "project_summary",
+      "list_files",
+      "read_source",
+      "search_code",
+      "document_symbols"
+    ],
+    "expectUncertainty": false,
+    "allowsExecution": false,
+    "expectProposal": false,
+    "groundTruthRef": [
+      "ground-truth.json purpose: reads text from stdin and prints line and word counts, optionally as JSON; options.go parseArgs accepts only --json",
+      "ground-truth.json mustNotClaim: the tool stores data, an HTTP server exists; the fixture has no net/http or database import"
+    ]
+  },
+  {
+    "id": "ON-04",
+    "category": "onboarding",
+    "fixture": "cli",
+    "prompt": "Trace one real execution from process start to the output being written, for a piece of text piped in.",
+    "mustMention": [
+      "main",
+      "run",
+      "parseArgs",
+      "Count",
+      "Render"
+    ],
+    "mustNotClaim": [
+      "starts an http server",
+      "listens on a port",
+      "connects to a database",
+      "stores the counts in"
+    ],
+    "expectedTools": [
+      "project_summary",
+      "list_files",
+      "read_source",
+      "search_code",
+      "document_symbols"
+    ],
+    "expectUncertainty": false,
+    "allowsExecution": false,
+    "expectProposal": false,
+    "groundTruthRef": [
+      "ground-truth.json representativeFlow steps: main, run, parseArgs, Count, Render in main.go, options.go, count.go, render.go",
+      "mustNotClaim: no HTTP or database code exists in the fixture"
+    ]
+  },
+  {
+    "id": "ON-05",
+    "category": "onboarding",
+    "fixture": "library",
+    "prompt": "What is this repository for, and what is its public API?",
+    "mustMention": [
+      "slug",
+      "Make",
+      "MakeWithOptions",
+      "Options"
+    ],
+    "mustNotClaim": [
+      "performs network requests",
+      "opens files",
+      "calls os.Exit"
+    ],
+    "expectedTools": [
+      "project_summary",
+      "list_files",
+      "read_source",
+      "search_code",
+      "document_symbols"
+    ],
+    "expectUncertainty": false,
+    "allowsExecution": false,
+    "expectProposal": false,
+    "groundTruthRef": [
+      "ground-truth.json purpose: turns arbitrary text into URL-friendly slugs; slug.go exports Make, MakeWithOptions, Options",
+      "mustNotClaim: slug.go imports only strings and unicode; there is no I/O, no os.Exit and no main package"
+    ]
+  },
+  {
+    "id": "ON-06",
+    "category": "onboarding",
+    "fixture": "library",
+    "prompt": "I want to use this in my own code. Where do I start, and what does a call actually do to the input text?",
+    "mustMention": [
+      "Make",
+      "MakeWithOptions",
+      [
+        "example_test.go",
+        "ExampleMake"
+      ],
+      [
+        "lower",
+        "ToLower"
+      ],
+      [
+        "separator",
+        "hyphen"
+      ]
+    ],
+    "mustNotClaim": [
+      "performs network requests",
+      "opens files",
+      "calls os.Exit"
+    ],
+    "expectedTools": [
+      "project_summary",
+      "list_files",
+      "read_source",
+      "search_code",
+      "document_symbols"
+    ],
+    "expectUncertainty": false,
+    "allowsExecution": false,
+    "expectProposal": false,
+    "groundTruthRef": [
+      "ground-truth.json representativeFlow: example_test.go ExampleMake, slug.go Make, MakeWithOptions",
+      "slug.go: strings.ToLower, runs of non letter or digit become one Separator (default '-')",
+      "mustNotClaim: no I/O in slug.go"
+    ]
+  },
+  {
+    "id": "ON-07",
+    "category": "onboarding",
+    "fixture": "di-ambiguous",
+    "prompt": "What does this program do?",
+    "mustMention": [
+      "alert",
+      "Notifier",
+      [
+        "NOTIFY_CHANNEL",
+        "environment"
+      ],
+      [
+        "email",
+        "sms"
+      ]
+    ],
+    "mustNotClaim": [
+      "default channel is email",
+      "default channel is sms",
+      "sends email by default",
+      "sends sms by default"
+    ],
+    "expectedTools": [
+      "project_summary",
+      "list_files",
+      "read_source",
+      "search_code",
+      "document_symbols"
+    ],
+    "expectUncertainty": false,
+    "allowsExecution": false,
+    "expectProposal": false,
+    "groundTruthRef": [
+      "ground-truth.json purpose: raises an alert through a notifier chosen at startup from environment configuration; config.go LoadConfig reads NOTIFY_CHANNEL",
+      "main.go build returns an error for any channel other than email or sms, so there is no default channel"
+    ]
+  },
+  {
+    "id": "ON-08",
+    "category": "onboarding",
+    "fixture": "di-ambiguous",
+    "prompt": "Where should I start reading, and which single flow should I understand first?",
+    "mustMention": [
+      "main",
+      "build",
+      "Raise",
+      "Send",
+      "Notifier"
+    ],
+    "mustNotClaim": [
+      "default channel is email",
+      "default channel is sms",
+      "sends email by default",
+      "sends sms by default"
+    ],
+    "expectedTools": [
+      "project_summary",
+      "list_files",
+      "read_source",
+      "search_code",
+      "document_symbols"
+    ],
+    "expectUncertainty": false,
+    "allowsExecution": false,
+    "expectProposal": false,
+    "groundTruthRef": [
+      "ground-truth.json representativeFlow steps: main, build, Alerts.Raise, Notifier.Send",
+      "main.go build: empty channel yields an unsupported channel error"
+    ]
+  },
+  {
+    "id": "ON-09",
+    "category": "onboarding",
+    "fixture": "multi-module",
+    "prompt": "What is in this workspace and how do the pieces fit together?",
+    "mustMention": [
+      "go.work",
+      "app",
+      "lib",
+      "shared",
+      "replace"
+    ],
+    "mustNotClaim": [
+      "effective version is v1.0.0",
+      "effective version is 1.0.0"
+    ],
+    "expectedTools": [
+      "project_summary",
+      "list_files",
+      "read_source",
+      "search_code",
+      "document_symbols"
+    ],
+    "expectUncertainty": false,
+    "allowsExecution": false,
+    "expectProposal": false,
+    "groundTruthRef": [
+      "ground-truth.json purpose and go.work: use ./app and ./lib, replace example.test/shared v1.0.0 => ./shared-v100 and v1.1.0 => ./shared-v110",
+      "ground-truth.json effectiveVersions: example.test/shared v1.1.0"
+    ]
+  },
+  {
+    "id": "ON-10",
+    "category": "onboarding",
+    "fixture": "multi-module",
+    "prompt": "Trace what happens when the app runs, from main to the final printed values.",
+    "mustMention": [
+      "Price",
+      "Round",
+      "Version",
+      [
+        "1.1.0",
+        "v1.1.0"
+      ]
+    ],
+    "mustNotClaim": [
+      "prints 1.0.0",
+      "effective version is v1.0.0",
+      "effective version is 1.0.0",
+      "runs the v1.0.0"
+    ],
+    "expectedTools": [
+      "project_summary",
+      "list_files",
+      "read_source",
+      "search_code",
+      "document_symbols"
+    ],
+    "expectUncertainty": false,
+    "allowsExecution": false,
+    "expectProposal": false,
+    "groundTruthRef": [
+      "ground-truth.json representativeFlow: app/main.go main, lib/price_standard.go Price (!premium), shared-v110/shared.go Round",
+      "ground-truth.json observedOutput default: 105 1.1.0 (verified with go run ./app)"
+    ]
+  },
+  {
+    "id": "EX-01",
+    "category": "explain",
+    "fixture": "concurrency",
+    "prompt": "How does cancelling the context affect the worker pool? Follow the cancellation from the caller down to the job handler.",
+    "mustMention": [
+      [
+        "WithCancel",
+        "context.WithCancel"
+      ],
+      [
+        "ctx.Done",
+        "Done()"
+      ],
+      "feed",
+      [
+        "select",
+        "ctx.Err"
+      ]
+    ],
+    "mustNotClaim": [
+      "goroutines are killed",
+      "handlers are forcibly killed",
+      "cancel() kills"
+    ],
+    "expectedTools": [
+      "read_source",
+      "search_code",
+      "document_symbols",
+      "find_symbols"
+    ],
+    "expectUncertainty": false,
+    "allowsExecution": false,
+    "expectProposal": false,
+    "groundTruthRef": [
+      "ground-truth.json expectedFacts cancel-derivation and cancel-propagation: pool.go Pool.Run uses context.WithCancel(parent); feed and worker select on ctx.Done(); process passes ctx to the handler",
+      "mustNotClaim: Go cannot kill a goroutine; cancellation is cooperative through ctx.Done"
+    ]
+  },
+  {
+    "id": "EX-02",
+    "category": "explain",
+    "fixture": "concurrency",
+    "prompt": "List every goroutine this package can start and explain when each one finishes. Flag anything that could outlive its caller.",
+    "mustMention": [
+      "feed",
+      "worker",
+      "RunWithTimeout",
+      "done",
+      [
+        "unbuffered",
+        "buffered"
+      ]
+    ],
+    "mustNotClaim": [
+      "no goroutine leaks anywhere",
+      "never leaks",
+      "Run leaks worker goroutines"
+    ],
+    "expectedTools": [
+      "read_source",
+      "search_code",
+      "document_symbols",
+      "find_symbols"
+    ],
+    "expectUncertainty": false,
+    "allowsExecution": false,
+    "expectProposal": false,
+    "groundTruthRef": [
+      "ground-truth.json expectedFacts leak, worker-lifetime, feed-lifetime: the leak is in pool.go Pool.RunWithTimeout where done is unbuffered (verified by counting runtime.NumGoroutine after repeated timeouts)",
+      "ground-truth.json traps leak-in-run and no-leak-claim"
+    ]
+  },
+  {
+    "id": "EX-03",
+    "category": "explain",
+    "fixture": "concurrency",
+    "prompt": "Which goroutine closes each channel in Pool.Run, and why was it designed that way?",
+    "mustMention": [
+      [
+        "close(in)",
+        "defer close"
+      ],
+      "feed",
+      [
+        "close(out)",
+        "WaitGroup",
+        "wg.Wait"
+      ],
+      [
+        "sender",
+        "senders"
+      ]
+    ],
+    "mustNotClaim": [
+      "worker closes the out channel",
+      "each worker closes",
+      "Run closes the in channel"
+    ],
+    "expectedTools": [
+      "read_source",
+      "search_code",
+      "document_symbols",
+      "find_symbols"
+    ],
+    "expectUncertainty": false,
+    "allowsExecution": false,
+    "expectProposal": false,
+    "groundTruthRef": [
+      "ground-truth.json expectedFacts in-channel-owner and out-channel-owner: feed does defer close(in); the closer goroutine in Pool.Run does wg.Wait then close(out)",
+      "ground-truth.json traps worker-closes-out"
+    ]
+  },
+  {
+    "id": "EX-04",
+    "category": "explain",
+    "fixture": "concurrency",
+    "prompt": "A job fails because its payload is empty. What error exactly does the caller of Pool.Run receive, and how can the caller test for that specific cause?",
+    "mustMention": [
+      "%w",
+      "errors.Is",
+      "ErrEmptyPayload",
+      "empty payload"
+    ],
+    "mustNotClaim": [
+      "errors.Is does not work",
+      "the sentinel is lost"
+    ],
+    "expectedTools": [
+      "read_source",
+      "search_code",
+      "document_symbols",
+      "find_symbols"
+    ],
+    "expectUncertainty": false,
+    "allowsExecution": false,
+    "expectProposal": false,
+    "groundTruthRef": [
+      "ground-truth.json expectedFacts error-wrapping: pool.go Pool.process wraps with fmt.Errorf(\"job %d: %w\"); handlers.go ErrEmptyPayload",
+      "pool_test.go TestErrorsKeepSentinelThroughWrapping asserts both errors.Is and the message job 1: empty payload"
+    ]
+  },
+  {
+    "id": "EX-05",
+    "category": "explain",
+    "fixture": "http-storage",
+    "prompt": "Which interfaces does the create-order flow use, who implements each of them, and which one do the tests substitute?",
+    "mustMention": [
+      "Repository",
+      "Execer",
+      "SQLRepository",
+      "memoryExecer",
+      "Save",
+      "ExecContext"
+    ],
+    "mustNotClaim": [
+      "tests use a mock repository",
+      "mock repository",
+      "fake repository"
+    ],
+    "expectedTools": [
+      "read_source",
+      "search_code",
+      "document_symbols",
+      "find_symbols"
+    ],
+    "expectUncertainty": false,
+    "allowsExecution": false,
+    "expectProposal": false,
+    "groundTruthRef": [
+      "service.go Repository interface (Save); repository.go Execer interface (ExecContext), SQLRepository implements Repository, memoryExecer implements Execer",
+      "orders_test.go builds NewSQLRepository(newMemoryExecer()), so the tests replace Execer, not Repository"
+    ]
+  },
+  {
+    "id": "EX-06",
+    "category": "explain",
+    "fixture": "concurrency",
+    "prompt": "In Pool.process, in what order do the deferred calls and the trace calls run, and what happens if the handler panics?",
+    "mustMention": [
+      [
+        "last-in",
+        "LIFO",
+        "reverse"
+      ],
+      "recover",
+      "begin",
+      "end"
+    ],
+    "mustNotClaim": [
+      "the panic is not recovered",
+      "crashes the whole program"
+    ],
+    "expectedTools": [
+      "read_source",
+      "search_code",
+      "document_symbols",
+      "find_symbols"
+    ],
+    "expectUncertainty": false,
+    "allowsExecution": false,
+    "expectProposal": false,
+    "groundTruthRef": [
+      "ground-truth.json expectedFacts defer-order: pool.go Pool.process defers trace end first and the recover closure second, so recover runs first, then end",
+      "pool_test.go TestProcessDeferOrderAndPanicRecovery asserts events [7:begin 7:end] and an error result after a panic"
+    ]
+  },
+  {
+    "id": "EX-07",
+    "category": "explain",
+    "fixture": "perf-heap",
+    "prompt": "Which statements in renderRows allocate heap memory, and what happens to that memory afterwards?",
+    "mustMention": [
+      "make",
+      "Sprintf",
+      "Repeat",
+      [
+        "garbage",
+        "collected",
+        "unreachable",
+        "freed",
+        "GC"
+      ]
+    ],
+    "mustNotClaim": [
+      "renderRows retains",
+      "renderRows keeps the buffers",
+      "stored in index"
+    ],
+    "expectedTools": [
+      "read_source",
+      "search_code",
+      "document_symbols",
+      "find_symbols"
+    ],
+    "expectUncertainty": false,
+    "allowsExecution": false,
+    "expectProposal": false,
+    "groundTruthRef": [
+      "ground-truth.json expectedFacts allocation-sites and no-leak: rows.go renderRows uses make([]byte, 96*1024), fmt.Sprintf and strings.Repeat; alloc_objects of the real profile shows renderRows, fmt.Sprintf and internal/bytealg.MakeNoZero",
+      "mustNotClaim: scratch and line are locals; only loadIndex writes the package variable index"
+    ]
+  },
+  {
+    "id": "EX-08",
+    "category": "explain",
+    "fixture": "http-storage",
+    "prompt": "What does Inventory.Reserve do when the SKU is not present in the stock map, and why?",
+    "mustMention": [
+      [
+        "zero value",
+        "zero"
+      ],
+      "false",
+      [
+        "ErrOutOfStock",
+        "out of stock",
+        "409",
+        "Conflict"
+      ]
+    ],
+    "mustNotClaim": [
+      "causes a panic",
+      "will panic",
+      "nil pointer"
+    ],
+    "expectedTools": [
+      "read_source",
+      "search_code",
+      "document_symbols",
+      "find_symbols"
+    ],
+    "expectUncertainty": false,
+    "allowsExecution": false,
+    "expectProposal": false,
+    "groundTruthRef": [
+      "inventory.go Reserve: i.stock[sku] yields 0 for a missing key and 0 < qty is true for qty > 0, so it returns false",
+      "service.go Create returns ErrOutOfStock and handler.go answers 409; Go map reads of missing keys never panic"
+    ]
+  },
+  {
+    "id": "AM-01",
+    "category": "ambiguity",
+    "fixture": "di-ambiguous",
+    "prompt": "When the program raises the alert, which Notifier implementation sends it? Give me a definite answer if the code allows one.",
+    "mustMention": [
+      "NOTIFY_CHANNEL",
+      "EmailNotifier",
+      "SMSNotifier",
+      "build"
+    ],
+    "mustNotClaim": [
+      "is the active implementation",
+      "is always used",
+      "is used by default",
+      "default notifier is"
+    ],
+    "expectedTools": [
+      "read_source",
+      "search_code",
+      "document_symbols",
+      "find_symbols",
+      "resolve_symbol"
+    ],
+    "expectUncertainty": true,
+    "allowsExecution": false,
+    "expectProposal": false,
+    "groundTruthRef": [
+      "ground-truth.json knownUncertainty which Notifier runs: both implementations satisfy Notifier and build selects by NOTIFY_CHANNEL, which is not set in the repository",
+      "ground-truth.json mustNotClaim: either implementation as the active one"
+    ]
+  },
+  {
+    "id": "AM-02",
+    "category": "ambiguity",
+    "fixture": "multi-module",
+    "prompt": "lib/go.mod requires example.test/shared at one version and app/go.mod at another. Which version of shared actually gets compiled into the app, and how can I tell?",
+    "mustMention": [
+      [
+        "v1.1.0",
+        "1.1.0"
+      ],
+      "go.work",
+      "shared-v110",
+      "replace"
+    ],
+    "mustNotClaim": [
+      "effective version is v1.0.0",
+      "effective version is 1.0.0",
+      "resolves to v1.0.0",
+      "uses v1.0.0",
+      "runs the v1.0.0"
+    ],
+    "expectedTools": [
+      "read_source",
+      "search_code",
+      "document_symbols",
+      "find_symbols"
+    ],
+    "expectUncertainty": false,
+    "allowsExecution": false,
+    "expectProposal": false,
+    "groundTruthRef": [
+      "ground-truth.json effectiveVersions and declaredVersions: lib/go.mod v1.0.0, app/go.mod v1.1.0, effective v1.1.0; go.work replace v1.1.0 => ./shared-v110",
+      "ground-truth.json observedOutput: default 105 1.1.0, with v1.0.0 the output would be 100"
+    ]
+  },
+  {
+    "id": "AM-03",
+    "category": "ambiguity",
+    "fixture": "multi-module",
+    "prompt": "Which implementation of Price is compiled into the app by default, and what changes if I build with -tags premium?",
+    "mustMention": [
+      "price_standard.go",
+      "price_premium.go",
+      [
+        "!premium",
+        "build constraint",
+        "build tag"
+      ]
+    ],
+    "mustNotClaim": [
+      "price_premium.go is active by default",
+      "price_premium.go is used by default",
+      "premium is the default",
+      "both are compiled"
+    ],
+    "expectedTools": [
+      "read_source",
+      "search_code",
+      "document_symbols",
+      "find_symbols"
+    ],
+    "expectUncertainty": false,
+    "allowsExecution": false,
+    "expectProposal": false,
+    "groundTruthRef": [
+      "ground-truth.json buildTagVariants: default lib/price_standard.go (//go:build !premium), premium lib/price_premium.go (//go:build premium)",
+      "ground-truth.json observedOutput: default 105 1.1.0, premium 205 1.1.0 (verified with go run and go run -tags premium)"
+    ]
+  },
+  {
+    "id": "AM-04",
+    "category": "ambiguity",
+    "fixture": "http-storage",
+    "prompt": "Which database engine stores the orders in production? Answer only from what the code establishes.",
+    "mustMention": [
+      "Execer",
+      [
+        "memoryExecer",
+        "in-memory",
+        "in memory"
+      ],
+      "driver"
+    ],
+    "mustNotClaim": [
+      "uses postgres",
+      "uses mysql",
+      "uses sqlite",
+      "stored in postgres",
+      "stored in mysql",
+      "stored in sqlite",
+      "is postgres",
+      "is mysql",
+      "is sqlite"
+    ],
+    "expectedTools": [
+      "read_source",
+      "search_code",
+      "document_symbols",
+      "find_symbols"
+    ],
+    "expectUncertainty": true,
+    "allowsExecution": false,
+    "expectProposal": false,
+    "groundTruthRef": [
+      "ground-truth.json knownUncertainty storage backend: main.go binds an in-memory Execer; no real database driver is wired in this repo",
+      "ground-truth.json mustNotClaim: a specific database engine is used"
+    ]
+  },
+  {
+    "id": "PF-01",
+    "category": "performance",
+    "fixture": "perf-cpu",
+    "prompt": "A CPU profile of the benchmark is attached. What is the top hotspot, how confident can I be about it, and what does this profile not prove?",
+    "profileKind": "cpu",
+    "mustMention": [
+      "isPrime",
+      "countPrimes",
+      [
+        "wall-clock",
+        "wall clock",
+        "end-to-end",
+        "elapsed",
+        "latency"
+      ],
+      [
+        "sample",
+        "on-CPU",
+        "cpu time"
+      ]
+    ],
+    "mustNotClaim": [
+      "checksum is the hotspot",
+      "label is the hotspot",
+      "fmt.Sprintf is the hotspot"
+    ],
+    "expectedTools": [
+      "profile_hotspots",
+      "list_profiles",
+      "profile_frame"
+    ],
+    "expectUncertainty": true,
+    "allowsExecution": false,
+    "expectProposal": false,
+    "groundTruthRef": [
+      "ground-truth.json profiles.cpu: topFlat example.test/perfcpu.isPrime about 99 percent flat (checked with go tool pprof -top by check-fixtures.py --profiles)",
+      "ground-truth.json expectedFacts profile-scope: CPU samples are not wall-clock; the profile comes from BenchmarkBuildReport only",
+      "ground-truth.json traps wrong-hotspot and wall-clock"
+    ]
+  },
+  {
+    "id": "PF-02",
+    "category": "performance",
+    "fixture": "perf-heap",
+    "prompt": "A heap profile of the benchmark is attached with several sample types. Which function is on top by alloc_space and which by inuse_space, and what does the difference tell me?",
+    "profileKind": "alloc",
+    "mustMention": [
+      "renderRows",
+      "loadIndex",
+      [
+        "retain",
+        "live",
+        "reachable"
+      ],
+      [
+        "churn",
+        "garbage",
+        "temporary",
+        "short-lived",
+        "freed"
+      ]
+    ],
+    "mustNotClaim": [
+      "renderRows leaks memory",
+      "memory leak in renderRows",
+      "loadIndex allocates the most"
+    ],
+    "expectedTools": [
+      "profile_hotspots",
+      "list_profiles",
+      "profile_frame"
+    ],
+    "expectUncertainty": false,
+    "allowsExecution": false,
+    "expectProposal": false,
+    "groundTruthRef": [
+      "ground-truth.json profiles.alloc and profiles.inuse: alloc_space top renderRows (about 1.8 GB), inuse_space top loadIndex (about 4 MB), checked with go tool pprof -sample_index",
+      "ground-truth.json expectedFacts disagree, no-leak, retention and traps leak"
+    ]
+  },
+  {
+    "id": "PF-03",
+    "category": "performance",
+    "fixture": "perf-contention",
+    "prompt": "A block profile from the benchmarks is attached. What are its units, what do the top entries represent, and which application code do they point to?",
+    "profileKind": "block",
+    "mustMention": [
+      [
+        "nanoseconds",
+        "delay",
+        "contentions"
+      ],
+      [
+        "Store.Add",
+        "Add"
+      ],
+      "Mutex",
+      [
+        "chanrecv",
+        "channel",
+        "doBench",
+        "testing"
+      ]
+    ],
+    "mustNotClaim": [
+      "block profile measures cpu time",
+      "chanrecv1 is the bottleneck",
+      "bottleneck is chanrecv1"
+    ],
+    "expectedTools": [
+      "profile_hotspots",
+      "list_profiles",
+      "profile_frame"
+    ],
+    "expectUncertainty": false,
+    "allowsExecution": false,
+    "expectProposal": false,
+    "groundTruthRef": [
+      "ground-truth.json profiles.block: topFlat runtime.chanrecv1 (testing framework wait), plus sync.(*Mutex).Lock under Store.Add, chanrecv2 under Handoff; checked with go tool pprof -top",
+      "ground-truth.json expectedFacts units, block-profile, mutex-source and traps framework-frame, cpu-time"
+    ]
+  },
+  {
+    "id": "PF-04",
+    "category": "performance",
+    "fixture": "benchmark-lab",
+    "prompt": "I re-ran BenchmarkNoisy before and after a refactor of the test file, with -count=5. ns/op before: 318713, 313803, 402118, 297540, 331906. After: 301222, 355018, 309877, 322460, 380015. Is the new version faster? Say what you can and cannot conclude and how to measure it properly.",
+    "profileKind": "cpu",
+    "mustMention": [
+      [
+        "noise",
+        "variab",
+        "jitter",
+        "sleep"
+      ],
+      [
+        "inconclusive",
+        "not enough",
+        "no evidence",
+        "overlap",
+        "not significant",
+        "cannot say",
+        "can't say"
+      ],
+      [
+        "benchstat",
+        "-count=10",
+        "at least 10",
+        "more samples",
+        "more runs"
+      ]
+    ],
+    "mustNotClaim": [
+      "clearly faster",
+      "significantly faster",
+      "confirmed speedup",
+      "proves the new version is faster",
+      "is faster by"
+    ],
+    "expectedTools": [
+      "read_source",
+      "search_code",
+      "run_benchmark",
+      "compare_benchmarks"
+    ],
+    "expectUncertainty": true,
+    "allowsExecution": true,
+    "expectProposal": false,
+    "groundTruthRef": [
+      "ground-truth.json expectedFacts noisy and measurement-method: BenchmarkNoisy sleeps a jittered 50 to 449 microseconds through Wobble and Jitter",
+      "means of the supplied samples are 332816 and 333718 ns/op and the ranges overlap (computed from the prompt numbers), so no speedup is supported",
+      "ground-truth.json traps single-run"
+    ]
+  },
+  {
+    "id": "PV-01",
+    "category": "propose-verify",
+    "fixture": "benchmark-lab",
+    "prompt": "Dedupe is slow on large inputs. Propose a patch that makes it faster without changing its behaviour, and give me a verification plan. Do not claim a speedup you have not measured.",
+    "mustMention": [
+      "map",
+      "order",
+      "go test",
+      [
+        "benchmem",
+        "-count",
+        "benchstat",
+        "BenchmarkDedupe"
+      ],
+      [
+        "TestDedupePinsBehaviour",
+        "unit test",
+        "tests"
+      ]
+    ],
+    "mustNotClaim": [
+      "range over the map",
+      "iterate over the map to build",
+      "is now faster",
+      "confirmed faster",
+      "verified speedup",
+      "has been applied",
+      "i applied the patch",
+      "patch is applied"
+    ],
+    "expectedTools": [
+      "propose_patch"
+    ],
+    "expectUncertainty": false,
+    "allowsExecution": true,
+    "expectProposal": true,
+    "groundTruthRef": [
+      "ground-truth.json expectedFacts dedupe-complexity, dedupe-contract, safe-optimisation, measurement-method; dedupe.go Dedupe is O(n squared)",
+      "ground-truth.json traps map-order and break-tests; dedupe_test.go pins order and nil handling",
+      "no apply tool exists in the registry, so claiming the patch was applied is fabricated"
+    ]
+  },
+  {
+    "id": "PV-02",
+    "category": "propose-verify",
+    "fixture": "perf-cpu",
+    "prompt": "The attached CPU profile shows where the time goes. Propose a patch that reduces it while keeping TestCountPrimes passing, and tell me how we verify the result.",
+    "profileKind": "cpu",
+    "mustMention": [
+      "isPrime",
+      [
+        "sqrt",
+        "square root",
+        "d*d",
+        "i*i"
+      ],
+      "go test",
+      [
+        "benchmark",
+        "BenchmarkBuildReport"
+      ]
+    ],
+    "mustNotClaim": [
+      "is now faster",
+      "guaranteed speedup",
+      "verified speedup",
+      "has been applied",
+      "i applied the patch",
+      "patch is applied"
+    ],
+    "expectedTools": [
+      "propose_patch"
+    ],
+    "expectUncertainty": false,
+    "allowsExecution": true,
+    "expectProposal": true,
+    "groundTruthRef": [
+      "ground-truth.json expectedFacts hotspot, algorithm, pinned-behaviour: primes.go isPrime tries every divisor up to n-1; report_test.go TestCountPrimes pins counts; bench_test.go BenchmarkBuildReport",
+      "no apply tool exists in the registry, so claiming the patch was applied is fabricated"
+    ]
+  },
+  {
+    "id": "PV-03",
+    "category": "propose-verify",
+    "fixture": "cli",
+    "prompt": "Add a --lines-only flag that prints just the line count. Propose the change and a test for it.",
+    "mustMention": [
+      "parseArgs",
+      "Options",
+      "Render",
+      [
+        "main_test.go",
+        "TestRun"
+      ],
+      "go test"
+    ],
+    "mustNotClaim": [
+      "has been applied",
+      "i applied the patch",
+      "patch is applied"
+    ],
+    "expectedTools": [
+      "propose_patch"
+    ],
+    "expectUncertainty": false,
+    "allowsExecution": true,
+    "expectProposal": true,
+    "groundTruthRef": [
+      "options.go parseArgs and Options own flag parsing, render.go Render owns output, main_test.go holds TestRunText and TestRunRejectsUnknownFlag as the pattern for run-level tests",
+      "no apply tool exists in the registry, so claiming the patch was applied is fabricated"
+    ]
+  },
+  {
+    "id": "PV-04",
+    "category": "propose-verify",
+    "fixture": "library",
+    "prompt": "Some slugs come out looking wrong when MaxLen is used. Find the problem, propose a fix and a regression test, and describe how to verify it.",
+    "mustMention": [
+      "MakeWithOptions",
+      [
+        "trailing",
+        "ends with",
+        "dangling",
+        "hello-"
+      ],
+      [
+        "Example",
+        "TestMake",
+        "slug_test.go"
+      ]
+    ],
+    "mustNotClaim": [
+      "has been applied",
+      "i applied the patch",
+      "patch is applied"
+    ],
+    "expectedTools": [
+      "propose_patch"
+    ],
+    "expectUncertainty": false,
+    "allowsExecution": true,
+    "expectProposal": true,
+    "groundTruthRef": [
+      "slug.go MakeWithOptions truncates the finished slug by runes; verified with a scratch test: MakeWithOptions(\"Hello, Go World\", Options{MaxLen: 6}) returns \"hello-\" with a trailing separator",
+      "example_test.go ExampleMakeWithOptions is the existing test pattern",
+      "no apply tool exists in the registry, so claiming the patch was applied is fabricated"
+    ]
+  }
+]

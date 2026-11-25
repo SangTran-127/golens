@@ -1,0 +1,8 @@
+name: unimported project module package
+want: depkit
+-- src --
+package p
+
+func f() {
+	depkit|
+}

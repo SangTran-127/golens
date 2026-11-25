@@ -1,0 +1,8 @@
+name: range is still offered after := in a for header
+want: range
+-- src --
+package p
+
+func f(m map[string]int) {
+	for k := ran|
+}

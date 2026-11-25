@@ -1,0 +1,12 @@
+name: constant in expression
+want: MaxRetries
+-- src --
+package p
+
+const MaxRetries = 5
+
+var maxRate = 1
+
+func f() int {
+	return MaxR|
+}

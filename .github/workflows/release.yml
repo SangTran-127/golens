@@ -1,0 +1,220 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version for a draft release, YYYY.MM.DD[.n]'
+        required: true
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-${{ github.ref }}-${{ inputs.version }}
+  cancel-in-progress: false
+
+env:
+  GOLENS_VERSION: ${{ inputs.version || github.ref_name }}
+
+jobs:
+  runtime:
+    runs-on: ubuntu-24.04-arm
+    timeout-minutes: 150
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: core/go.mod
+          cache: false
+
+      - name: Version
+        run: |
+          version="${GOLENS_VERSION#v}"
+          echo "$version" | grep -Eq '^[0-9]{4}\.[0-9]{2}\.[0-9]{2}(\.[0-9]+)?$' || { echo "::error::bad version $version"; exit 1; }
+          echo "GOLENS_VERSION=$version" >> "$GITHUB_ENV"
+
+      - uses: actions/cache/restore@v4
+        with:
+          path: scripts/runtime/cache
+          key: runtime-${{ hashFiles('scripts/runtime/versions.sh', 'scripts/runtime/alpine-packages.lock', 'scripts/runtime/kernel.config', 'scripts/runtime/packages.sh') }}
+          restore-keys: runtime-
+
+      - name: Build and sign the Linux runtime
+        env:
+          RUNTIME_SIGNING_KEY: ${{ secrets.GOLENS_RUNTIME_SIGNING_KEY }}
+        run: |
+          [ -n "$RUNTIME_SIGNING_KEY" ] || { echo "::error::GOLENS_RUNTIME_SIGNING_KEY is not set"; exit 1; }
+          key="$RUNNER_TEMP/runtime-signing.key"
+          umask 077
+          printf '%s' "$RUNTIME_SIGNING_KEY" > "$key"
+          trap 'rm -f "$key"' EXIT
+          GOLENS_RUNTIME_SIGNING_KEY="$key" GOLENS_RUNTIME_VERSION="$GOLENS_VERSION" scripts/runtime/build.sh "$RUNNER_TEMP/runtime"
+
+      - uses: actions/cache/save@v4
+        if: always()
+        with:
+          path: scripts/runtime/cache
+          key: runtime-${{ hashFiles('scripts/runtime/versions.sh', 'scripts/runtime/alpine-packages.lock', 'scripts/runtime/kernel.config', 'scripts/runtime/packages.sh') }}-${{ github.run_id }}
+
+      - name: Check the signature against the key built into the app
+        run: |
+          public_key=$(sed -nE 's/.*static let trustedPublicKeys = \["([^"]+)".*/\1/p' desktop/State/LinuxRuntimeInstaller.swift)
+          [ -n "$public_key" ] || { echo "::error::trusted public key not found"; exit 1; }
+          cd scripts/runtime/sign
+          GOTOOLCHAIN=local go run . verify -public-key "$public_key" "$RUNNER_TEMP/runtime/golens-linux-runtime.json"
+
+      - name: Collect the sources of the copyleft components
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python3 scripts/runtime/gpl-sources.py "$RUNNER_TEMP/runtime/golens-linux-runtime-$GOLENS_VERSION-sources.tar"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: runtime
+          path: |
+            ${{ runner.temp }}/runtime/golens-linux-runtime-*.tar.gz
+            ${{ runner.temp }}/runtime/golens-linux-runtime-*-sources.tar
+            ${{ runner.temp }}/runtime/golens-linux-runtime.json
+            ${{ runner.temp }}/runtime/golens-linux-runtime.json.sig
+          if-no-files-found: error
+          retention-days: 7
+
+  app:
+    runs-on: ${{ vars.MACOS_RUNNER || 'macos-26' }}
+    timeout-minutes: 60
+    env:
+      GOLENS_UPDATE_FEED_URL: https://github.com/${{ github.repository }}/releases/latest/download/appcast.xml
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: core/go.mod
+          cache-dependency-path: core/go.sum
+
+      - name: Git identity for tests that commit
+        run: |
+          git config --global user.name "GoLens CI"
+          git config --global user.email "ci@golens.invalid"
+
+      - name: Version
+        run: |
+          version="${GOLENS_VERSION#v}"
+          echo "GOLENS_VERSION=$version" >> "$GITHUB_ENV"
+          echo "GOLENS_BUILD=${{ github.run_number }}" >> "$GITHUB_ENV"
+
+      - name: Import the release signing identity
+        env:
+          SIGNING_P12_BASE64: ${{ secrets.GOLENS_SIGNING_P12_BASE64 }}
+          SIGNING_P12_PASSWORD: ${{ secrets.GOLENS_SIGNING_P12_PASSWORD }}
+        run: |
+          [ -n "$SIGNING_P12_BASE64" ] || { echo "::error::GOLENS_SIGNING_P12_BASE64 is not set"; exit 1; }
+          keychain="$RUNNER_TEMP/golens-release.keychain-db"
+          keychain_pass=$(uuidgen)
+          p12="$RUNNER_TEMP/golens-release.p12"
+          printf '%s' "$SIGNING_P12_BASE64" | base64 --decode > "$p12"
+          security create-keychain -p "$keychain_pass" "$keychain"
+          security set-keychain-settings -lut 21600 "$keychain"
+          security unlock-keychain -p "$keychain_pass" "$keychain"
+          security import "$p12" -P "$SIGNING_P12_PASSWORD" -A -t agg -f pkcs12 -k "$keychain" >/dev/null
+          rm -f "$p12"
+          security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k "$keychain_pass" "$keychain" >/dev/null
+          security list-keychains -d user -s "$keychain" $(security list-keychains -d user | tr -d '"')
+          identity=$(security find-identity -p codesigning "$keychain" | awk '/"GoLens Release Signing"/ {print $2; exit}')
+          [ -n "$identity" ] || { echo "::error::GoLens Release Signing not found in the imported identity"; exit 1; }
+          echo "GOLENS_KEYCHAIN_PATH=$keychain" >> "$GITHUB_ENV"
+          echo "SIGN_IDENTITY=$identity" >> "$GITHUB_ENV"
+          echo "ENTITLEMENTS_FILE=$GITHUB_WORKSPACE/desktop/Resources/GoLens-Unidentified.entitlements" >> "$GITHUB_ENV"
+
+      - name: Go vet
+        working-directory: core
+        run: go vet ./...
+
+      - name: Tests
+        run: make test
+
+      - name: Design gates
+        run: |
+          python3 scripts/design/token-ratchet.py --check
+          python3 scripts/design/slop_scanner.py --check
+          python3 scripts/smoke/gate5-audit.py
+
+      - name: Build app
+        run: make build
+
+      - name: Third-party notices match the build
+        run: python3 scripts/release/generate-notices.py --check
+
+      - name: Package DMG
+        run: |
+          shortver=$(/usr/libexec/PlistBuddy -c 'Print :CFBundleShortVersionString' build/GoLens.app/Contents/Info.plist)
+          [ "$shortver" = "$GOLENS_VERSION" ] || { echo "bundle version $shortver does not match $GOLENS_VERSION"; exit 1; }
+          codesign -dr - build/GoLens.app 2>&1 | grep -q 'certificate root = H"' || { echo "::error::the app is not signed with the release identity"; exit 1; }
+          python3 -m venv "$RUNNER_TEMP/dmgbuild"
+          "$RUNNER_TEMP/dmgbuild/bin/pip" install --quiet dmgbuild==1.6.7
+          DMGBUILD="$RUNNER_TEMP/dmgbuild/bin/dmgbuild" scripts/release/make-dmg.sh build/GoLens.app "$GOLENS_VERSION" "GoLens-$GOLENS_VERSION.dmg"
+          codesign --force --sign "$SIGN_IDENTITY" "GoLens-$GOLENS_VERSION.dmg"
+          shasum -a 256 "GoLens-$GOLENS_VERSION.dmg" > "GoLens-$GOLENS_VERSION.dmg.sha256"
+
+      - name: Sign the update and write the appcast
+        env:
+          UPDATE_SIGNING_KEY: ${{ secrets.GOLENS_UPDATE_SIGNING_KEY }}
+        run: |
+          [ -n "$UPDATE_SIGNING_KEY" ] || { echo "::error::GOLENS_UPDATE_SIGNING_KEY is not set"; exit 1; }
+          /usr/libexec/PlistBuddy -c 'Print :SUFeedURL' build/GoLens.app/Contents/Info.plist
+          key="$RUNNER_TEMP/update-signing.key"
+          umask 077
+          printf '%s' "$UPDATE_SIGNING_KEY" > "$key"
+          trap 'rm -f "$key"' EXIT
+          dmg="$GITHUB_WORKSPACE/GoLens-$GOLENS_VERSION.dmg"
+          sig="$RUNNER_TEMP/update.sig"
+          GOLENS_RUNTIME_SIGNING_KEY="$key" GOTOOLCHAIN=local go -C scripts/runtime/sign run . sign "$dmg" "$sig"
+          GOTOOLCHAIN=local go -C scripts/runtime/sign run . verify -public-key "$(cat scripts/release/update-public-key)" "$dmg" "$sig"
+          python3 scripts/release/appcast.py --version "$GOLENS_VERSION" --build "$GOLENS_BUILD" --dmg "$dmg" \
+            --signature "$sig" --repo "$GITHUB_REPOSITORY" --output appcast.xml
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: app
+          path: |
+            GoLens-*.dmg
+            GoLens-*.dmg.sha256
+            appcast.xml
+          if-no-files-found: error
+          retention-days: 7
+
+      - name: Remove the signing keychain
+        if: always()
+        run: |
+          if [ -n "${GOLENS_KEYCHAIN_PATH:-}" ] && [ -f "$GOLENS_KEYCHAIN_PATH" ]; then
+            security delete-keychain "$GOLENS_KEYCHAIN_PATH" || true
+          fi
+
+  publish:
+    needs: [runtime, app]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: assets
+          merge-multiple: true
+
+      - name: Publish the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          version="${GOLENS_VERSION#v}"
+          cd assets
+          ls -l
+          if [ "$GITHUB_EVENT_NAME" = "push" ]; then
+            gh release create "$GITHUB_REF_NAME" --repo "$GITHUB_REPOSITORY" --verify-tag \
+              --title "GoLens $version" --generate-notes ./*
+          else
+            gh release create "v$version" --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" \
+              --title "GoLens $version (draft)" --draft --prerelease --notes "Draft built from $GITHUB_SHA." ./*
+          fi

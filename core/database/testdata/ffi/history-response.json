@@ -1,0 +1,61 @@
+{
+  "entries": [
+    {
+      "id": "3f9a1c2b4d5e6f70",
+      "text": "SELECT * FROM users WHERE id = :id",
+      "time": "2026-11-16T09:12:03+07:00",
+      "durationMs": 3.4,
+      "rowCount": 1,
+      "source": "console",
+      "parameters": [
+        {
+          "name": ":id",
+          "value": "42",
+          "isNull": false
+        }
+      ]
+    },
+    {
+      "id": "0a1b2c3d4e5f6a7b",
+      "text": "UPDATE users SET plan = 'pro' WHERE id = 7",
+      "time": "2026-11-16T09:10:44+07:00",
+      "durationMs": 1.1,
+      "rowCount": 1,
+      "source": "console"
+    },
+    {
+      "id": "7e6d5c4b3a291807",
+      "text": "SELECT * FROM userz",
+      "time": "2026-11-16T09:09:00+07:00",
+      "durationMs": 0.8,
+      "rowCount": null,
+      "error": "The database could not run the statement as written. Fix it and run it again.",
+      "source": "console"
+    },
+    {
+      "id": "1122334455667788",
+      "text": "UPDATE \"public\".\"users\" SET \"email\" = $1::text WHERE \"id\" = $2::bigint",
+      "time": "2026-11-16T09:08:00+07:00",
+      "durationMs": 0.9,
+      "rowCount": 1,
+      "source": "edit"
+    },
+    {
+      "id": "99aabbccddeeff00",
+      "text": "SELECT * FROM users WHERE token = :token",
+      "time": "2026-11-16T09:07:00+07:00",
+      "durationMs": 0.7,
+      "rowCount": 0,
+      "source": "console",
+      "parameters": [
+        {
+          "name": ":token",
+          "value": "",
+          "isNull": false,
+          "secret": true
+        }
+      ]
+    }
+  ],
+  "error": null
+}

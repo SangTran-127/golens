@@ -1,0 +1,7 @@
+name: declaring a func named like an unimported package offers nothing, so typing ( adds no import
+expect: none
+forbid: sort, strings
+-- src --
+package c
+
+func sort|

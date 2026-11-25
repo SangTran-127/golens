@@ -1,0 +1,15 @@
+{
+  "seq": 3,
+  "reset": false,
+  "upserts": [],
+  "removals": [],
+  "invalidated": [],
+  "engine": {
+    "state": "reconnecting",
+    "reason": "down",
+    "error": "Docker Engine isn’t running at /Users/me/.orbstack/run/docker.sock.",
+    "endpoint": "unix:///Users/me/.orbstack/run/docker.sock",
+    "context": "orbstack",
+    "provider": "OrbStack"
+  }
+}

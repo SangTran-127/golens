@@ -1,0 +1,8 @@
+name: unimported stdlib function
+want: Marshal, MarshalIndent
+-- src --
+package p
+
+func f() {
+	json.Mar|
+}

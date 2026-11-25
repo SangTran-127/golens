@@ -1,0 +1,15 @@
+name: deep completion after direct
+want: nameLocal
+-- src --
+package p
+
+type holder struct{ name string }
+
+func use(string) {}
+
+func f() {
+	h := holder{}
+	nameLocal := "y"
+	use(na|)
+	_ = h
+}

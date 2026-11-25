@@ -1,0 +1,20 @@
+{
+  "engine": {
+    "state": "down",
+    "reason": "down",
+    "error": "vps.example isn’t in your known_hosts yet, and GoLens won’t trust a new host on its own. Connect once in Terminal, check the fingerprint and answer yes, then run again.",
+    "endpoint": "ssh://deploy@vps.example",
+    "context": "vps",
+    "provider": "",
+    "issue": {
+      "code": "hostKeyUnknown",
+      "title": "Unknown Host Key",
+      "message": "vps.example isn’t in your known_hosts yet, and GoLens won’t trust a new host on its own. Connect once in Terminal, check the fingerprint and answer yes, then run again.",
+      "fix": "openTerminal",
+      "fixTitle": "Connect in Terminal",
+      "command": "ssh deploy@vps.example exit"
+    }
+  },
+  "containers": [],
+  "projects": []
+}

@@ -1,0 +1,9 @@
+{
+  "rowsFetched": 731500,
+  "complete": false,
+  "spoolDiskBytes": 20971520,
+  "error": {
+    "kind": "cancelled",
+    "message": "The statement was canceled."
+  }
+}

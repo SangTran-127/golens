@@ -1,0 +1,14 @@
+name: mid-word commit replaces the tail
+want: Greet
+after: 	u.Greet("hi")\n|
+notafter: Greetet|
+-- src --
+package p
+
+type U struct{}
+
+func (U) Greet(string) {}
+
+func f(u U) {
+	u.Gre|et("hi")
+}

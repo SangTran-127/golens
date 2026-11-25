@@ -1,0 +1,17 @@
+name: a one-letter local on the right-hand side ranks first and statement keywords are not offered
+want: v
+forbid: var, func, return, switch, for, if, go, defer
+-- src --
+package p
+
+import "sync"
+
+type Store struct {
+	mu   sync.Mutex
+	data map[string]string
+}
+
+func (s *Store) Apply(op, k, v string) {
+	s.mu.Lock()
+	s.data[k] = v|
+}

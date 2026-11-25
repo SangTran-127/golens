@@ -1,0 +1,71 @@
+{
+  "seq": 1,
+  "reset": true,
+  "upserts": [
+    {
+      "id": "d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4",
+      "name": "scratch",
+      "image": "alpine",
+      "imageId": "sha256:e3e3e3e3e3e3e3e3e3e3e3e3e3e3e3e3e3e3e3e3e3e3e3e3e3e3e3e3e3e3e3e3",
+      "command": "sh",
+      "created": 1763200000,
+      "state": "running",
+      "status": "Up 6 hours",
+      "ports": []
+    },
+    {
+      "id": "a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1",
+      "name": "velo-api-1",
+      "image": "velo-api",
+      "imageId": "sha256:e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1",
+      "command": "/app/server",
+      "created": 1763222400,
+      "state": "running",
+      "status": "Up 2 minutes (healthy)",
+      "health": "healthy",
+      "ports": [
+        {
+          "privatePort": 8080,
+          "publicPort": 8080,
+          "type": "tcp"
+        }
+      ],
+      "project": "velo",
+      "service": "api",
+      "projectDir": "/Users/me/src/velo",
+      "configFiles": [
+        "/Users/me/src/velo/compose.yaml"
+      ]
+    },
+    {
+      "id": "b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2",
+      "name": "velo-redis-1",
+      "image": "redis:7",
+      "imageId": "sha256:e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2",
+      "command": "docker-entrypoint.sh redis-server",
+      "created": 1763222300,
+      "state": "exited",
+      "status": "Exited (1) 2 minutes ago",
+      "exitCode": 1,
+      "ports": [],
+      "project": "velo",
+      "service": "redis",
+      "projectDir": "/Users/me/src/velo",
+      "configFiles": [
+        "/Users/me/src/velo/compose.yaml"
+      ]
+    }
+  ],
+  "removals": [],
+  "invalidated": [
+    "images",
+    "volumes"
+  ],
+  "engine": {
+    "state": "running",
+    "endpoint": "unix:///Users/me/.orbstack/run/docker.sock",
+    "context": "orbstack",
+    "provider": "OrbStack",
+    "apiVersion": "1.51"
+  }
+}

@@ -1,0 +1,201 @@
+{
+  "pid": 4242,
+  "targetName": "server",
+  "openFDs": {
+    "count": 6,
+    "limit": 1048576,
+    "entries": [
+      {
+        "fd": 0,
+        "target": "/srv/app/data.db",
+        "kind": "file"
+      },
+      {
+        "fd": 1,
+        "target": "socket:[41001]",
+        "kind": "socket"
+      },
+      {
+        "fd": 2,
+        "target": "pipe:[41002]",
+        "kind": "pipe"
+      },
+      {
+        "fd": 3,
+        "target": "/dev/null",
+        "kind": "character"
+      },
+      {
+        "fd": 4,
+        "target": "anon_inode:[eventpoll]",
+        "kind": "anonInode"
+      },
+      {
+        "fd": 5,
+        "target": "memfd:cache (deleted)",
+        "kind": "other"
+      }
+    ]
+  },
+  "tcpSockets": [
+    {
+      "localAddress": "127.0.0.1",
+      "localPort": 8080,
+      "remoteAddress": "10.0.2.2",
+      "remotePort": 50000,
+      "state": "ESTABLISHED",
+      "inode": 41001,
+      "rxQueue": 0,
+      "txQueue": 0
+    },
+    {
+      "localAddress": "127.0.0.1",
+      "localPort": 8080,
+      "remoteAddress": "10.0.2.2",
+      "remotePort": 50001,
+      "state": "SYN_SENT",
+      "inode": 41002,
+      "rxQueue": 1,
+      "txQueue": 2
+    },
+    {
+      "localAddress": "127.0.0.1",
+      "localPort": 8080,
+      "remoteAddress": "10.0.2.2",
+      "remotePort": 50002,
+      "state": "SYN_RECV",
+      "inode": 41003,
+      "rxQueue": 2,
+      "txQueue": 4
+    },
+    {
+      "localAddress": "127.0.0.1",
+      "localPort": 8080,
+      "remoteAddress": "10.0.2.2",
+      "remotePort": 50003,
+      "state": "FIN_WAIT1",
+      "inode": 41004,
+      "rxQueue": 3,
+      "txQueue": 6
+    },
+    {
+      "localAddress": "127.0.0.1",
+      "localPort": 8080,
+      "remoteAddress": "10.0.2.2",
+      "remotePort": 50004,
+      "state": "FIN_WAIT2",
+      "inode": 41005,
+      "rxQueue": 4,
+      "txQueue": 8
+    },
+    {
+      "localAddress": "127.0.0.1",
+      "localPort": 8080,
+      "remoteAddress": "10.0.2.2",
+      "remotePort": 50005,
+      "state": "TIME_WAIT",
+      "inode": 41006,
+      "rxQueue": 5,
+      "txQueue": 10
+    },
+    {
+      "localAddress": "127.0.0.1",
+      "localPort": 8080,
+      "remoteAddress": "10.0.2.2",
+      "remotePort": 50006,
+      "state": "CLOSE",
+      "inode": 41007,
+      "rxQueue": 6,
+      "txQueue": 12
+    },
+    {
+      "localAddress": "127.0.0.1",
+      "localPort": 8080,
+      "remoteAddress": "10.0.2.2",
+      "remotePort": 50007,
+      "state": "CLOSE_WAIT",
+      "inode": 41008,
+      "rxQueue": 7,
+      "txQueue": 14
+    },
+    {
+      "localAddress": "127.0.0.1",
+      "localPort": 8080,
+      "remoteAddress": "10.0.2.2",
+      "remotePort": 50008,
+      "state": "LAST_ACK",
+      "inode": 41009,
+      "rxQueue": 8,
+      "txQueue": 16
+    },
+    {
+      "localAddress": "127.0.0.1",
+      "localPort": 8080,
+      "remoteAddress": "10.0.2.2",
+      "remotePort": 50009,
+      "state": "LISTEN",
+      "inode": 41010,
+      "rxQueue": 9,
+      "txQueue": 18
+    },
+    {
+      "localAddress": "127.0.0.1",
+      "localPort": 8080,
+      "remoteAddress": "10.0.2.2",
+      "remotePort": 50010,
+      "state": "CLOSING",
+      "inode": 41011,
+      "rxQueue": 10,
+      "txQueue": 20
+    },
+    {
+      "localAddress": "127.0.0.1",
+      "localPort": 8080,
+      "remoteAddress": "10.0.2.2",
+      "remotePort": 50011,
+      "state": "UNKNOWN",
+      "inode": 41012,
+      "rxQueue": 11,
+      "txQueue": 22
+    }
+  ],
+  "psi": {
+    "memory": {
+      "somePressure": {
+        "avg10": 1.5,
+        "avg60": 0.75,
+        "avg300": 0.2,
+        "totalMicros": 123456
+      },
+      "fullPressure": {
+        "avg10": 0.25,
+        "avg60": 0.1,
+        "avg300": 0.05,
+        "totalMicros": 9876
+      }
+    },
+    "cpu": {
+      "somePressure": {
+        "avg10": 12.5,
+        "avg60": 6,
+        "avg300": 2,
+        "totalMicros": 654321
+      }
+    },
+    "io": {
+      "somePressure": {
+        "avg10": 0,
+        "avg60": 0,
+        "avg300": 0,
+        "totalMicros": 0
+      },
+      "fullPressure": {
+        "avg10": 0,
+        "avg60": 0,
+        "avg300": 0,
+        "totalMicros": 0
+      }
+    }
+  },
+  "timestamp": "2026-11-17T15:30:45Z"
+}

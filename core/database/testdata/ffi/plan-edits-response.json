@@ -1,0 +1,41 @@
+{
+  "statements": [
+    {
+      "kind": "delete",
+      "row": 12,
+      "sql": "DELETE FROM \"public\".\"users\" WHERE \"id\" = $1::bigint",
+      "params": [
+        "13"
+      ]
+    },
+    {
+      "kind": "update",
+      "row": 3,
+      "sql": "UPDATE \"public\".\"users\" SET \"email\" = $1::text WHERE \"id\" = $2::bigint",
+      "params": [
+        "ada@example.org",
+        "4"
+      ]
+    },
+    {
+      "kind": "update",
+      "row": 7,
+      "sql": "UPDATE \"public\".\"users\" SET \"email\" = $1::text WHERE \"id\" = $2::bigint",
+      "params": [
+        null,
+        "8"
+      ]
+    },
+    {
+      "kind": "insert",
+      "insert": 0,
+      "sql": "INSERT INTO \"public\".\"users\" (\"email\") VALUES ($1::text)",
+      "params": [
+        "new@example.com"
+      ]
+    }
+  ],
+  "issues": [],
+  "blocked": [],
+  "error": null
+}

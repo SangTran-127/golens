@@ -1,0 +1,17 @@
+{
+  "execId": "1C2D3E4F-5A6B-4C7D-8E9F-0A1B2C3D4E5F",
+  "resultId": "r-6f1c2a9e0b7d4e31",
+  "format": "sql",
+  "scope": "selection",
+  "rows": [
+    0
+  ],
+  "clipboard": true,
+  "options": {
+    "tableName": "public.users_copy",
+    "columns": [
+      0,
+      1
+    ]
+  }
+}

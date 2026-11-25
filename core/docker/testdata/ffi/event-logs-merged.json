@@ -1,0 +1,16 @@
+{
+  "stream": 5,
+  "lines": [
+    {
+      "text": "listening on :8080",
+      "stderr": false,
+      "prefix": "api"
+    },
+    {
+      "text": "Ready to accept connections",
+      "stderr": false,
+      "prefix": "redis"
+    }
+  ],
+  "dropped": 120
+}

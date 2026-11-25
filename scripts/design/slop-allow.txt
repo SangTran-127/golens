@@ -1,0 +1,2 @@
+core/database/fixtures_test.go:prohibited_emoji
+core/database/testdata/*:prohibited_emoji

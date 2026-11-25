@@ -1,0 +1,7 @@
+{
+  "targets": [],
+  "error": {
+    "kind": "related",
+    "message": "This row doesn’t reference a row in “users” because user_id is NULL."
+  }
+}

@@ -1,0 +1,156 @@
+{
+  "fixture": "perf-contention",
+  "kind": "mutex-and-channel-wait-benchmarks",
+  "purpose": "Three independent workloads: workers contending for one mutex that is held across a sleep, a producer-consumer handoff on an unbuffered channel, and a CPU spin; CPU, block and mutex profiles each tell a different story.",
+  "entry": {
+    "file": "main.go",
+    "symbol": "main"
+  },
+  "representativeFlow": {
+    "name": "contended counter",
+    "why": "The mutex story crosses worker goroutines, Store.Add and the lock.",
+    "steps": [
+      {
+        "file": "main.go",
+        "symbol": "main",
+        "role": "runs Contend, Handoff and spin once and prints the results"
+      },
+      {
+        "file": "store.go",
+        "symbol": "Contend",
+        "role": "starts workers goroutines that each call Store.Add perWorker times and waits on a WaitGroup"
+      },
+      {
+        "file": "store.go",
+        "symbol": "Store.Add",
+        "role": "holds the mutex across time.Sleep(100 microseconds) before incrementing a map entry"
+      }
+    ],
+    "output": {
+      "file": "main.go",
+      "symbol": "main",
+      "kind": "stdout"
+    }
+  },
+  "profiles": {
+    "prepare": "prepare.sh",
+    "benchmark": "BenchmarkContention, BenchmarkHandoff and BenchmarkSpin (all)",
+    "kinds": {
+      "cpu": {
+        "sampleIndex": "cpu",
+        "topFlat": "example.test/perfcontention.spin",
+        "note": "spin is about 84 percent of CPU samples; the lock and channel waits cost almost no CPU"
+      },
+      "block": {
+        "sampleIndex": "delay",
+        "topFlat": "runtime.chanrecv1",
+        "mustContain": [
+          "sync.(*Mutex).Lock",
+          "example.test/perfcontention.(*Store).Add",
+          "example.test/perfcontention.Handoff",
+          "runtime.chanrecv2"
+        ],
+        "note": "the top flat frame runtime.chanrecv1 is the testing framework (testing.(*B).doBench) waiting for the benchmark goroutine, not application code; application waits are Mutex.Lock under Store.Add, chanrecv2 in Handoff and WaitGroup.Wait in Contend"
+      },
+      "mutex": {
+        "sampleIndex": "delay",
+        "topFlat": "sync.(*Mutex).Unlock",
+        "mustContain": [
+          "example.test/perfcontention.(*Store).Add",
+          "example.test/perfcontention.Contend.func1"
+        ],
+        "note": "all mutex delay is attributed to the Unlock inside Store.Add; the stack is that of the code that held the lock"
+      }
+    }
+  },
+  "expectedFacts": [
+    {
+      "id": "mutex-source",
+      "statement": "The only mutex in the program is Store.mu; contention comes from Store.Add holding it across time.Sleep(100 microseconds), so concurrent workers queue behind each other.",
+      "refs": [
+        {
+          "file": "store.go",
+          "symbol": "Store.Add"
+        },
+        {
+          "file": "store.go",
+          "symbol": "Contend"
+        }
+      ]
+    },
+    {
+      "id": "mutex-profile",
+      "statement": "The mutex profile attributes all contention delay to Store.Add (reported at sync.(*Mutex).Unlock, the critical-section end) reached from Contend's worker goroutines.",
+      "refs": [
+        {
+          "file": "store.go",
+          "symbol": "Store.Add"
+        }
+      ]
+    },
+    {
+      "id": "block-profile",
+      "statement": "The block profile covers every blocking wait, not only mutexes: Mutex.Lock under Store.Add, channel receive in Handoff (chanrecv2), WaitGroup.Wait in Contend and testing-framework waits (chanrecv1 from testing.(*B).doBench), the largest by delay.",
+      "refs": [
+        {
+          "file": "store.go",
+          "symbol": "Store.Add"
+        },
+        {
+          "file": "handoff.go",
+          "symbol": "Handoff"
+        }
+      ]
+    },
+    {
+      "id": "units",
+      "statement": "Block and mutex profiles have sample types contentions (count) and delay (nanoseconds, shown as seconds by pprof); they measure time goroutines spent waiting, not CPU time. The CPU profile measures on-CPU time in nanoseconds of samples.",
+      "refs": []
+    },
+    {
+      "id": "cpu-differs",
+      "statement": "The CPU profile is dominated by spin; sleeping and blocked goroutines consume almost no CPU, so the CPU profile hides both the lock queue and the channel wait.",
+      "refs": [
+        {
+          "file": "handoff.go",
+          "symbol": "spin"
+        }
+      ]
+    },
+    {
+      "id": "handoff-wait",
+      "statement": "Handoff's consumer waits on the unbuffered channel because the producer sleeps 2 ms before each send; this is waiting time, not contention on a lock.",
+      "refs": [
+        {
+          "file": "handoff.go",
+          "symbol": "Handoff"
+        }
+      ]
+    }
+  ],
+  "traps": [
+    {
+      "id": "framework-frame",
+      "statement": "Reporting runtime.chanrecv1 under testing.(*B).doBench as an application bottleneck is wrong."
+    },
+    {
+      "id": "cpu-time",
+      "statement": "Describing block or mutex delay as CPU time is wrong."
+    },
+    {
+      "id": "profile-equality",
+      "statement": "Treating the block and mutex profiles as interchangeable is wrong; block includes channel and WaitGroup waits."
+    }
+  ],
+  "knownUncertainty": [],
+  "mustNotClaim": [
+    "block profile measures cpu time",
+    "mutex profile measures cpu time",
+    "spin is the lock contention"
+  ],
+  "tests": [
+    "TestContendCountsEveryAdd",
+    "TestHandoffSumsItems",
+    "TestSpinIsDeterministic"
+  ]
+}

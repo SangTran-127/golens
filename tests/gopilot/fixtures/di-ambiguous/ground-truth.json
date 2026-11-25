@@ -1,0 +1,27 @@
+{
+  "fixture": "di-ambiguous",
+  "kind": "interface-with-runtime-selected-implementation",
+  "purpose": "Raises an alert through a notifier chosen at startup from environment configuration.",
+  "entry": {"file": "main.go", "symbol": "main"},
+  "representativeFlow": {
+    "name": "raise alert",
+    "why": "Single business action; the call to Notifier.Send is the interesting step.",
+    "steps": [
+      {"file": "main.go", "symbol": "main", "role": "loads config and builds the notifier"},
+      {"file": "main.go", "symbol": "build", "role": "selects implementation from Config.Channel"},
+      {"file": "alerts.go", "symbol": "Alerts.Raise", "role": "calls the interface"},
+      {"file": "notifier.go", "symbol": "Notifier.Send", "role": "interface call, implementation chosen at runtime"}
+    ],
+    "output": {"file": "notifier.go", "symbol": "Notifier.Send", "kind": "stdout-via-implementation"}
+  },
+  "knownUncertainty": [
+    {
+      "topic": "which Notifier runs",
+      "statement": "EmailNotifier and SMSNotifier both satisfy Notifier; build selects by NOTIFY_CHANNEL which is not set in the repo. The answer must not pick one as certain.",
+      "candidates": ["EmailNotifier.Send", "SMSNotifier.Send"],
+      "verification": "Check deployment environment for NOTIFY_CHANNEL or add a test that sets it."
+    }
+  ],
+  "mustNotClaim": ["EmailNotifier is the active implementation", "SMSNotifier is the active implementation"],
+  "tests": ["TestRaiseUsesNotifier", "TestBuildRejectsUnknownChannel"]
+}

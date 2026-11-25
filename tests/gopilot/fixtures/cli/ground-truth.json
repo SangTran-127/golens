@@ -1,0 +1,21 @@
+{
+  "fixture": "cli",
+  "kind": "command-line-tool",
+  "purpose": "Reads text from stdin and prints line and word counts to stdout, optionally as JSON.",
+  "entry": {"file": "main.go", "symbol": "main"},
+  "representativeFlow": {
+    "name": "count stdin",
+    "why": "The only command path: stdin to counted stats to stdout. There is no HTTP layer and no database.",
+    "steps": [
+      {"file": "main.go", "symbol": "main", "role": "process entry, maps error to exit code"},
+      {"file": "main.go", "symbol": "run", "role": "orchestrates parse, count, render"},
+      {"file": "options.go", "symbol": "parseArgs", "role": "reads flags"},
+      {"file": "count.go", "symbol": "Count", "role": "counts lines and words"},
+      {"file": "render.go", "symbol": "Render", "role": "writes result"}
+    ],
+    "output": {"file": "render.go", "symbol": "Render", "kind": "stdout"}
+  },
+  "knownUncertainty": [],
+  "mustNotClaim": ["the tool stores data", "an HTTP server exists"],
+  "tests": ["TestRunText", "TestRunRejectsUnknownFlag"]
+}

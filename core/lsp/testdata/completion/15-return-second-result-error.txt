@@ -1,0 +1,13 @@
+name: return second result error
+want: errNotFound
+-- src --
+package p
+
+import "errors"
+
+func f() (int, error) {
+	errNotFound := errors.New("nf")
+	errCount := 2
+	return 0, errN|
+	_ = errCount
+}

@@ -1,0 +1,6 @@
+{
+  "kind": "buildCache",
+  "removed": 0,
+  "bytes": 0,
+  "error": "Build cache has no labels, so GoLens can’t limit its clean-up to “golens.smoke=1”; nothing was removed."
+}

@@ -1,0 +1,11 @@
+{
+  "pid": 7,
+  "targetName": "idle",
+  "openFDs": {
+    "count": 0,
+    "limit": 1024,
+    "entries": []
+  },
+  "tcpSockets": [],
+  "timestamp": "2026-11-17T08:00:00Z"
+}

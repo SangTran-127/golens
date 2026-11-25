@@ -1,0 +1,13 @@
+name: receiver field
+want: handler
+-- src --
+package p
+
+type Server struct {
+	handler func()
+	host    string
+}
+
+func (s *Server) Start() {
+	s.ha|
+}

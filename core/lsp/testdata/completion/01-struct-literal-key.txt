@@ -1,0 +1,17 @@
+name: struct literal key
+want: name
+forbid: naq, nat, nakedret
+insert: name: |
+-- src --
+package p
+
+type X struct {
+	name string
+	id   int
+}
+
+func f() {
+	var x X
+	x = X{ na| }
+	_ = x
+}

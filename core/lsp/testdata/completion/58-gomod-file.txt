@@ -1,0 +1,10 @@
+name: go.mod file
+file: go.mod
+forbid: return, range
+expect: none
+-- src --
+module example.com/app
+
+go 1.22
+
+re|

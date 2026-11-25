@@ -1,0 +1,80 @@
+{
+  "version": 1,
+  "dataSources": [
+    {
+      "id": "5E0C2D7A-3B1F-4C8E-9A61-2F4D8B7C1E90",
+      "name": "local",
+      "engine": "postgres",
+      "host": "localhost",
+      "port": 5432,
+      "database": "app",
+      "user": "app",
+      "password": "keychain",
+      "ssl": {
+        "mode": "prefer",
+        "rootCert": "",
+        "cert": "",
+        "key": ""
+      },
+      "sqlitePath": "",
+      "sqliteCreate": false,
+      "defaultSchema": "public",
+      "readOnly": false,
+      "production": false,
+      "ssh": {
+        "destination": "",
+        "port": 0
+      }
+    },
+    {
+      "id": "8A1B6C3D-2E4F-4A5B-8C7D-9E0F1A2B3C4D",
+      "name": "fixture",
+      "engine": "sqlite",
+      "host": "",
+      "port": 0,
+      "database": "",
+      "user": "",
+      "password": "none",
+      "ssl": {
+        "mode": "disable",
+        "rootCert": "",
+        "cert": "",
+        "key": ""
+      },
+      "sqlitePath": "data/app.db",
+      "sqliteCreate": false,
+      "defaultSchema": "main",
+      "readOnly": true,
+      "production": false,
+      "ssh": {
+        "destination": "",
+        "port": 0
+      }
+    },
+    {
+      "id": "C3D4E5F6-0718-4293-A4B5-C6D7E8F90A1B",
+      "name": "orders-prod",
+      "engine": "mysql",
+      "host": "db.internal",
+      "port": 3306,
+      "database": "orders",
+      "user": "readonly",
+      "password": "ask",
+      "ssl": {
+        "mode": "verify-full",
+        "rootCert": "certs/ca.pem",
+        "cert": "",
+        "key": ""
+      },
+      "sqlitePath": "",
+      "sqliteCreate": false,
+      "defaultSchema": "orders",
+      "readOnly": true,
+      "production": true,
+      "ssh": {
+        "destination": "deploy@bastion.example.com",
+        "port": 2222
+      }
+    }
+  ]
+}

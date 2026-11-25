@@ -1,0 +1,9 @@
+name: keyword at statement start
+want: retries, return 
+-- src --
+package p
+
+func f() int {
+	retries := 1
+	ret|
+}

@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>GoLens Art Concept Studio</title>
+<style>
+  :root {
+    --bg: #0B101B;
+    --surface: #131B2B;
+    --border: rgba(255,255,255,0.1);
+    --text: #F1F5F9;
+    --muted: #94A3B8;
+    --cyan: #4CC9EB;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: -apple-system, "SF Pro Text", "Helvetica Neue", sans-serif;
+    padding: 36px 40px 64px;
+    line-height: 1.5;
+  }
+  .studio-header {
+    max-width: 1360px; margin: 0 auto 36px; padding-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+  }
+  .header-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; flex-wrap: wrap; }
+  .eyebrow {
+    display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: 0.08em;
+    color: var(--cyan); text-transform: uppercase; margin-bottom: 8px;
+  }
+  .studio-header h1 { font-size: 32px; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 10px; }
+  .studio-header p { color: var(--muted); max-width: 860px; font-size: 15px; }
+  .audit-link {
+    display: inline-flex; align-items: center; padding: 10px 16px;
+    background: rgba(76, 201, 235, 0.14); color: var(--cyan);
+    border: 1px solid rgba(76, 201, 235, 0.35); border-radius: 10px;
+    font-size: 13px; font-weight: 600; text-decoration: none; white-space: nowrap;
+  }
+  .audit-link:hover { background: rgba(76, 201, 235, 0.22); }
+  .palette-strip { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+  .pal-pill {
+    display: flex; align-items: center; gap: 8px; padding: 6px 12px;
+    background: var(--surface); border: 1px solid var(--border); border-radius: 999px; font-size: 13px;
+  }
+  .pal-pill .dot { width: 12px; height: 12px; border-radius: 50%; border: 2px solid #16283A; }
+  .pal-pill span { color: var(--muted); font-size: 12px; }
+
+  .board { max-width: 1360px; margin: 0 auto 48px; }
+  .board-head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin-bottom: 18px; flex-wrap: wrap; }
+  .board-head h2 { font-size: 22px; font-weight: 700; }
+  .board-head span { color: var(--muted); font-size: 13px; }
+
+  .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
+  .card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+    padding: 18px; display: flex; flex-direction: column; gap: 12px;
+  }
+  .scene-img { width: 100%; border-radius: 10px; border: 1px solid var(--border); display: block; }
+  .card-meta h3 { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+  .card-meta p { font-size: 12px; color: var(--muted); }
+</style>
+</head>
+<body>
+  <header class="studio-header">
+    <div class="header-top">
+      <div>
+        <span class="eyebrow">GoLens Art Bible · Unified 2D Cel-Shaded Concept Studio</span>
+        <h1>GoLens Mascot &amp; Scene Concept Studio</h1>
+        <p>He thong dinh huong my thuat dong bo 100% tren phong cach minh hoa 2D comic-ink &amp; cel-shaded (Renee French Go Gopher CC BY 4.0 ket hop tinh than bien hoa POP MART Duckoo), da kiem duyet giai phau 1:1 qua 8 cong AI-Slop Audit.</p>
+      </div>
+      <div>
+        <a class="audit-link" href="duckoo-library/index.html" style="margin-right:8px;">Thu vien Duckoo Gopher (55 Items)</a>
+        <a class="audit-link" href="audit.html">Mo bang Audit 1:1 (53 Panels)</a>
+      </div>
+    </div>
+    <div class="palette-strip"><div class="pal-pill"><span class="dot" style="background:#6AD3EC"></span><b>Lens</b><span>cyan</span></div><div class="pal-pill"><span class="dot" style="background:#F49AC2"></span><b>Coral</b><span>pink</span></div><div class="pal-pill"><span class="dot" style="background:#F9D65C"></span><b>Sunny</b><span>yellow</span></div><div class="pal-pill"><span class="dot" style="background:#6EE7B7"></span><b>Mint</b><span>mint</span></div><div class="pal-pill"><span class="dot" style="background:#C4B5FD"></span><b>Cosmo</b><span>lavender</span></div><div class="pal-pill"><span class="dot" style="background:#B8C4CC"></span><b>Rocky</b><span>slate</span></div><div class="pal-pill"><span class="dot" style="background:#9E734E"></span><b>Mocha</b><span>brown</span></div></div>
+  </header>
+  
+  <section class="board" data-board="duckoo">
+    <div class="board-head">
+      <h2>Series 01 · POP MART Duckoo-Inspired Creative Universe</h2>
+      <span>Giu nguyen than qua le Renee French & bieu cam mat do, bien hoa boi canh doi thuong & choi chu Go</span>
+    </div>
+    <div class="grid-2">
+      <div class="card scene-card">
+        <a href="preview/duckoo-series-blindbox.png" target="_blank" rel="noopener">
+          <img class="scene-img" src="preview/duckoo-series-blindbox.png" alt="Blind-Box Series 01 (9 Personas)">
+        </a>
+        <div class="card-meta"><h3>Blind-Box Series 01 (9 Personas)</h3><p>3 AM Pho Debugger, Garbage Collector, Banh Mi Cosplay, Dino Kigurumi, Panic Firefighter, Goroutine Beekeeper, pprof Barista, Grand Hotel Bellhop & Secret Zen Onsen</p></div>
+      </div>
+      <div class="card scene-card">
+        <a href="preview/duckoo-cosplay-icons.png" target="_blank" rel="noopener">
+          <img class="scene-img" src="preview/duckoo-cosplay-icons.png" alt="Cosplay & Lifestyle macOS App Icons">
+        </a>
+        <div class="card-meta"><h3>Cosplay & Lifestyle macOS App Icons</h3><p>Watchmaker Loupe, Saigon Ca Phe Fin, Tet Lion Dance Hood, Kaiju Hoodie & Hinoki Onsen Yuzu</p></div>
+      </div>
+      <div class="card scene-card">
+        <a href="preview/duckoo-diorama-badges.png" target="_blank" rel="noopener">
+          <img class="scene-img" src="preview/duckoo-diorama-badges.png" alt="Narrative Mini-Diorama Badges">
+        </a>
+        <div class="card-meta"><h3>Narrative Mini-Diorama Badges</h3><p>Saigon Sidewalk Code & Coffee, Goroutine Conveyor Sushi, Grand Hotel Elevator & Forest Campfire Bug-Roast</p></div>
+      </div>
+      <div class="card scene-card">
+        <a href="preview/duckoo-ide-worlds.png" target="_blank" rel="noopener">
+          <img class="scene-img" src="preview/duckoo-ide-worlds.png" alt="Original Panoramic IDE Worlds">
+        </a>
+        <div class="card-meta"><h3>Original Panoramic IDE Worlds</h3><p>Saigon Cyber-Alley Night Market & The GoLens Toymaker Automaton Workshop (Welcome / Splash Art)</p></div>
+      </div>
+    </div>
+  </section>
+  <section class="board" data-board="duckoo-vol2">
+    <div class="board-head">
+      <h2>Series 02 · POP MART Duckoo Expansion (Blind-Box 02, Festival & Sky-Ship)</h2>
+      <span>20 concept moi: Tap luyen & Do an Series 02, Festival Icons, Adventure Badges & Panoramic Worlds Vol. 2</span>
+    </div>
+    <div class="grid-2">
+      <div class="card scene-card">
+        <a href="preview/duckoo-series02-blindbox.png" target="_blank" rel="noopener">
+          <img class="scene-img" src="preview/duckoo-series02-blindbox.png" alt="Blind-Box Series 02 (9 Personas)">
+        </a>
+        <div class="card-meta"><h3>Blind-Box Series 02 (9 Personas)</h3><p>RAM Barbell Lifter, Boba Tea Bath, Shiba Inu Kigurumi, Keycap Turntable DJ, Mutex Traffic Warden, Dim Sum Bao Bun, Zen Bug Yoga, Deep Heap Diver & Secret: Mecha Gopher</p></div>
+      </div>
+      <div class="card scene-card">
+        <a href="preview/duckoo-festival-icons.png" target="_blank" rel="noopener">
+          <img class="scene-img" src="preview/duckoo-festival-icons.png" alt="Festival & Hobby macOS App Icons">
+        </a>
+        <div class="card-meta"><h3>Festival & Hobby macOS App Icons</h3><p>Boba Milk Tea Squircle, CRT Arcade Gamer, Mid-Autumn Star Lantern, Steampunk Alchemist & Capybara Yuzu Hood</p></div>
+      </div>
+      <div class="card scene-card">
+        <a href="preview/duckoo-adventure-badges.png" target="_blank" rel="noopener">
+          <img class="scene-img" src="preview/duckoo-adventure-badges.png" alt="Adventure Mini-Diorama Badges">
+        </a>
+        <div class="card-meta"><h3>Adventure Mini-Diorama Badges</h3><p>Claw Machine Prize, The Go Clean Laundromat, Binary Bonsai Greenhouse & Deep-Sea pprof Submarine</p></div>
+      </div>
+      <div class="card scene-card">
+        <a href="preview/duckoo-ide-worlds-v2.png" target="_blank" rel="noopener">
+          <img class="scene-img" src="preview/duckoo-ide-worlds-v2.png" alt="Panoramic IDE Worlds Vol. 2">
+        </a>
+        <div class="card-meta"><h3>Panoramic IDE Worlds Vol. 2</h3><p>Grand Hotel GoLens Lobby & Cloud-Native Sky-Ship Dockyard (Welcome / Splash Art)</p></div>
+      </div>
+    </div>
+  </section>
+  <section class="board" data-board="heritage">
+    <div class="board-head">
+      <h2>Series 03 · GopherCon Heritage & Classic Edition</h2>
+      <span>Bo minh hoa 2D cel-shaded chuan GopherCon & GoLand danh cho Icon, Cast, Huy hieu & Background</span>
+    </div>
+    <div class="grid-2">
+      <div class="card scene-card">
+        <a href="preview/artist-mascot-icons.png" target="_blank" rel="noopener">
+          <img class="scene-img" src="preview/artist-mascot-icons.png" alt="Classic Seasonal & Edition App Icons">
+        </a>
+        <div class="card-meta"><h3>Classic Seasonal & Edition App Icons</h3><p>5 macOS 26 Tahoe squircles: Hero Production, Night Coder, Halloween, Winter Solstice & Lunar New Year</p></div>
+      </div>
+      <div class="card scene-card">
+        <a href="preview/artist-wardrobe-cast.png" target="_blank" rel="noopener">
+          <img class="scene-img" src="preview/artist-wardrobe-cast.png" alt="Full-Body 6-Outfit Cast Wardrobe">
+        </a>
+        <div class="card-meta"><h3>Full-Body 6-Outfit Cast Wardrobe</h3><p>Tao hinh 2 tay chuan muc cho Inspector Lens, Mountain Angler, Orbit Astronaut, Heritage Ao Dai, Site Foreman & Cyber Coder</p></div>
+      </div>
+      <div class="card scene-card">
+        <a href="preview/artist-gophercon-badges.png" target="_blank" rel="noopener">
+          <img class="scene-img" src="preview/artist-gophercon-badges.png" alt="GopherCon Community Circular Badges">
+        </a>
+        <div class="card-meta"><h3>GopherCon Community Circular Badges</h3><p>4 huy hieu die-cut 3 lop chieu sau: Alpine Angler, Orbit Porthole Crew, Building GO & Heritage Dragon Boat</p></div>
+      </div>
+      <div class="card scene-card">
+        <a href="preview/artist-ide-backgrounds.png" target="_blank" rel="noopener">
+          <img class="scene-img" src="preview/artist-ide-backgrounds.png" alt="Compiler Mission Control & Obsidian Prism">
+        </a>
+        <div class="card-meta"><h3>Compiler Mission Control & Obsidian Prism</h3><p>Isometric mainframe consoles kieu Russ Cox & dark prism splash kieu GoLand danh cho Welcome / DMG</p></div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>

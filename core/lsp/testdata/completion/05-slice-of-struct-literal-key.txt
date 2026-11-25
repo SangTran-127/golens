@@ -1,0 +1,10 @@
+name: slice of struct literal key
+want: Label
+-- src --
+package p
+
+type Item struct{ Label string; Count int }
+
+func f() []Item {
+	return []Item{{La|}}
+}

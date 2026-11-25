@@ -1,0 +1,15 @@
+{
+  "applied": true,
+  "committed": false,
+  "rowsAffected": 4,
+  "failedStatement": null,
+  "blocked": [],
+  "error": null,
+  "session": {
+    "state": "connected",
+    "transaction": "active",
+    "schema": "public",
+    "mode": "manual",
+    "isolation": "repeatable read"
+  }
+}

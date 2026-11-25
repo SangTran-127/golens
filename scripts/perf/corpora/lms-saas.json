@@ -1,0 +1,40 @@
+{
+ "name": "lms-saas backend (owner's private workload)",
+ "rootEnv": "LMS_SAAS_ROOT",
+ "root": "~/Documents/WorkSpace/opla/lms-saas",
+ "workspace": "backend",
+ "target": "backend/internal/features/chat/service.go",
+ "packageLine": "package chat",
+ "anchor": "func (s *Service) CountSessionUserMessages(ctx context.Context, sessionID, tenantID uuid.UUID) (int64, error) {",
+ "burst": [
+  "_, _ = fmt.Sprintf(\"%s-%s\", sessionID, tenantID)",
+  "_ = strings.TrimSpace(sessionID.String())",
+  "_ = strings.Contains(tenantID.String(), \"-\")"
+ ],
+ "probes": [
+  [
+   "strings.HasPre",
+   "first-pkg"
+  ],
+  [
+   "ctx.Err",
+   "warm-1"
+  ],
+  [
+   "strings.TrimSp",
+   "warm-2"
+  ],
+  [
+   "ctx.Done",
+   "warm-3"
+  ],
+  [
+   "strings.Contain",
+   "warm-4"
+  ],
+  [
+   "strings.HasSuf",
+   "warm-5"
+  ]
+ ]
+}

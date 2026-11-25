@@ -1,0 +1,53 @@
+name: CI
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-test:
+    runs-on: ${{ vars.MACOS_RUNNER || 'macos-26' }}
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: core/go.mod
+          cache-dependency-path: core/go.sum
+
+      - name: Git identity for tests that commit
+        run: |
+          git config --global user.name "GoLens CI"
+          git config --global user.email "ci@golens.invalid"
+
+      - name: Toolchain
+        run: |
+          xcodebuild -version
+          swift --version
+          go version
+
+      - name: Go vet
+        run: |
+          (cd core && go vet ./...)
+          (cd tests/core_e2e && go vet ./...)
+
+      - name: Tests
+        run: make test
+
+      - name: Build app
+        run: make build
+
+      - name: Design token ratchet
+        run: python3 scripts/design/token-ratchet.py --check
+
+      - name: Slop baseline ratchet
+        run: python3 scripts/design/slop_scanner.py --check
+
+
+      - name: Gate 5 & FFI parity audit
+        run: python3 scripts/smoke/gate5-audit.py

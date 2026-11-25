@@ -1,0 +1,15 @@
+{
+  "stream": 4,
+  "lines": [
+    {
+      "text": "listening on :8080",
+      "stderr": false,
+      "prefix": ""
+    },
+    {
+      "text": "warning: debug mode",
+      "stderr": true,
+      "prefix": ""
+    }
+  ]
+}

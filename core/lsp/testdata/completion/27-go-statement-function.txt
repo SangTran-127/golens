@@ -1,0 +1,10 @@
+name: go statement function
+want: worker
+-- src --
+package p
+
+func worker(n int) {}
+
+func f() {
+	go wor|
+}

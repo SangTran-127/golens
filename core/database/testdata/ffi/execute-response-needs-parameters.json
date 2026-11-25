@@ -1,0 +1,16 @@
+{
+  "execId": "1C2D3E4F-5A6B-4C7D-8E9F-0A1B2C3D4E5F",
+  "blocked": [],
+  "statements": [],
+  "session": {
+    "state": "connected",
+    "transaction": "idle",
+    "schema": "public",
+    "mode": "auto",
+    "isolation": ""
+  },
+  "error": {
+    "kind": "needsParameters",
+    "message": "Enter a value for the parameters :id and :token to run this statement."
+  }
+}

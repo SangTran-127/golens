@@ -1,0 +1,83 @@
+{
+  "plan": {
+    "format": "json",
+    "nodes": [
+      {
+        "id": 0,
+        "parent": null,
+        "label": "Query Block 1",
+        "relation": "",
+        "estRows": null,
+        "actRows": null,
+        "loops": null,
+        "cost": 6.3,
+        "timeMs": null,
+        "detail": "cost_info.query_cost: 6.30\nselect_id: 1"
+      },
+      {
+        "id": 1,
+        "parent": 0,
+        "label": "Sort",
+        "relation": "",
+        "estRows": null,
+        "actRows": null,
+        "loops": null,
+        "cost": 6.85,
+        "timeMs": null,
+        "detail": "cost_info.sort_cost: 4.00\nusing_filesort: true\nusing_temporary_table: true"
+      },
+      {
+        "id": 2,
+        "parent": 1,
+        "label": "Nested Loop",
+        "relation": "",
+        "estRows": null,
+        "actRows": null,
+        "loops": null,
+        "cost": null,
+        "timeMs": null,
+        "detail": ""
+      },
+      {
+        "id": 3,
+        "parent": 2,
+        "label": "Full Table Scan",
+        "relation": "t",
+        "estRows": 3,
+        "actRows": null,
+        "loops": null,
+        "cost": 0.55,
+        "timeMs": null,
+        "detail": "access_type: ALL\ncost_info.data_read_per_join: 504\ncost_info.eval_cost: 0.30\ncost_info.prefix_cost: 0.55\ncost_info.read_cost: 0.25\nfiltered: 100.00\npossible_keys: PRIMARY\nrows_examined_per_scan: 3\nrows_produced_per_join: 3\nused_columns: id, name"
+      },
+      {
+        "id": 4,
+        "parent": 2,
+        "label": "Index Lookup",
+        "relation": "u",
+        "estRows": 1,
+        "actRows": null,
+        "loops": null,
+        "cost": 2.3,
+        "timeMs": null,
+        "detail": "access_type: ref\ncost_info.data_read_per_join: 703\ncost_info.eval_cost: 0.40\ncost_info.prefix_cost: 2.30\ncost_info.read_cost: 1.25\nfiltered: 80.00\nindex_condition: (`golens`.`u`.`id` > 1)\nkey: golens_ex_users_team\nkey_length: 5\npossible_keys: PRIMARY, golens_ex_users_team\nref: golens.t.id\nrows_examined_per_scan: 1\nrows_produced_per_join: 3\nused_columns: id, name, team_id\nused_key_parts: team_id"
+      }
+    ],
+    "mostExpensive": 1,
+    "planningMs": null,
+    "executionMs": null,
+    "actualRows": null,
+    "raw": "{\n  \"query_block\": {\n    \"select_id\": 1,\n    \"cost_info\": {\n      \"query_cost\": \"6.30\"\n    },\n    \"ordering_operation\": {\n      \"using_temporary_table\": true,\n      \"using_filesort\": true,\n      \"cost_info\": {\n        \"sort_cost\": \"4.00\"\n      },\n      \"nested_loop\": [\n        {\n          \"table\": {\n            \"table_name\": \"t\",\n            \"access_type\": \"ALL\",\n            \"possible_keys\": [\n              \"PRIMARY\"\n            ],\n            \"rows_examined_per_scan\": 3,\n            \"rows_produced_per_join\": 3,\n            \"filtered\": \"100.00\",\n            \"cost_info\": {\n              \"read_cost\": \"0.25\",\n              \"eval_cost\": \"0.30\",\n              \"prefix_cost\": \"0.55\",\n              \"data_read_per_join\": \"504\"\n            },\n            \"used_columns\": [\n              \"id\",\n              \"name\"\n            ]\n          }\n        },\n        {\n          \"table\": {\n            \"table_name\": \"u\",\n            \"access_type\": \"ref\",\n            \"possible_keys\": [\n              \"PRIMARY\",\n              \"golens_ex_users_team\"\n            ],\n            \"key\": \"golens_ex_users_team\",\n            \"used_key_parts\": [\n              \"team_id\"\n            ],\n            \"key_length\": \"5\",\n            \"ref\": [\n              \"golens.t.id\"\n            ],\n            \"rows_examined_per_scan\": 1,\n            \"rows_produced_per_join\": 3,\n            \"filtered\": \"80.00\",\n            \"index_condition\": \"(`golens`.`u`.`id` > 1)\",\n            \"cost_info\": {\n              \"read_cost\": \"1.25\",\n              \"eval_cost\": \"0.40\",\n              \"prefix_cost\": \"2.30\",\n              \"data_read_per_join\": \"703\"\n            },\n            \"used_columns\": [\n              \"id\",\n              \"name\",\n              \"team_id\"\n            ]\n          }\n        }\n      ]\n    }\n  }\n}\n"
+  },
+  "analyzed": false,
+  "rolledBack": false,
+  "blocked": [],
+  "session": {
+    "state": "connected",
+    "transaction": "idle",
+    "schema": "public",
+    "mode": "auto",
+    "isolation": ""
+  },
+  "error": null
+}

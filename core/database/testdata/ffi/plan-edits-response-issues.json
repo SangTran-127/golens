@@ -1,0 +1,21 @@
+{
+  "statements": [
+    {
+      "kind": "delete",
+      "row": 12,
+      "sql": "DELETE FROM \"public\".\"users\" WHERE \"id\" = $1::bigint",
+      "params": [
+        "13"
+      ]
+    }
+  ],
+  "issues": [
+    {
+      "row": 3,
+      "column": 4,
+      "message": "Enter binary values as hexadecimal that starts with 0x."
+    }
+  ],
+  "blocked": [],
+  "error": null
+}

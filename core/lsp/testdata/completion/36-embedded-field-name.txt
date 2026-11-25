@@ -1,0 +1,15 @@
+name: embedded field name
+want: Balance, Base
+-- src --
+package p
+
+type Base struct{}
+
+type Derived struct {
+	Base
+	Balance int
+}
+
+func f(d Derived) {
+	_ = d.Ba|
+}

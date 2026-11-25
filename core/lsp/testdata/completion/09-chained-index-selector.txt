@@ -1,0 +1,11 @@
+name: chained index selector
+want: Credits, Title
+-- src --
+package p
+
+type Course struct{ Title string; Credits int }
+type Student struct{ Courses []Course }
+
+func f(s Student) {
+	_ = s.Courses[0].|
+}

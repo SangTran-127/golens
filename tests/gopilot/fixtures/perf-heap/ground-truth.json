@@ -1,0 +1,141 @@
+{
+  "fixture": "perf-heap",
+  "kind": "heap-alloc-versus-inuse",
+  "purpose": "Allocates large short-lived buffers while rendering rows and separately retains a small index in a package variable, so alloc_space and inuse_space point at different functions.",
+  "entry": {
+    "file": "main.go",
+    "symbol": "main"
+  },
+  "representativeFlow": {
+    "name": "load index then render rows",
+    "why": "The two memory behaviours live in two functions called from the same entry.",
+    "steps": [
+      {
+        "file": "main.go",
+        "symbol": "main",
+        "role": "calls loadIndex(16, 256 KiB) then renderRows(1000)"
+      },
+      {
+        "file": "index.go",
+        "symbol": "loadIndex",
+        "role": "stores 16 shards of 256 KiB in the package variable index (retained, about 4 MiB)"
+      },
+      {
+        "file": "rows.go",
+        "symbol": "renderRows",
+        "role": "per iteration allocates a 96 KiB scratch slice and a formatted line, all garbage afterwards"
+      }
+    ],
+    "output": {
+      "file": "main.go",
+      "symbol": "main",
+      "kind": "stdout"
+    }
+  },
+  "profiles": {
+    "prepare": "prepare.sh",
+    "benchmark": "BenchmarkRenderRows",
+    "kinds": {
+      "alloc": {
+        "sampleIndex": "alloc_space",
+        "topFlat": "example.test/perfheap.renderRows",
+        "note": "observed about 1.8 GB total with renderRows at 99 percent"
+      },
+      "inuse": {
+        "sampleIndex": "inuse_space",
+        "topFlat": "example.test/perfheap.loadIndex",
+        "note": "observed about 4 MB with loadIndex at 98 percent; the alloc and inuse kinds are the same pprof file, the sample index is chosen when reading it"
+      }
+    }
+  },
+  "expectedFacts": [
+    {
+      "id": "alloc-top",
+      "statement": "By alloc_space the top frame is renderRows (cumulative bytes ever allocated, about 1.8 GB over the benchmark).",
+      "refs": [
+        {
+          "file": "rows.go",
+          "symbol": "renderRows"
+        }
+      ]
+    },
+    {
+      "id": "inuse-top",
+      "statement": "By inuse_space the top frame is loadIndex (about 4 MB still reachable through the package variable index).",
+      "refs": [
+        {
+          "file": "index.go",
+          "symbol": "loadIndex"
+        }
+      ]
+    },
+    {
+      "id": "disagree",
+      "statement": "alloc_space counts all bytes allocated over time; inuse_space counts bytes still live at the profile snapshot after a GC. They answer different questions, so a large alloc_space frame is allocation churn (GC pressure), not necessarily a leak or memory retention.",
+      "refs": [
+        {
+          "file": "rows.go",
+          "symbol": "renderRows"
+        },
+        {
+          "file": "index.go",
+          "symbol": "loadIndex"
+        }
+      ]
+    },
+    {
+      "id": "retention",
+      "statement": "The retained memory is the package variable index (type Index, shards slice) filled by loadIndex.",
+      "refs": [
+        {
+          "file": "index.go",
+          "symbol": "Index"
+        }
+      ]
+    },
+    {
+      "id": "no-leak",
+      "statement": "renderRows retains nothing: scratch and line are local and unreachable after each iteration.",
+      "refs": [
+        {
+          "file": "rows.go",
+          "symbol": "renderRows"
+        }
+      ]
+    },
+    {
+      "id": "allocation-sites",
+      "statement": "renderRows allocates on the heap through make([]byte, 96*1024), fmt.Sprintf and strings.Repeat.",
+      "refs": [
+        {
+          "file": "rows.go",
+          "symbol": "renderRows"
+        }
+      ]
+    }
+  ],
+  "traps": [
+    {
+      "id": "leak",
+      "statement": "Calling renderRows a leak because its alloc_space is large is wrong."
+    },
+    {
+      "id": "mix-units",
+      "statement": "Comparing alloc_space bytes with inuse_space bytes as if they were the same quantity is wrong."
+    },
+    {
+      "id": "inuse-misread",
+      "statement": "Claiming loadIndex allocates the most is wrong; it retains the most."
+    }
+  ],
+  "knownUncertainty": [],
+  "mustNotClaim": [
+    "renderRows leaks memory",
+    "memory leak in renderRows",
+    "loadIndex allocates the most"
+  ],
+  "tests": [
+    "TestRenderRowsTotal",
+    "TestLoadIndexRetainsShards"
+  ]
+}

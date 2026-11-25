@@ -1,0 +1,15 @@
+name: chained call result
+want: Close, Closed
+-- src --
+package p
+
+type Conn struct{}
+
+func (Conn) Close() error { return nil }
+func (Conn) Closed() bool { return false }
+
+func dial() Conn { return Conn{} }
+
+func f() {
+	dial().Clo|
+}

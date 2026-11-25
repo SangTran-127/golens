@@ -1,0 +1,12 @@
+name: slice element method
+want: Len
+-- src --
+package p
+
+type Node struct{}
+
+func (Node) Len() int { return 0 }
+
+func f(xs []Node) {
+	_ = xs[0].Le|
+}

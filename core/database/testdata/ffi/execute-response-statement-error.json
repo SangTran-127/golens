@@ -1,0 +1,42 @@
+{
+  "execId": "1C2D3E4F-5A6B-4C7D-8E9F-0A1B2C3D4E5F",
+  "blocked": [],
+  "statements": [
+    {
+      "index": 0,
+      "line": 12,
+      "startByte": 640,
+      "endByte": 702,
+      "kind": "select",
+      "resultId": "",
+      "columns": [],
+      "rowsFetched": 0,
+      "complete": false,
+      "truncated": false,
+      "rowsAffected": null,
+      "durationMs": 1.2,
+      "firstRowMs": 0,
+      "pageEncodedMs": 0,
+      "notices": [],
+      "error": {
+        "kind": "syntax",
+        "message": "The database could not run the statement as written. Fix it and run it again.",
+        "detail": "syntax error at or near \"FROMM\"",
+        "code": "SQLSTATE 42601",
+        "position": {
+          "byte": 655,
+          "line": 12,
+          "col": 16
+        }
+      }
+    }
+  ],
+  "session": {
+    "state": "connected",
+    "transaction": "failed",
+    "schema": "public",
+    "mode": "auto",
+    "isolation": ""
+  },
+  "error": null
+}

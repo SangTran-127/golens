@@ -1,0 +1,6 @@
+{
+  "dialect": "postgres",
+  "endByte": 0,
+  "startByte": 0,
+  "text": "SELECT * FROM users WHERE id = :id AND created_at > $2::timestamptz AND team = sqlc.narg(team)"
+}

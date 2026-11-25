@@ -1,0 +1,9 @@
+{
+  "isNull": false,
+  "kind": "json",
+  "text": "{\"a\":1,\"tags\":[\"x\",\"y\"]}",
+  "encoding": "utf8",
+  "byteCount": 24,
+  "truncated": false,
+  "error": null
+}

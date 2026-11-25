@@ -1,0 +1,7 @@
+{
+  "rowsWritten": 1,
+  "bytes": 81,
+  "text": "INSERT INTO \"public\".\"users_copy\" (\"id\", \"email\") VALUES (1, 'ada@example.com');\n",
+  "cursorClosed": false,
+  "error": null
+}

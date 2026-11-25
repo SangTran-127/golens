@@ -1,0 +1,11 @@
+name: range variables
+want: val
+-- src --
+package p
+
+func f(counts map[string]int) {
+	for key, val := range counts {
+		_ = va|
+		_ = key
+	}
+}

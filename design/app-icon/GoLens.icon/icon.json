@@ -1,0 +1,49 @@
+{
+  "fill": {
+    "automatic-gradient": "extended-srgb:0.89000,0.68000,0.44000,1.00000"
+  },
+  "groups": [
+    {
+      "layers": [
+        {
+          "image-name": "Glass.png",
+          "name": "Glass"
+        }
+      ],
+      "name": "Cup Glass",
+      "shadow": {
+        "kind": "neutral",
+        "opacity": 0.0
+      },
+      "specular": true,
+      "translucency": {
+        "enabled": true,
+        "value": 0.35
+      }
+    },
+    {
+      "layers": [
+        {
+          "image-name": "BobaGopher.png",
+          "name": "BobaGopher"
+        }
+      ],
+      "name": "Boba Milk Tea Gopher",
+      "shadow": {
+        "kind": "neutral",
+        "opacity": 0.14
+      },
+      "specular": true,
+      "translucency": {
+        "enabled": false,
+        "value": 0.45
+      }
+    }
+  ],
+  "supported-platforms": {
+    "circles": [
+      "watchOS"
+    ],
+    "squares": "shared"
+  }
+}

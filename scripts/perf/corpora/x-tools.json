@@ -1,0 +1,42 @@
+{
+ "name": "golang.org/x/tools v0.53.0",
+ "module": "golang.org/x/tools",
+ "version": "v0.53.0",
+ "workspace": ".",
+ "target": "go/packages/golist.go",
+ "packageLine": "package packages",
+ "anchor": "func getSizesForArgs(ctx context.Context, inv gocommand.Invocation, gocmdRunner *gocommand.Runner) (string, string, error) {",
+ "burst": [
+  "_ = fmt.Sprintf(\"%s-%s\", inv.Verb, inv.WorkingDir)",
+  "_ = strings.TrimSpace(inv.Verb)",
+  "_ = strings.Contains(inv.WorkingDir, \"-\")"
+ ],
+ "probes": [
+  [
+   "strings.HasPre",
+   "first-pkg"
+  ],
+  [
+   "ctx.Err",
+   "warm-1"
+  ],
+  [
+   "strings.TrimSp",
+   "warm-2"
+  ],
+  [
+   "ctx.Done",
+   "warm-3"
+  ],
+  [
+   "strings.Contain",
+   "warm-4"
+  ],
+  [
+   "strings.HasSuf",
+   "warm-5"
+  ]
+ ],
+ "largeFile": "internal/stdlib/manifest.go",
+ "largeAnchor": "var PackageSymbols = map[string][]Symbol{"
+}

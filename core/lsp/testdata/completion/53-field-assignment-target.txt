@@ -1,0 +1,13 @@
+name: field assignment target
+want: Timeout
+-- src --
+package p
+
+type Config struct {
+	Timeout int
+	Tags    []string
+}
+
+func f(cfg *Config) {
+	cfg.Ti| = 3
+}

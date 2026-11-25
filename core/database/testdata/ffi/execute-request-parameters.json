@@ -1,0 +1,28 @@
+{
+  "execId": "1C2D3E4F-5A6B-4C7D-8E9F-0A1B2C3D4E5F",
+  "consoleId": "9F8E7D6C-5B4A-4392-8170-6F5E4D3C2B1A",
+  "dataSourceId": "5E0C2D7A-3B1F-4C8E-9A61-2F4D8B7C1E90",
+  "workspaceRoot": "/Users/me/src/app",
+  "text": "SELECT * FROM users WHERE id = :id AND token = :token",
+  "mode": "caret",
+  "caretByte": 0,
+  "selection": {
+    "startByte": 0,
+    "endByte": 0
+  },
+  "confirmed": [],
+  "pageSize": 500,
+  "parameters": [
+    {
+      "name": ":id",
+      "value": "42",
+      "isNull": false
+    },
+    {
+      "name": ":token",
+      "value": "s3cr3t",
+      "isNull": false,
+      "secret": true
+    }
+  ]
+}

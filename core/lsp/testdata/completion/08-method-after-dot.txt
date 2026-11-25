@@ -1,0 +1,11 @@
+name: method after dot
+want: Write, WriteByte, WriteRune
+-- src --
+package p
+
+import "strings"
+
+func f() {
+	var b strings.Builder
+	b.Wr|
+}

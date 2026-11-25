@@ -1,0 +1,10 @@
+name: generic constraint method
+want: String
+-- src --
+package p
+
+type Stringer interface{ String() string }
+
+func f[T Stringer](v T) string {
+	return v.Str|
+}

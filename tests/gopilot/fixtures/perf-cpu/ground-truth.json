@@ -1,0 +1,140 @@
+{
+  "fixture": "perf-cpu",
+  "kind": "cpu-hotspot-benchmark",
+  "purpose": "Builds a small report from a prime count and a byte checksum; the prime counting is a deliberately naive CPU hotspot.",
+  "entry": {
+    "file": "main.go",
+    "symbol": "main"
+  },
+  "representativeFlow": {
+    "name": "build report",
+    "why": "One function produces the report; nearly all CPU time sits in the trial-division loop reached through BuildReport.",
+    "steps": [
+      {
+        "file": "main.go",
+        "symbol": "main",
+        "role": "calls BuildReport with limit 20000 and a 4 KiB buffer and prints the result"
+      },
+      {
+        "file": "report.go",
+        "symbol": "BuildReport",
+        "role": "combines countPrimes, checksum and label"
+      },
+      {
+        "file": "primes.go",
+        "symbol": "countPrimes",
+        "role": "loops n from 2 to limit and calls isPrime"
+      },
+      {
+        "file": "primes.go",
+        "symbol": "isPrime",
+        "role": "trial division by every d from 2 to n-1"
+      }
+    ],
+    "output": {
+      "file": "report.go",
+      "symbol": "BuildReport",
+      "kind": "return-value"
+    }
+  },
+  "profiles": {
+    "prepare": "prepare.sh",
+    "benchmark": "BenchmarkBuildReport",
+    "kinds": {
+      "cpu": {
+        "sampleIndex": "cpu",
+        "topFlat": "example.test/perfcpu.isPrime",
+        "mustContain": [
+          "example.test/perfcpu.countPrimes",
+          "example.test/perfcpu.BuildReport"
+        ],
+        "note": "observed about 99 percent flat in isPrime; checksum and label do not appear because BenchmarkBuildReport uses a 4096 byte buffer and checksum is a few microseconds per call"
+      }
+    }
+  },
+  "expectedFacts": [
+    {
+      "id": "hotspot",
+      "statement": "isPrime, called from countPrimes, is the top flat CPU frame (about 99 percent of samples).",
+      "refs": [
+        {
+          "file": "primes.go",
+          "symbol": "isPrime"
+        },
+        {
+          "file": "primes.go",
+          "symbol": "countPrimes"
+        }
+      ]
+    },
+    {
+      "id": "cheap-helpers",
+      "statement": "checksum and label are cheap helpers and do not show up as significant frames in the CPU profile.",
+      "refs": [
+        {
+          "file": "report.go",
+          "symbol": "checksum"
+        },
+        {
+          "file": "report.go",
+          "symbol": "label"
+        }
+      ]
+    },
+    {
+      "id": "algorithm",
+      "statement": "isPrime tries every divisor d from 2 up to n-1 instead of stopping at the square root, so countPrimes is superlinear in limit.",
+      "refs": [
+        {
+          "file": "primes.go",
+          "symbol": "isPrime"
+        }
+      ]
+    },
+    {
+      "id": "profile-scope",
+      "statement": "The profile comes from BenchmarkBuildReport (limit 5000), a microbenchmark; CPU samples measure on-CPU time, not wall-clock or end-to-end latency, and prove nothing about main with limit 20000 or about production workloads.",
+      "refs": [
+        {
+          "file": "bench_test.go",
+          "symbol": "BenchmarkBuildReport"
+        }
+      ]
+    },
+    {
+      "id": "pinned-behaviour",
+      "statement": "TestCountPrimes pins prime counts for limits 1, 2, 10, 100 and 1000; any optimisation must keep them.",
+      "refs": [
+        {
+          "file": "report_test.go",
+          "symbol": "TestCountPrimes"
+        }
+      ]
+    }
+  ],
+  "traps": [
+    {
+      "id": "wrong-hotspot",
+      "statement": "Naming checksum or label (or fmt) as a hotspot is wrong."
+    },
+    {
+      "id": "wall-clock",
+      "statement": "Treating CPU samples as wall-clock time, or promising an end-to-end speedup from the profile alone, is unsupported."
+    },
+    {
+      "id": "runtime-frames",
+      "statement": "runtime.asyncPreempt is profiler/runtime noise, not application cost."
+    }
+  ],
+  "knownUncertainty": [],
+  "mustNotClaim": [
+    "checksum is the hotspot",
+    "label is the hotspot",
+    "fmt.Sprintf is the hotspot"
+  ],
+  "tests": [
+    "TestCountPrimes",
+    "TestChecksumIsStable",
+    "TestLabel"
+  ]
+}

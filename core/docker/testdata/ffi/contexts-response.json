@@ -1,0 +1,33 @@
+{
+  "current": "orbstack",
+  "contexts": [
+    {
+      "name": "default",
+      "description": "Current DOCKER_HOST based configuration",
+      "endpoint": "unix:///var/run/docker.sock",
+      "transport": "unix",
+      "current": false
+    },
+    {
+      "name": "orbstack",
+      "description": "OrbStack",
+      "endpoint": "unix:///Users/me/.orbstack/run/docker.sock",
+      "transport": "unix",
+      "current": true
+    },
+    {
+      "name": "secure",
+      "description": "",
+      "endpoint": "tcp://10.0.0.5:2376",
+      "transport": "tls",
+      "current": false
+    },
+    {
+      "name": "vps",
+      "description": "",
+      "endpoint": "ssh://deploy@vps.example",
+      "transport": "ssh",
+      "current": false
+    }
+  ]
+}

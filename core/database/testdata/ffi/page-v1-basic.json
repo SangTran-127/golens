@@ -1,0 +1,59 @@
+{
+  "magic": "GLRP",
+  "formatVersion": 1,
+  "byteOrder": "little-endian",
+  "bitmapBitOrder": "row r is bit (r % 8) of byte (r / 8), least significant bit first",
+  "flags": 1,
+  "endOfResult": true,
+  "sortedView": false,
+  "firstRow": 0,
+  "rowCount": 2,
+  "resultVersion": 0,
+  "byteLength": 224,
+  "columns": [
+    {
+      "kind": "int",
+      "values": [
+        "1",
+        "2"
+      ],
+      "truncated": [
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "text",
+      "values": [
+        "ada@example.com",
+        "grace@example.com"
+      ],
+      "truncated": [
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "datetime",
+      "values": [
+        "2026-11-15T10:00:00+07:00",
+        "2026-11-15T10:05:30.125+07:00"
+      ],
+      "truncated": [
+        false,
+        false
+      ]
+    },
+    {
+      "kind": "bool",
+      "values": [
+        "true",
+        "false"
+      ],
+      "truncated": [
+        false,
+        false
+      ]
+    }
+  ]
+}

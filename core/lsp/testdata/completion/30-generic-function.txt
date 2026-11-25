@@ -1,0 +1,12 @@
+name: generic function
+want: Map
+-- src --
+package p
+
+func Map[T, U any](xs []T, fn func(T) U) []U { return nil }
+
+var mapped = 1
+
+func f() {
+	_ = Ma|
+}

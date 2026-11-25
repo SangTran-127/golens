@@ -1,0 +1,12 @@
+name: nested struct literal key
+want: Port
+insert: Port: |
+-- src --
+package p
+
+type Inner struct{ Port int }
+type Outer struct{ In Inner }
+
+func f() Outer {
+	return Outer{In: Inner{Po|}}
+}

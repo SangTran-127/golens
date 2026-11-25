@@ -1,0 +1,143 @@
+{
+  "candidates": [
+    {
+      "definition": {
+        "id": "",
+        "name": "db",
+        "engine": "postgres",
+        "host": "localhost",
+        "port": 54320,
+        "database": "golens",
+        "user": "golens",
+        "password": "keychain",
+        "ssl": {
+          "mode": "prefer",
+          "rootCert": "",
+          "cert": "",
+          "key": ""
+        },
+        "sqlitePath": "",
+        "sqliteCreate": false,
+        "defaultSchema": "",
+        "readOnly": false,
+        "production": false,
+        "ssh": {
+          "destination": "",
+          "port": 0
+        }
+      },
+      "source": {
+        "file": "compose.yaml",
+        "line": 3,
+        "key": "db"
+      },
+      "kind": "compose",
+      "hasSecret": true,
+      "secret": "devpass"
+    },
+    {
+      "definition": {
+        "id": "",
+        "name": "app",
+        "engine": "postgres",
+        "host": "localhost",
+        "port": 5433,
+        "database": "app",
+        "user": "app",
+        "password": "ask",
+        "ssl": {
+          "mode": "disable",
+          "rootCert": "",
+          "cert": "",
+          "key": ""
+        },
+        "sqlitePath": "",
+        "sqliteCreate": false,
+        "defaultSchema": "",
+        "readOnly": false,
+        "production": false,
+        "ssh": {
+          "destination": "",
+          "port": 0
+        }
+      },
+      "source": {
+        "file": ".env",
+        "line": 2,
+        "key": "DATABASE_URL"
+      },
+      "kind": "env",
+      "hasSecret": false
+    },
+    {
+      "definition": {
+        "id": "",
+        "name": "maria",
+        "engine": "mysql",
+        "host": "localhost",
+        "port": 3306,
+        "database": "shop",
+        "user": "root",
+        "password": "keychain",
+        "ssl": {
+          "mode": "prefer",
+          "rootCert": "",
+          "cert": "",
+          "key": ""
+        },
+        "sqlitePath": "",
+        "sqliteCreate": false,
+        "defaultSchema": "shop",
+        "readOnly": false,
+        "production": false,
+        "ssh": {
+          "destination": "",
+          "port": 0
+        }
+      },
+      "source": {
+        "file": "compose.yaml",
+        "line": 11,
+        "key": "maria"
+      },
+      "kind": "compose",
+      "hasSecret": true,
+      "secret": "rootpw",
+      "note": "The MariaDB service does not publish port 3306, so GoLens may not reach it from this Mac. Publish the port in compose.yaml or change the port here."
+    },
+    {
+      "definition": {
+        "id": "",
+        "name": "dev.db",
+        "engine": "sqlite",
+        "host": "",
+        "port": 0,
+        "database": "",
+        "user": "",
+        "password": "none",
+        "ssl": {
+          "mode": "",
+          "rootCert": "",
+          "cert": "",
+          "key": ""
+        },
+        "sqlitePath": "data/dev.db",
+        "sqliteCreate": false,
+        "defaultSchema": "",
+        "readOnly": false,
+        "production": false,
+        "ssh": {
+          "destination": "",
+          "port": 0
+        }
+      },
+      "source": {
+        "file": "sqlc.yaml",
+        "line": 7,
+        "key": "database.uri"
+      },
+      "kind": "sqlc",
+      "hasSecret": false
+    }
+  ]
+}

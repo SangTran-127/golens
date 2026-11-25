@@ -1,0 +1,10 @@
+name: imported package member
+want: HasPrefix
+-- src --
+package p
+
+import "strings"
+
+func f(s string) bool {
+	return strings.HasPre|
+}

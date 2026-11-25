@@ -1,0 +1,11 @@
+name: continue label
+want: Loop
+-- src --
+package p
+
+func f() {
+Loop:
+	for i := 0; i < 3; i++ {
+		continue Lo|
+	}
+}

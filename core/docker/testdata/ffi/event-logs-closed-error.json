@@ -1,0 +1,7 @@
+{
+  "stream": 4,
+  "lines": [],
+  "closed": true,
+  "reason": "error",
+  "error": "Docker Engine isn’t running at /Users/me/.orbstack/run/docker.sock."
+}

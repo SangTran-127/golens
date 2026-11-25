@@ -1,0 +1,11 @@
+name: imported struct literal key
+want: Addr
+insert: Addr: |
+-- src --
+package p
+
+import "net/http"
+
+func f() *http.Server {
+	return &http.Server{Add|}
+}

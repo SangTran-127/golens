@@ -1,0 +1,83 @@
+{
+  "version": 1,
+  "description": "Identity tints for GoLens file-type icons. A tint says which family a file belongs to; it never signals state. Hues avoid GoLens's reserved meanings: accent blue (selection, interaction, ~211 deg), red (error, removal), orange/yellow (warning), green (success, new). Exception (owner decision 2026-11-05): folders use the theme accent, like the Xcode and Finder navigators.",
+  "contrastTargets": {
+    "normal": ">= 3:1 against every sidebar background below (WCAG 1.4.11 non-text contrast)",
+    "increaseContrast": ">= 4.5:1 against the same backgrounds"
+  },
+  "sidebarBackgrounds": {
+    "light": ["#F5F5F7", "#E8E8ED", "#DCDCDC"],
+    "dark": ["#1E1E1E", "#2C2C2E", "#464649"],
+    "note": "Approximations of the vibrant sidebar, its darker wallpaper-tinted state and the unemphasized selected row. On an emphasized (accent) selected row every icon is drawn white instead of tinted."
+  },
+  "renderingModes": {
+    "tinted": "Default. Monochrome rendering filled with the icon's identity tint. Highest legibility at 16 px.",
+    "hierarchical": "Optional, for 20 pt and larger (Quick Open, welcome screen). Symbol layers: primary = tint at 100%, secondary = tint at the system hierarchical opacity (about 50%). Secondary layers fall below 3:1, so do not use it in the 16 px sidebar.",
+    "monochrome": "User setting 'Colored file icons' off: every icon uses NSColor.secondaryLabelColor, the current GoLens rule (DESIGN_SYSTEM.md 2.5)."
+  },
+  "selectedRow": "Emphasized selection: NSColor.alternateSelectedControlTextColor (white). Unemphasized selection: keep the tint.",
+  "tints": {
+    "go": {
+      "meaning": "Go language: .go, _test.go, generated Go, go.mod, go.sum, go.work, Go templates",
+      "hue": 192,
+      "light": "#007A99", "dark": "#4CC9EB",
+      "lightHighContrast": "#005F78", "darkHighContrast": "#8ADCF2",
+      "minContrast": {"light": 3.61, "dark": 4.86, "lightHighContrast": 5.27, "darkHighContrast": 6.09}
+    },
+    "infra": {
+      "meaning": "Containers and deployment: Dockerfile, Compose, .dockerignore, Kubernetes, Helm, Terraform",
+      "hue": 238,
+      "light": "#4A4FD6", "dark": "#9A9CFF",
+      "lightHighContrast": "#3437B0", "darkHighContrast": "#BDBEFF",
+      "minContrast": {"light": 4.53, "dark": 3.84, "lightHighContrast": 6.60, "darkHighContrast": 5.36}
+    },
+    "data": {
+      "meaning": "Data and config formats: YAML, JSON, TOML, INI/XML config, Protobuf, GraphQL, SQL",
+      "hue": 275,
+      "light": "#8A3CC2", "dark": "#C98EF2",
+      "lightHighContrast": "#6E2A9E", "darkHighContrast": "#DDB5F7",
+      "minContrast": {"light": 4.37, "dark": 3.87, "lightHighContrast": 6.16, "darkHighContrast": 5.39}
+    },
+    "web": {
+      "meaning": "Web and media: HTML, CSS, JavaScript, TypeScript, images",
+      "hue": 326,
+      "light": "#B8327F", "dark": "#F27AC2",
+      "lightHighContrast": "#932463", "darkHighContrast": "#F7A8D7",
+      "minContrast": {"light": 4.03, "dark": 3.73, "lightHighContrast": 5.73, "darkHighContrast": 5.17}
+    },
+    "neutral": {
+      "meaning": "Everything else: docs (Markdown, LICENSE, text), tooling (Makefile, shell, .env, git, CI), generic files. Neutral on purpose: these are frequent and should not compete with names, git status or diagnostics.",
+      "system": "NSColor.secondaryLabelColor",
+      "light": "#6E6E73", "dark": "#A1A1A6",
+      "lightHighContrast": "#4F4F54", "darkHighContrast": "#C7C7CC",
+      "minContrast": {"light": 3.70, "dark": 3.66, "lightHighContrast": 5.94, "darkHighContrast": 5.59},
+      "note": "Hex values are preview approximations only; in the app use the semantic system color."
+    },
+    "accent": {
+      "meaning": "Every folder, plain or badged: filled folder glyph in the active theme's accent (ThemeManager.accentNSColor; the Xcode (System) theme uses NSColor.controlAccentColor, so the user's macOS accent applies).",
+      "system": "Theme accent, adjusted at runtime by FileIconPalette.accent",
+      "light": "#0077E0", "dark": "#1B97FF",
+      "lightHighContrast": "#005FB5", "darkHighContrast": "#74B9FF",
+      "minContrast": {"light": 3.25, "dark": 3.09, "lightHighContrast": 4.66, "darkHighContrast": 4.53},
+      "note": "Hex values are the default blue accent after adjustment, for previews only. At runtime the accent is blended toward black (light) or white (dark) in 5% steps until it reaches the contrast target against every sidebarBackgrounds entry and, for the custom dark themes, the theme's panel background. Accents that already pass are used unchanged."
+    }
+  },
+  "multicolor": {
+    "gopher": {
+      "meaning": "Flat multicolor artwork for go, go-test and go-generated (tools/gopher.py bakes these into template/<name>-color-<variant>.pdf). Not tinted at runtime; Colored icons off and the emphasized selection use the one-color cut-out silhouette template/<name>.pdf instead.",
+      "body": {"light": "#00ADD8", "dark": "#4CC9EB", "light-hc": "#007A99", "dark-hc": "#8ADCF2"},
+      "bodyNote": "Light uses the Go brand cyan, below 3:1 against the light sidebar (2.3:1 on #E8E8ED). Owner decision: accepted because the file name always sits next to the icon and the white eyes and dark pupils carry the shape. Increase Contrast uses the go tint (5.27:1 light) and its lighter dark variant.",
+      "badge": {"light": "#007A99", "dark": "#4CC9EB", "light-hc": "#005F78", "dark-hc": "#8ADCF2"},
+      "badgeNote": "Test check and generated gear use the go tint, so a thin badge stroke keeps >= 3:1.",
+      "tan": {"light": "#F2D3AE", "dark": "#E8BF94", "light-hc": "#E8BF94", "dark-hc": "#F2D3AE"},
+      "eyeWhite": "#FFFFFF",
+      "teeth": "#FFFFFF",
+      "pupil": "#1D1D1F",
+      "nose": "#1D1D1F"
+    }
+  },
+  "monochrome": {
+    "all": "NSColor.secondaryLabelColor",
+    "light": "#6E6E73", "dark": "#A1A1A6"
+  }
+}

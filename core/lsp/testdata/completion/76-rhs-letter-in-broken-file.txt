@@ -1,0 +1,20 @@
+name: after = in a file with a stray paren, statement keywords like var are not offered
+forbid: var, for, return, switch
+-- src --
+package main
+
+import "sync"
+
+// Store tracks (ms and "quoted keys
+type Store struct {
+	mu   sync.Mutex
+	data map[string]string
+})
+
+func (s *Store) Apply(op, k, v string) {
+	s.mu.Lock()
+	switch op {
+	case "set":
+		s.data[k] = v|
+	}
+}

@@ -1,0 +1,15 @@
+name: type switch case
+want: Square
+-- src --
+package p
+
+type Shape interface{ Area() float64 }
+type Square struct{}
+
+func (Square) Area() float64 { return 1 }
+
+func f(v any) {
+	switch v.(type) {
+	case Squ|:
+	}
+}

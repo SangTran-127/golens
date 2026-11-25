@@ -1,0 +1,46 @@
+### Login
+# @name login
+POST {{host}}/login
+Content-Type: application/json
+
+{
+  "user": "{{user}}",
+  "password": "{{password}}"
+}
+
+> {%
+  client.global.set("token", response.body.token);
+  client.test("Login succeeds", function () {
+    client.assert(response.status === 200, "Status is 200");
+    client.assert(response.body.token !== undefined, "Response has a token");
+  });
+%}
+
+### List users
+GET {{host}}/users
+Authorization: Bearer {{token}}
+Accept: application/json
+
+> {%
+  client.test("Returns users", function () {
+    client.assert(response.status === 200, "Status is 200");
+    client.assert(response.body.total === 3, "Three users");
+  });
+  client.test("First user is an admin", function () {
+    client.assert(response.body.users[0].roles.indexOf("admin") >= 0, "Ana has the admin role");
+    client.assert(response.body.users[1].roles.indexOf("admin") >= 0, "Bao has the admin role");
+  });
+%}
+
+### Orders service health (gRPC)
+GRPC {{grpcHost}}/grpc.health.v1.Health/Check
+
+{
+  "service": "orders"
+}
+
+> {%
+  client.test("Orders is serving", function () {
+    client.assert(response.body.status === "SERVING", "Status is SERVING");
+  });
+%}

@@ -1,0 +1,10 @@
+name: grouped import path
+want: http
+after: 	"net/http"\n|
+notafter: net/net|
+-- src --
+package p
+
+import (
+	"net/ht|"
+)

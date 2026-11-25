@@ -1,0 +1,450 @@
+[
+  {
+    "id": "s01-01-3am-pho-debugger",
+    "category": "characters",
+    "title": "3 AM Pho Debugger",
+    "series": "Series 01",
+    "note": "Striped pajamas, hot pho bowl on red plastic stool, midnight debugging laptop",
+    "path": "characters/s01-01-3am-pho-debugger.png"
+  },
+  {
+    "id": "s01-02-garbage-collector",
+    "category": "characters",
+    "title": "Garbage Collector",
+    "series": "Series 01",
+    "note": "Go runtime GC inspector tidying orphan pointers into recycling bins",
+    "path": "characters/s01-02-garbage-collector.png"
+  },
+  {
+    "id": "s01-03-banh-mi-cosplay",
+    "category": "characters",
+    "title": "Banh Mi Cosplay",
+    "series": "Series 01",
+    "note": "Crispy baguette shell suit celebrating Saigon street food culture",
+    "path": "characters/s01-03-banh-mi-cosplay.png"
+  },
+  {
+    "id": "s01-04-dino-kigurumi",
+    "category": "characters",
+    "title": "Dino Kigurumi",
+    "series": "Series 01",
+    "note": "Mint-teal dinosaur onesie cozy Edition",
+    "path": "characters/s01-04-dino-kigurumi.png"
+  },
+  {
+    "id": "s01-05-panic-firefighter",
+    "category": "characters",
+    "title": "Panic Firefighter",
+    "series": "Series 01",
+    "note": "Fire helmet and hose ready to put out recover() / panic alerts",
+    "path": "characters/s01-05-panic-firefighter.png"
+  },
+  {
+    "id": "s01-06-goroutine-beekeeper",
+    "category": "characters",
+    "title": "Goroutine Beekeeper",
+    "series": "Series 01",
+    "note": "Tending bustling worker bees representing concurrent goroutine swarms",
+    "path": "characters/s01-06-goroutine-beekeeper.png"
+  },
+  {
+    "id": "s01-07-pprof-barista",
+    "category": "characters",
+    "title": "pprof Barista",
+    "series": "Series 01",
+    "note": "Pouring flame-graph latte art for CPU and heap profiling",
+    "path": "characters/s01-07-pprof-barista.png"
+  },
+  {
+    "id": "s01-08-grand-hotel-bellhop",
+    "category": "characters",
+    "title": "Grand Hotel Bellhop",
+    "series": "Series 01",
+    "note": "Pastel bellhop coat pushing brass luggage cart of Go packages",
+    "path": "characters/s01-08-grand-hotel-bellhop.png"
+  },
+  {
+    "id": "s01-09-secret-zen-onsen",
+    "category": "characters",
+    "title": "Secret: Zen Onsen",
+    "series": "Series 01",
+    "note": "Hidden chase figure relaxing in yuzu hot spring water with folded towel",
+    "path": "characters/s01-09-secret-zen-onsen.png"
+  },
+  {
+    "id": "s02-01-ram-barbell-lifter",
+    "category": "characters",
+    "title": "RAM Barbell Lifter",
+    "series": "Series 02",
+    "note": "Hoisting heavy memory DIMM bars to celebrate low-allocation Go code",
+    "path": "characters/s02-01-ram-barbell-lifter.png"
+  },
+  {
+    "id": "s02-02-boba-tea-bath",
+    "category": "characters",
+    "title": "Boba Tea Bath",
+    "series": "Series 02",
+    "note": "Chubby pink Gopher soaking chest-deep in caramel milk tea and pearls",
+    "path": "characters/s02-02-boba-tea-bath.png"
+  },
+  {
+    "id": "s02-03-shiba-inu-kigurumi",
+    "category": "characters",
+    "title": "Shiba Inu Kigurumi",
+    "series": "Series 02",
+    "note": "Fluffy golden Shiba hood pajama edition",
+    "path": "characters/s02-03-shiba-inu-kigurumi.png"
+  },
+  {
+    "id": "s02-04-keycap-turntable-dj",
+    "category": "characters",
+    "title": "Keycap Turntable DJ",
+    "series": "Series 02",
+    "note": "Scratching custom mechanical keycap vinyl decks",
+    "path": "characters/s02-04-keycap-turntable-dj.png"
+  },
+  {
+    "id": "s02-05-mutex-traffic-warden",
+    "category": "characters",
+    "title": "Mutex Traffic Warden",
+    "series": "Series 02",
+    "note": "Blowing whistle and raising stop sign to prevent race conditions",
+    "path": "characters/s02-05-mutex-traffic-warden.png"
+  },
+  {
+    "id": "s02-06-dim-sum-bao-bun",
+    "category": "characters",
+    "title": "Dim Sum Bao Bun",
+    "series": "Series 02",
+    "note": "Steaming bamboo basket cosplay with soft dumpling cheeks",
+    "path": "characters/s02-06-dim-sum-bao-bun.png"
+  },
+  {
+    "id": "s02-07-zen-bug-yoga",
+    "category": "characters",
+    "title": "Zen Bug Yoga",
+    "series": "Series 02",
+    "note": "Calm breathing balance pose amid swarming breakpoints",
+    "path": "characters/s02-07-zen-bug-yoga.png"
+  },
+  {
+    "id": "s02-08-deep-heap-diver",
+    "category": "characters",
+    "title": "Deep Heap Diver",
+    "series": "Series 02",
+    "note": "Brass diving helmet descending into heap allocation graphs",
+    "path": "characters/s02-08-deep-heap-diver.png"
+  },
+  {
+    "id": "s02-09-secret-mecha-gopher",
+    "category": "characters",
+    "title": "Secret: Mecha Gopher",
+    "series": "Series 02",
+    "note": "Hidden chase figure piloting miniature robotic armor",
+    "path": "characters/s02-09-secret-mecha-gopher.png"
+  },
+  {
+    "id": "icon-01-watchmaker-loupe",
+    "category": "icons",
+    "title": "Watchmaker Loupe",
+    "series": "Cosplay Icons",
+    "note": "Jeweler eye loupe inspecting precision Go syntax",
+    "path": "icons/icon-01-watchmaker-loupe.png"
+  },
+  {
+    "id": "icon-02-saigon-caphe-fin",
+    "category": "icons",
+    "title": "Saigon Ca Phe Fin",
+    "series": "Cosplay Icons",
+    "note": "Traditional stainless steel phin drip coffee cap",
+    "path": "icons/icon-02-saigon-caphe-fin.png"
+  },
+  {
+    "id": "icon-03-tet-lion-dance",
+    "category": "icons",
+    "title": "Tet Lion Dance Hood",
+    "series": "Cosplay Icons",
+    "note": "Festive red and gold lion dance seasonal hood",
+    "path": "icons/icon-03-tet-lion-dance.png"
+  },
+  {
+    "id": "icon-04-kaiju-hoodie",
+    "category": "icons",
+    "title": "Kaiju Hoodie",
+    "series": "Cosplay Icons",
+    "note": "Playful monster spine hoodie in soft emerald",
+    "path": "icons/icon-04-kaiju-hoodie.png"
+  },
+  {
+    "id": "icon-05-hinoki-onsen",
+    "category": "icons",
+    "title": "Hinoki Onsen Yuzu",
+    "series": "Cosplay Icons",
+    "note": "Warm cedar bathhouse tub with citrus yuzu",
+    "path": "icons/icon-05-hinoki-onsen.png"
+  },
+  {
+    "id": "icon-06-boba-milk-tea-master-1024",
+    "category": "icons",
+    "title": "Boba Milk Tea Master (1024px)",
+    "series": "Production Icon",
+    "note": "Selected native 1024x1024 full-bleed Boba Milk Tea GoLens app icon without straw",
+    "path": "icons/icon-06-boba-milk-tea-master-1024.png"
+  },
+  {
+    "id": "icon-06-boba-milk-tea-squircle",
+    "category": "icons",
+    "title": "Boba Milk Tea Squircle (Concept)",
+    "series": "Festival Icons",
+    "note": "Original 1x5 festival concept card with striped straw",
+    "path": "icons/icon-06-boba-milk-tea-squircle.png"
+  },
+  {
+    "id": "icon-07-crt-arcade-gamer",
+    "category": "icons",
+    "title": "CRT Arcade Gamer",
+    "series": "Festival Icons",
+    "note": "Retro beige CRT monitor bezel framing coding Gopher",
+    "path": "icons/icon-07-crt-arcade-gamer.png"
+  },
+  {
+    "id": "icon-08-mid-autumn-lantern",
+    "category": "icons",
+    "title": "Mid-Autumn Star Lantern",
+    "series": "Festival Icons",
+    "note": "Warm glowing star lantern companion edition",
+    "path": "icons/icon-08-mid-autumn-lantern.png"
+  },
+  {
+    "id": "icon-09-steampunk-alchemist",
+    "category": "icons",
+    "title": "Steampunk Alchemist",
+    "series": "Festival Icons",
+    "note": "Brass flight goggles and cgo alchemy vials",
+    "path": "icons/icon-09-steampunk-alchemist.png"
+  },
+  {
+    "id": "icon-10-capybara-yuzu-hood",
+    "category": "icons",
+    "title": "Capybara Yuzu Hood",
+    "series": "Festival Icons",
+    "note": "Calm capybara cloak topped with a yuzu fruit",
+    "path": "icons/icon-10-capybara-yuzu-hood.png"
+  },
+  {
+    "id": "badge-01-saigon-sidewalk",
+    "category": "badges",
+    "title": "Saigon Sidewalk Code & Coffee",
+    "series": "Diorama Vol 1",
+    "note": "Low blue stools, iced milk coffee, and coding session on wet pavement",
+    "path": "badges/badge-01-saigon-sidewalk.png"
+  },
+  {
+    "id": "badge-02-conveyor-sushi",
+    "category": "badges",
+    "title": "Goroutine Conveyor Sushi",
+    "series": "Diorama Vol 1",
+    "note": "Buffered channel belt delivering neatly plated packets to Gophers",
+    "path": "badges/badge-02-conveyor-sushi.png"
+  },
+  {
+    "id": "badge-03-grand-hotel-elevator",
+    "category": "badges",
+    "title": "Grand Hotel Elevator",
+    "series": "Diorama Vol 1",
+    "note": "Pastel brass lift scene used for Noel Welcome medallion",
+    "path": "badges/badge-03-grand-hotel-elevator.png"
+  },
+  {
+    "id": "badge-04-campfire-bug-roast",
+    "category": "badges",
+    "title": "Forest Campfire Bug-Roast",
+    "series": "Diorama Vol 1",
+    "note": "Twilight woodland log seat roasting toasted bugs over campfire",
+    "path": "badges/badge-04-campfire-bug-roast.png"
+  },
+  {
+    "id": "badge-05-claw-machine-prize",
+    "category": "badges",
+    "title": "Claw Machine Prize",
+    "series": "Adventure Vol 2",
+    "note": "Pastel arcade claw reaching for Gopher plushie",
+    "path": "badges/badge-05-claw-machine-prize.png"
+  },
+  {
+    "id": "badge-06-clean-laundromat",
+    "category": "badges",
+    "title": "The Go Clean Laundromat",
+    "series": "Adventure Vol 2",
+    "note": "Warm midnight coin laundry symbolizing clean architecture",
+    "path": "badges/badge-06-clean-laundromat.png"
+  },
+  {
+    "id": "badge-07-binary-bonsai",
+    "category": "badges",
+    "title": "Binary Bonsai Greenhouse",
+    "series": "Adventure Vol 2",
+    "note": "Sunlit glasshouse sanctuary used for Default Welcome medallion",
+    "path": "badges/badge-07-binary-bonsai.png"
+  },
+  {
+    "id": "badge-08-deep-sea-submarine",
+    "category": "badges",
+    "title": "Deep-Sea pprof Submarine",
+    "series": "Adventure Vol 2",
+    "note": "Porthole yellow bathysphere used for Hacker Welcome medallion",
+    "path": "badges/badge-08-deep-sea-submarine.png"
+  },
+  {
+    "id": "medallion-default-binary-bonsai",
+    "category": "badges",
+    "title": "Welcome Medallion: Default",
+    "series": "Shipped Welcome",
+    "note": "272x272 @2x circular Binary Bonsai medallion in WelcomeView",
+    "path": "badges/medallion-default-binary-bonsai.png"
+  },
+  {
+    "id": "medallion-tet-saigon-sidewalk",
+    "category": "badges",
+    "title": "Welcome Medallion: Tet",
+    "series": "Shipped Welcome",
+    "note": "272x272 @2x circular Saigon Sidewalk medallion for Lunar New Year",
+    "path": "badges/medallion-tet-saigon-sidewalk.png"
+  },
+  {
+    "id": "medallion-noel-grand-hotel",
+    "category": "badges",
+    "title": "Welcome Medallion: Noel",
+    "series": "Shipped Welcome",
+    "note": "272x272 @2x circular Grand Hotel Elevator medallion for Noel",
+    "path": "badges/medallion-noel-grand-hotel.png"
+  },
+  {
+    "id": "medallion-halloween-campfire",
+    "category": "badges",
+    "title": "Welcome Medallion: Halloween",
+    "series": "Shipped Welcome",
+    "note": "272x272 @2x circular Campfire Bug-Roast medallion for Halloween",
+    "path": "badges/medallion-halloween-campfire.png"
+  },
+  {
+    "id": "medallion-hacker-submarine",
+    "category": "badges",
+    "title": "Welcome Medallion: Hacker",
+    "series": "Shipped Welcome",
+    "note": "272x272 @2x circular Deep-Sea Submarine medallion for Hacker mode",
+    "path": "badges/medallion-hacker-submarine.png"
+  },
+  {
+    "id": "world-01-saigon-cyber-alley",
+    "category": "worlds",
+    "title": "Saigon Cyber-Alley Night Market",
+    "series": "Worlds Vol 1",
+    "note": "Neon street noodle stalls with multi-color Go Gopher developers",
+    "path": "worlds/world-01-saigon-cyber-alley.png"
+  },
+  {
+    "id": "world-02-toymaker-workshop",
+    "category": "worlds",
+    "title": "GoLens Toymaker Automaton Workshop",
+    "series": "Worlds Vol 1",
+    "note": "Warm clockwork craft bench building miniature Gopher figures",
+    "path": "worlds/world-02-toymaker-workshop.png"
+  },
+  {
+    "id": "world-03-grand-hotel-lobby",
+    "category": "worlds",
+    "title": "Grand Hotel GoLens Lobby",
+    "series": "Worlds Vol 2",
+    "note": "Grand concierge reception halls with bellhop and barista Gophers",
+    "path": "worlds/world-03-grand-hotel-lobby.png"
+  },
+  {
+    "id": "world-04-skyship-dockyard",
+    "category": "worlds",
+    "title": "Cloud-Native Sky-Ship Dockyard",
+    "series": "Worlds Vol 2",
+    "note": "Airship moorings dispatching container crates and Kubernetes crews",
+    "path": "worlds/world-04-skyship-dockyard.png"
+  },
+  {
+    "id": "world-05-dmg-installer-dock",
+    "category": "worlds",
+    "title": "GoLens DMG Installer Dock",
+    "series": "DMG Release",
+    "note": "1320x840 @2x Duckoo Go Gopher delivery trio welcoming macOS users inside GoLens.dmg",
+    "path": "worlds/world-05-dmg-installer-dock.png"
+  },
+  {
+    "id": "01-blindbox-series-01",
+    "category": "boards",
+    "title": "Blind-Box Series 01 Sheet",
+    "series": "Master Sheets",
+    "note": "3x3 full character collection board (Series 01)",
+    "path": "boards/01-blindbox-series-01.png"
+  },
+  {
+    "id": "02-cosplay-icons",
+    "category": "boards",
+    "title": "Cosplay & Lifestyle App Icons Sheet",
+    "series": "Master Sheets",
+    "note": "1x5 Duckoo cosplay squircle app icons board",
+    "path": "boards/02-cosplay-icons.png"
+  },
+  {
+    "id": "03-diorama-badges-series-01",
+    "category": "boards",
+    "title": "Narrative Diorama Badges Vol. 1 Sheet",
+    "series": "Master Sheets",
+    "note": "2x2 square diorama badges board",
+    "path": "boards/03-diorama-badges-series-01.png"
+  },
+  {
+    "id": "04-panoramic-ide-worlds-vol1",
+    "category": "boards",
+    "title": "Panoramic IDE Worlds Vol. 1 Sheet",
+    "series": "Master Sheets",
+    "note": "Dual wide panoramic workspace illustrations",
+    "path": "boards/04-panoramic-ide-worlds-vol1.png"
+  },
+  {
+    "id": "05-blindbox-series-02",
+    "category": "boards",
+    "title": "Blind-Box Series 02 Sheet",
+    "series": "Master Sheets",
+    "note": "3x3 full character collection board (Series 02)",
+    "path": "boards/05-blindbox-series-02.png"
+  },
+  {
+    "id": "06-festival-icons",
+    "category": "boards",
+    "title": "Festival & Hobby App Icons Sheet",
+    "series": "Master Sheets",
+    "note": "1x5 Duckoo festival squircle app icons board",
+    "path": "boards/06-festival-icons.png"
+  },
+  {
+    "id": "07-adventure-badges-series-02",
+    "category": "boards",
+    "title": "Adventure Diorama Badges Vol. 2 Sheet",
+    "series": "Master Sheets",
+    "note": "2x2 adventure diorama badges board",
+    "path": "boards/07-adventure-badges-series-02.png"
+  },
+  {
+    "id": "08-panoramic-ide-worlds-vol2",
+    "category": "boards",
+    "title": "Panoramic IDE Worlds Vol. 2 Sheet",
+    "series": "Master Sheets",
+    "note": "Dual wide panoramic skyship & grand hotel illustrations",
+    "path": "boards/08-panoramic-ide-worlds-vol2.png"
+  },
+  {
+    "id": "09-boba-milk-tea-master-1024",
+    "category": "boards",
+    "title": "Boba Milk Tea Master (1024x1024)",
+    "series": "Master Sheets",
+    "note": "Full-bleed 1024x1024 production master backing GoLens.icon",
+    "path": "boards/09-boba-milk-tea-master-1024.png"
+  }
+]

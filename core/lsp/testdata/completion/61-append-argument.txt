@@ -1,0 +1,10 @@
+name: append argument
+want: newName
+-- src --
+package p
+
+func f() {
+	var names []string
+	newName := "x"
+	names = append(names, newN|)
+}

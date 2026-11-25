@@ -1,0 +1,11 @@
+name: select case channel
+want: inbox
+-- src --
+package p
+
+func f(inbox chan string, done chan struct{}) {
+	select {
+	case msg := <-inb|:
+		_ = msg
+	}
+}

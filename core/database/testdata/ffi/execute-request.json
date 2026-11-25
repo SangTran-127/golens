@@ -1,0 +1,20 @@
+{
+  "execId": "1C2D3E4F-5A6B-4C7D-8E9F-0A1B2C3D4E5F",
+  "consoleId": "9F8E7D6C-5B4A-4392-8170-6F5E4D3C2B1A",
+  "dataSourceId": "5E0C2D7A-3B1F-4C8E-9A61-2F4D8B7C1E90",
+  "workspaceRoot": "/Users/me/src/app",
+  "text": "SELECT * FROM users;\nDELETE FROM orders;\n",
+  "mode": "caret",
+  "caretByte": 25,
+  "selection": {
+    "startByte": 0,
+    "endByte": 0
+  },
+  "confirmed": [
+    {
+      "hash": "fe38fe1b1ab3d801a3f065f337a8e56ffdf3a712726b170e0b43d3e7bc2f7a8d",
+      "risk": "deleteWithoutWhere"
+    }
+  ],
+  "pageSize": 500
+}

@@ -1,0 +1,13 @@
+name: break label
+want: Outer
+-- src --
+package p
+
+func f() {
+Outer:
+	for {
+		for {
+			break Ou|
+		}
+	}
+}

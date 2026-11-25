@@ -1,0 +1,13 @@
+name: method value
+want: Name
+-- src --
+package p
+
+type User struct{ id int }
+
+func (User) Name() string { return "" }
+
+func f(u User) {
+	get := u.Na|
+	_ = get
+}

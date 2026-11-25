@@ -1,0 +1,13 @@
+name: return expected type
+want: errBad
+-- src --
+package p
+
+import "errors"
+
+var ename = "x"
+
+func f() error {
+	errBad := errors.New("x")
+	return e|
+}

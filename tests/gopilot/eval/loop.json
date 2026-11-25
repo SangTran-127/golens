@@ -1,0 +1,14 @@
+[
+  {
+    "id": "LOOP-01",
+    "category": "propose-verify",
+    "fixture": "benchmark-lab",
+    "prompt": "Run BenchmarkDedupe as a baseline with 10 samples and tell me the median ns/op.",
+    "followUps": [
+      "Propose an optimization of Dedupe in dedupe.go that keeps its behavior identical. Only propose it, do not run anything.",
+      "Now run BenchmarkDedupe again with exactly the same settings and use compare_benchmarks with the baseline run. Tell me whether it is faster, slower or inconclusive, and do not claim more than the comparison supports."
+    ],
+    "allowsExecution": true,
+    "applyProposals": true
+  }
+]

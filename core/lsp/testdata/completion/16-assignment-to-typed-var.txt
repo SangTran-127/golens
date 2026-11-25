@@ -1,0 +1,14 @@
+name: assignment to typed var
+want: spd
+-- src --
+package p
+
+type Speed float64
+
+func f() {
+	var spd Speed
+	spName := "x"
+	var v Speed
+	v = sp|
+	_, _ = spName, v
+}

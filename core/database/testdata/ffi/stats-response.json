@@ -1,0 +1,16 @@
+{
+  "sessions": 1,
+  "pools": 1,
+  "openResults": 2,
+  "spoolMemBytes": 1048576,
+  "spoolDiskBytes": 0,
+  "goroutines": 41,
+  "tunnels": [
+    {
+      "dataSourceId": "C3D4E5F6-0718-4293-A4B5-C6D7E8F90A1B",
+      "pid": 48213,
+      "localPort": 52811,
+      "destination": "deploy@bastion.example.com"
+    }
+  ]
+}

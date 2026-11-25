@@ -1,0 +1,72 @@
+{
+  "query_optimization": {
+    "r_total_time_ms": 0.079145059
+  },
+  "query_block": {
+    "select_id": 1,
+    "cost": 0.010136528,
+    "r_loops": 1,
+    "r_total_time_ms": 0.125703437,
+    "nested_loop": [
+      {
+        "read_sorted_file": {
+          "r_rows": 4,
+          "filesort": {
+            "sort_key": "u.`name`",
+            "r_loops": 1,
+            "r_total_time_ms": 0.087720502,
+            "r_used_priority_queue": false,
+            "r_output_rows": 4,
+            "r_buffer_size": "382KiB",
+            "r_sort_mode": "packed_sort_key,packed_addon_fields",
+            "table": {
+              "table_name": "u",
+              "access_type": "range",
+              "possible_keys": ["PRIMARY", "golens_ex_users_team"],
+              "key": "PRIMARY",
+              "key_length": "4",
+              "used_key_parts": ["id"],
+              "loops": 1,
+              "r_loops": 1,
+              "rows": 4,
+              "r_rows": 4,
+              "cost": 0.00320452,
+              "r_table_time_ms": 0.017067222,
+              "r_other_time_ms": 0.055259315,
+              "r_engine_stats": {
+                "pages_accessed": 2
+              },
+              "filtered": 100,
+              "r_filtered": 100,
+              "attached_condition": "u.`id` > 1 and u.team_id is not null"
+            }
+          }
+        }
+      },
+      {
+        "table": {
+          "table_name": "t",
+          "access_type": "eq_ref",
+          "possible_keys": ["PRIMARY"],
+          "key": "PRIMARY",
+          "key_length": "4",
+          "used_key_parts": ["id"],
+          "ref": ["golens.u.team_id"],
+          "loops": 4,
+          "r_loops": 4,
+          "r_table_loops": 3,
+          "rows": 1,
+          "r_rows": 1,
+          "cost": 0.00439696,
+          "r_table_time_ms": 0.002384391,
+          "r_other_time_ms": 0.013135068,
+          "r_engine_stats": {
+            "pages_accessed": 3
+          },
+          "filtered": 100,
+          "r_filtered": 100
+        }
+      }
+    ]
+  }
+}

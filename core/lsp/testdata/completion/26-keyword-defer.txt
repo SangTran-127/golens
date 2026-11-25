@@ -1,0 +1,10 @@
+name: keyword defer
+want: defer
+-- src --
+package p
+
+func cleanup() {}
+
+func f() {
+	def|
+}

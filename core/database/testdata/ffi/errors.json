@@ -1,0 +1,81 @@
+[
+  {
+    "kind": "needsSecret",
+    "message": "Enter the password for this data source to connect."
+  },
+  {
+    "kind": "connect",
+    "message": "GoLens could not reach the database server. Check that it is running and that the host and port are right."
+  },
+  {
+    "kind": "auth",
+    "message": "The server did not accept the user name or password. Check them in Edit Data Source."
+  },
+  {
+    "kind": "tls",
+    "message": "The secure connection to the server failed. Check the SSL mode and certificate files in Edit Data Source."
+  },
+  {
+    "kind": "timeout",
+    "message": "The server did not answer within 10 seconds. Check the host and your network."
+  },
+  {
+    "kind": "syntax",
+    "message": "The database could not run the statement as written. Fix it and run it again.",
+    "detail": "syntax error at or near \"FROMM\"",
+    "code": "SQLSTATE 42601",
+    "position": {
+      "byte": 655,
+      "line": 12,
+      "col": 16
+    }
+  },
+  {
+    "kind": "permission",
+    "message": "The database user is not allowed to run this statement."
+  },
+  {
+    "kind": "constraint",
+    "message": "The statement would break a rule of the database, such as a key or a check."
+  },
+  {
+    "kind": "readOnly",
+    "message": "This data source is read-only, so GoLens did not run the statement. Turn off Read-only in Edit Data Source to allow writes."
+  },
+  {
+    "kind": "cancelled",
+    "message": "The statement was canceled."
+  },
+  {
+    "kind": "connectionLost",
+    "message": "The connection to the server was lost. Run the statement again to reconnect."
+  },
+  {
+    "kind": "server",
+    "message": "The database reported an error while running the statement."
+  },
+  {
+    "kind": "internal",
+    "message": "GoLens could not complete the request because of an internal error."
+  },
+  {
+    "kind": "needsParameters",
+    "message": "Enter a value for every parameter to run this statement."
+  },
+  {
+    "kind": "transactionOpen",
+    "message": "Commit or roll back the open transaction first."
+  },
+  {
+    "kind": "unsupported",
+    "message": "This database can't do that."
+  },
+  {
+    "kind": "tooLarge",
+    "message": "The result is too large to copy. Export it to a file instead."
+  },
+  {
+    "kind": "conflict",
+    "message": "A row no longer matches what GoLens read, so nothing was saved. Reload the table and make the change again."
+  }
+]

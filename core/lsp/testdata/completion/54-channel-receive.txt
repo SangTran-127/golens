@@ -1,0 +1,9 @@
+name: channel receive
+want: results
+-- src --
+package p
+
+func f(results chan int) {
+	v := <-resu|
+	_ = v
+}
